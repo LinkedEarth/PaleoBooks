@@ -1,4 +1,4 @@
-name: coderefinery
+name: sphinx_pb
 channels:
   - conda-forge
   - defaults
@@ -15,7 +15,7 @@ dependencies:
   - pytest=6.2.3
   - seaborn=0.11.1
   - snakemake-minimal=6.2.1
-  - sphinx=3.5.4
+  - sphinx
   - sphinx_rtd_theme=0.5.2
   - pip
 #  - pip:
