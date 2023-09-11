@@ -28,7 +28,7 @@ def main(app):
     )
     print('build menu')
     build_from_repos(
-        repo_dicts, "doc/gallery", title=title, subtext=subtext, menu_html=menu_html
+        repo_dicts, "doc/index", title=title, subtext=subtext, menu_html=menu_html
     )
 
 
