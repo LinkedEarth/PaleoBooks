@@ -13,14 +13,14 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-# If extensions (or modules to document with autodoc) are in another directory,
+# If _extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../source'))
-
+sys.path.insert(0, os.path.abspath("../_extensions"))
 
 # -- General configuration ------------------------------------------------
 
@@ -29,9 +29,11 @@ sys.path.insert(0, os.path.abspath('../source'))
 # needs_sphinx = '1.0'
 
 # Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# _extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc',
+              'sphinx_design',
+              "cookbook_gallery_generator"
               # 'sphinx_external_toc'
               ]
 
@@ -93,6 +95,7 @@ html_logo = '_static/logo.png'
 html_title = "PaleoBook Library"
 # html_title = ""
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.

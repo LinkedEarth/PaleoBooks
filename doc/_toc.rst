@@ -7,3 +7,4 @@
    usage.rst
    credit.rst
    exercises.rst
+   gallery.rst
