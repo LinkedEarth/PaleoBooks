@@ -21,4 +21,5 @@ dependencies:
   - pip:
       - sphinx-book-theme
       - sphinx-design
+      - PyYaml
 #    - jupyterlab-github==2.0.0
