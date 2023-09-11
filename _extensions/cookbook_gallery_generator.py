@@ -1,6 +1,7 @@
 from gallery_generator import build_from_repos, generate_menu, generate_repo_dicts
 import csv
 import os
+import yaml
 
 def main(app):
     print(os.getcwd())
