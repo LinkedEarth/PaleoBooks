@@ -1,5 +1,5 @@
 import itertools, json, yaml, pathlib, subprocess, requests
-from textwrap import dedent
+from textwrap import dedent, indent
 from truncatehtml import truncate
 
 
@@ -279,7 +279,9 @@ def build_from_repos(
 {stitle}
 {stext}
 
-{menu_html}
+.. raw:: html
+
+{indent(menu_html, '    ')}
 
 
 .. grid:: 2 3 3 4
@@ -289,8 +291,11 @@ def build_from_repos(
 
 ```
 
-<div class="modal-backdrop"></div>
-<script src="doc/_static/custom.js"></script>
+.. raw:: html
+
+    <div class="modal-backdrop"></div>
+    <script src="doc/_static/custom.js"></script>
+
 """
 
     pathlib.Path(f"{filename}.rst").write_text(panels)
