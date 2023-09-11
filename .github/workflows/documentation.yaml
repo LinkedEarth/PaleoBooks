@@ -11,6 +11,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install sphinx sphinx-book-theme
+          pip install sphinx-design
       - name: Sphinx build
         run: |
           sphinx-build doc _build
