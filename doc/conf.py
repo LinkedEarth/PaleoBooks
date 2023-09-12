@@ -96,6 +96,9 @@ html_title = "PaleoBook Library"
 # html_title = ""
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
+# html_js_files = [
+#     'custom.js'
+# ]
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.

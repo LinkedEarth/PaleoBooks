@@ -14,7 +14,7 @@ def main(app):
 
     repo_dicts = generate_repo_dicts(all_items)
 
-    title = "Cookbooks Gallery"
+    title = ""
 
     subtext = ""
     with open("doc/cookbook_gallery_subtext.rst") as fid:

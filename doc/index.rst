@@ -1,5 +1,5 @@
 
-Cookbooks Gallery
+
 =====================
 
 
@@ -7,7 +7,12 @@ Cookbooks Gallery
 Gallery
 ========
 
+Curently borrowing content from the generous educational force that is Project Pythia while we develop our library!!!
+
 .. raw:: html
+
+    <script src="doc/_static/custom.js"></script>
+    <div class="modal-backdrop"></div>
 
     <div class="d-sm-flex mt-3 mb-4">
     <div class="d-flex gallery-menu">
@@ -43,7 +48,6 @@ Gallery
 
 
 .. grid:: 2 3 3 4
-
 
 
     
@@ -202,10 +206,4 @@ Gallery
             
         
 
-```
-
-.. raw:: html
-
-    <div class="modal-backdrop"></div>
-    <script src="doc/_static/custom.js"></script>
 

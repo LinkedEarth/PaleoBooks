@@ -50,9 +50,10 @@ def _run_cffconvert(command):
 def generate_repo_dicts(all_items):
     repo_dicts = []
     for item in all_items:
-        repo = item['repo_name']  # item.strip()
+        host = item['host'].strip()
+        repo = item['repo_name'].strip()  # item.strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
-        cookbook_url = f"https://projectpythia.org/{repo}/README.html".strip()
+        cookbook_url = f"{host}/{repo}/README.html".strip()
 
         try:
             citation_url = f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/CITATION.cff"
@@ -135,6 +136,7 @@ def _generate_tag_menu(repo_dicts, tag_key):
         f'<li><label class="dropdown-item checkbox {tag_key}"><input type="checkbox" rel={tag.replace(" ", "-")} onchange="change();">&nbsp;{tag}</label></li>'
         for tag in tag_list
     )
+    print(options)
 
     return f"""
 <div class="dropdown">
@@ -151,6 +153,7 @@ def _generate_tag_menu(repo_dicts, tag_key):
 
 def generate_menu(repo_dicts, submit_btn_txt=None, submit_btn_link=None):
     key_list = _generate_sorted_tag_keys(repo_dicts)
+    print(key_list)
 
     menu_html = '<div class="d-sm-flex mt-3 mb-4">\n'
     menu_html += '<div class="d-flex gallery-menu">\n'
@@ -197,7 +200,7 @@ def build_from_repos(
         tag_dict = repo_dict["tags"]
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        # print('tags', tag_list_f)
+        print('tags', tag_list_f)
         tag_types = ['primary', 'secondary', 'info', 'caution']
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
@@ -281,22 +284,25 @@ def build_from_repos(
 
 .. raw:: html
 
+{indent('<script src="doc/_static/custom.js"></script>', '    ')}
+{indent('<div class="modal-backdrop"></div>', '    ')}
+
 {indent(menu_html, '    ')}
 
 
 .. grid:: 2 3 3 4
 
-
 {panels_body}
 
-```
-
-.. raw:: html
-
-    <div class="modal-backdrop"></div>
-    <script src="doc/_static/custom.js"></script>
 
 """
 
     pathlib.Path(f"{filename}.rst").write_text(panels)
 # {dedent(panels_body)}
+
+# ```
+#
+# .. raw:: html
+#
+#     <div class="modal-backdrop"></div>
+#     <script src="doc/_static/custom.js"></script>
