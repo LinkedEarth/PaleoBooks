@@ -21,6 +21,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../source'))
 sys.path.insert(0, os.path.abspath("../_extensions"))
+sys.path.insert(0, os.path.abspath("_static"))
 
 # -- General configuration ------------------------------------------------
 
@@ -33,7 +34,9 @@ sys.path.insert(0, os.path.abspath("../_extensions"))
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx_design',
-              "cookbook_gallery_generator"
+              "cookbook_gallery_generator",
+              "sphinx_togglebutton",
+              'sphinx_click'
               # 'sphinx_external_toc'
               ]
 
@@ -96,9 +99,12 @@ html_title = "PaleoBook Library"
 # html_title = ""
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-# html_js_files = [
-#     'custom.js'
-# ]
+html_js_files = [
+"https://code.jquery.com/jquery-3.2.1.slim.min.js",
+    'https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js',
+    'https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js',
+    'custom.js'
+]
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.

@@ -140,14 +140,10 @@ def _generate_tag_menu(repo_dicts, tag_key):
 
     return f"""
 <div class="dropdown">
-
 <button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle" type="button" id="{tag_key}Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-{tag_key.title()}
-</button>
-<ul class="dropdown-menu" aria-labelledby="{tag_key}Dropdown">
-{options}
-</ul>
-</div>
+{tag_key.title()}</button>
+<ul class="dropdown-menu" aria-labelledby="{tag_key}Dropdown">{options}</ul>
+</div>\n
 """
 
 
@@ -277,15 +273,13 @@ def build_from_repos(
     stext = subtext if subtext else ""
 
     panels = f"""
+    
 {title}
 =====================
 {stitle}
 {stext}
 
 .. raw:: html
-
-{indent('<script src="doc/_static/custom.js"></script>', '    ')}
-{indent('<div class="modal-backdrop"></div>', '    ')}
 
 {indent(menu_html, '    ')}
 
