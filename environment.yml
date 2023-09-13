@@ -22,4 +22,6 @@ dependencies:
       - sphinx-book-theme
       - sphinx-design
       - PyYaml
+      - sphinx-togglebutton
+      - sphinx-click
 #    - jupyterlab-github==2.0.0
