@@ -36,7 +36,9 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx_design',
               "cookbook_gallery_generator",
               "sphinx_togglebutton",
-              'sphinx_click'
+              'sphinx_click',
+              'tagged_card',
+                # "sphinx_design_elements"
               # 'sphinx_external_toc'
               ]
 

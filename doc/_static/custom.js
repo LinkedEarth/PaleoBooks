@@ -33,6 +33,7 @@ for (i = 0; i < buttons.length; i++) {
 
 
 function change() {
+
   var affiliationCbs = document.querySelectorAll(".affiliation input[type='checkbox']");
   var domainsCbs = document.querySelectorAll(".domains input[type='checkbox']");
   var formatsCbs = document.querySelectorAll(".formats input[type='checkbox']");
@@ -44,6 +45,7 @@ function change() {
     formats: getClassOfCheckedCheckboxes(formatsCbs),
     packages: getClassOfCheckedCheckboxes(packagesCbs)
   };
+
 
   filterResults(filters);
 }
@@ -65,7 +67,7 @@ function getClassOfCheckedCheckboxes(checkboxes) {
 }
 
 function filterResults(filters) {
-  var rElems = document.querySelectorAll(".tagged-card");
+  var rElems = document.querySelectorAll(".sd-tagged-card");
   var hiddenElems = [];
 
   if (!rElems || rElems.length <= 0) {
@@ -115,7 +117,7 @@ function filterResults(filters) {
       for (var j = 0; j < filters.formats.length; j++) {
         var filter = filters.formats[j];
 
-        if (el.classList.contains(filter)) {
+        if (el.classList.contains(filter.toLowerCase())) {
           isHidden = false;
           break;
         }

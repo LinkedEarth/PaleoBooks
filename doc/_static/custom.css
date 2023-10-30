@@ -127,3 +127,9 @@ main.banner-main #project-pythia {
 .tagsandbadges {
   padding: 0 0;
 }
+
+.card {
+    display: flex;
+    flex-flow: column;
+    margin-right: 10px;
+}

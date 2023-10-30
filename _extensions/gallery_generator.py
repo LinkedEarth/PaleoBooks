@@ -1,7 +1,8 @@
 import itertools, json, yaml, pathlib, subprocess, requests
+import os
 from textwrap import dedent, indent
 from truncatehtml import truncate
-
+# from tagged_card
 
 def _grab_binder_link(repo):
     config_url = (
@@ -17,14 +18,14 @@ def _grab_binder_link(repo):
     return root, url
 
 
-def _generate_status_badge_html(repo, github_url):
-    binder_root, binder_link = _grab_binder_link(repo)
-    github_id = _grab_github_id(repo)
-    return f"""
-    <a class="reference external" href="{github_url}/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="{github_url}/actions/workflows/nightly-build.yaml/badge.svg" /></a>
-    <a class="reference external" href="{binder_link}"><img alt="Binder" src="{binder_root}/badge_logo.svg" /></a>
-    <a class="reference external" href="https://zenodo.org/badge/latestdoi/{github_id}"><img alt="DOI" src="https://zenodo.org/badge/{github_id}.svg" /></a>
-    """
+# def _generate_status_badge_html(repo, github_url):
+#     binder_root, binder_link = _grab_binder_link(repo)
+#     github_id = _grab_github_id(repo)
+#     return f"""
+#     <a class="reference external" href="{github_url}/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="{github_url}/actions/workflows/nightly-build.yaml/badge.svg" /></a>
+#     <a class="reference external" href="{binder_link}"><img alt="Binder" src="{binder_root}/badge_logo.svg" /></a>
+#     <a class="reference external" href="https://zenodo.org/badge/latestdoi/{github_id}"><img alt="DOI" src="https://zenodo.org/badge/{github_id}.svg" /></a>
+#     """
 
 
 def _grab_github_id(repo):
@@ -49,12 +50,17 @@ def _run_cffconvert(command):
 
 def generate_repo_dicts(all_items):
     repo_dicts = []
+    chapter_dicts = []
     for item in all_items:
         host = item['host'].strip()
+        user = item['user'].strip()
         repo = item['repo_name'].strip()  # item.strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
         cookbook_url = f"{host}/{repo}/README.html".strip()
-
+        config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
+        # print(item)
+        master_tags = {}
+        # Get information from _config (title, description, authors)
         try:
             citation_url = f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/CITATION.cff"
             cffconvert_command = f"cffconvert -f zenodo -u {citation_url}"
@@ -67,32 +73,75 @@ def generate_repo_dicts(all_items):
             authors = ", ".join(names)
 
         except:
-            config_url = 'https://raw.githubusercontent.com/{}/main/_config.yml'.format(github_url.split('github.com/')[1])
-            # f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/_config.yml"
-            config = requests.get(config_url).content
+            # print('took the except through the title description author split')
+            config = requests.get(config_url+'/_config.yml').content
             config_dict = yaml.safe_load(config)
+            # with requests.get(config_url+'/_config.yml', 'r').content as file:
+            #     config_dict = yaml.safe_load(file)
             cookbook_title = config_dict["title"]
             description = config_dict["description"] if 'description' in config_dict else ''
             authors = config_dict["author"] if 'author' in config_dict else ''
 
+        # Get tags and thumbnail for repo
         try:
-            gallery_info_url = 'https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
-            # f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/_gallery_info.yml"
-            gallery_info_dict = yaml.safe_load(requests.get(gallery_info_url).content)
+            gallery_info_url = config_url#os.getcwd() + '/source/{}'.format(repo)
+            # with open(gallery_info_url+'/meta_data/chapter_meta.yml', 'r') as file:
+            #     gallery_info_dict = yaml.safe_load(file)
+
+            gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
+            gallery_info_dict = yaml.safe_load(gallery_info)
+
+            shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
+
+            chapters = []
+            for part in gallery_info_dict['parts']:
+                type_tag = part['caption']
+                type_stem = type_tag.lower().replace(' ', '_')
+                for chapter in part['chapters']:
+                    file_name = chapter['filename']
+                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter  else ''
+                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail+'.png' if len(chapter_thumbnail) >0 else chapter_thumbnail
+                    chapter['type_tag'] = type_tag
+                    chapter['tags']['formats'] = ['notebook', type_tag, shortname]
+                    chapter['url'] =f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
+                    chapter['thumbnail_url']=f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+
+                    for tag_cat in chapter['tags'].keys():
+                        if tag_cat not in master_tags:
+                            master_tags[tag_cat] = []
+                        master_tags[tag_cat] += chapter['tags'][tag_cat]
+
+                    chapter['tags'] = {
+                                    k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
+                                }
+                    chapters.append(chapter)
+
+            # meta_data_dir = '{}'.format(github_url.split('github.com/')[1])#https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
+            # book_meta_loc = '/'.join([meta_data_dir, 'book_meta.yml'])
+            # chapter_meta_loc = '/'.join([meta_data_dir, 'chapter_meta.yml'])
+            # # f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/_gallery_info.yml"
+            # book_meta_dict = yaml.safe_load(book_meta_loc)
+            # chapter_meta_dict = yaml.safe_load(chapter_meta_loc)
             # print(gallery_info_dict["tags"])
-            tag_dict = {
-                k: v for k, v in gallery_info_dict["tags"].items() if (v is not None and v[0] is not None)
-            }
+
         except:
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
-            tag_dict = {
-                k: v for k, v in config_dict["tags"].items() if (v is not None and v[0] is not None)
-            } if 'tags' in config_dict else {}
+            master_tags = config_dict["tags"] if 'tags' in config_dict else {}
 
-        thumbnail_url = 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
-                                                                              thumbnail)
 
+        thumbnail_url =f'{gallery_info_url}/thumbnails/thumbnail.png'
+            # 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
+            #                                                                   thumbnail)
+
+        for tag_cat in master_tags.keys():
+            master_tags[tag_cat] = list(set(master_tags[tag_cat]))
+
+        repo_tags = {
+            k: v for k, v in master_tags.items() if (v is not None and v[0] is not None)
+        }
+        repo_tags['formats'].remove('notebook')
+        # print('repo_tags', repo_tags['formats'].remove('notebook'))
         repo_dict = {
             "repo": repo,
             "github_url": github_url,
@@ -102,17 +151,26 @@ def generate_repo_dicts(all_items):
             "thumbnail": thumbnail,
             "thumbnail_url": thumbnail_url,
             "description": description,
-            "tags": tag_dict,
+            "tags": repo_tags,
+            'shortname': shortname
         }
-        repo_dicts.append(repo_dict)
 
-    return repo_dicts
+        repo_dicts.append(repo_dict)
+        chapter_dicts +=chapters
+
+    return {'repos':repo_dicts, 'chapters':chapter_dicts}
 
 
 def _generate_sorted_tag_keys(repo_dicts):
     key_set = set(
         itertools.chain(*[repo_dict["tags"].keys() for repo_dict in repo_dicts])
     )
+    # key_set.update(set(
+    #     itertools.chain(*[repo_dict["shortname"] for repo_dict in repo_dicts])
+    # ))
+    # key_set.update(set(
+    #     itertools.chain(*[repo_dict["type"] for repo_dict in repo_dicts])
+    # ))
     return sorted(key_set)
 
 
@@ -133,10 +191,9 @@ def _generate_tag_menu(repo_dicts, tag_key):
     tag_list = sorted(tag_set)
 
     options = "".join(
-        f'<li><label class="dropdown-item checkbox {tag_key}"><input type="checkbox" rel={tag.replace(" ", "-")} onchange="change();">&nbsp;{tag}</label></li>'
+        f'<li><label class="dropdown-item checkbox {tag_key}"><input type="checkbox" rel={tag.replace(" ", "-").lower()} onchange="change();">&nbsp;{tag}</label></li>'
         for tag in tag_list
     )
-    print(options)
 
     return f"""
 <div class="dropdown">
@@ -149,7 +206,6 @@ def _generate_tag_menu(repo_dicts, tag_key):
 
 def generate_menu(repo_dicts, submit_btn_txt=None, submit_btn_link=None):
     key_list = _generate_sorted_tag_keys(repo_dicts)
-    print(key_list)
 
     menu_html = '<div class="d-sm-flex mt-3 mb-4">\n'
     menu_html += '<div class="d-flex gallery-menu">\n'
@@ -176,13 +232,10 @@ def build_from_repos(
         max_descr_len=300,
 ):
     # Build the gallery file
-    panels_body = []
-    for repo_dict in repo_dicts:
+    panels_repos = []
+    for repo_dict in repo_dicts['repos']:
         repo = repo_dict["repo"]
-        print(repo)
         github_url = repo_dict["github_url"]
-        status_badges = _generate_status_badge_html(repo, github_url)
-
         cookbook_url = repo_dict["cookbook_url"]
         cookbook_title = repo_dict["cookbook_title"]
 
@@ -196,18 +249,15 @@ def build_from_repos(
         tag_dict = repo_dict["tags"]
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        print('tags', tag_list_f)
         tag_types = ['primary', 'secondary', 'info', 'caution']
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
             tag_type = tag_types[ip]
             _tags = ', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
-            print(_tags)
             tags.append(_tags)
-        print('tags', tags)
         tags = ', '.join(tags)
         # tags = ", ".join(tags)+'\n'
-        tag_class_str = " ".join(tag_list_f)
+        tag_class_str = " ".join(tag_list_f).lower()
 
         description = repo_dict["description"]
         ellipsis_str = '<a class="modal-btn"> ... more</a>'
@@ -228,52 +278,109 @@ def build_from_repos(
                     """
         else:
             modal_str = ""
-
+        # \t\t\t..raw:: html
+        #
+        # \t\t\t\t < img
+        # src = "{thumbnail_url}"
+        #
+        # class ="gallery-thumbnail" / >
         panel=f"""\
 
-    
-                \t.. grid-item::
+                .. grid-item::
+                
+                    .. tagged-card:: 
+                        :tags: {tag_class_str}
+                    
+                        .. card:: {cookbook_title}
+                            :link: {cookbook_url}
+                            :img-top: {thumbnail_url}
+                            :img-alt: {thumbnail}
                             
-                \t\t.. card:: {cookbook_title}
-                \t\t\t:link: {cookbook_url}
-                \t\t\t:img-top: {thumbnail_url}
-                \t\t\t:img-alt:
-                            
-                \t\t\t{tags}
-            
+                            {tags}
+
             
         """
-        panels_body.append(panel)
-# ---
-# :column: + tagged-card {tag_class_str}
-#
-# <div class="d-flex gallery-card">
-# <img src="{thumbnail_url}" class="gallery-thumbnail" />
-# <div class="container">
-# <a href="{cookbook_url}" class="text-decoration-none"><h4 class="display-4 p-0">{cookbook_title}</h4></a>
-# <p class="card-subtitle">{authors_str}</p>
-# <br/>
-# <p class="my-2">{short_description}</p>
-# </div>
-# </div>
-# {modal_str}
-#
-# +++
-# <div class="tagsandbadges">
-# {tags}
-# <div>{status_badges}</div>
-# </div>
-#
-# """
-#         )
-    print(panels_body)
-    panels_body = "\n".join(panels_body)
+        panels_repos.append(panel)
 
+    panels_chapters = []
+    for repo_dict in repo_dicts['chapters']:
+        repo = repo_dict["filename"]
+        cookbook_url = repo_dict["url"]
+        cookbook_title = repo_dict["shortname"]
+
+        # authors = repo_dict["authors"]
+        # authors_str = f"<strong>Author:</strong> {authors}"
+
+        thumbnail = repo_dict["thumbnail"]
+        thumbnail_url = (repo_dict["thumbnail_url"]
+        )
+
+        tag_dict = repo_dict["tags"]
+        tag_list = sorted((itertools.chain(*tag_dict.values())))
+        tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
+        tag_types = ['primary', 'secondary', 'info', 'caution']
+        tags = []
+        for ip, tag_key in enumerate(tag_dict.keys()):
+            tag_type = tag_types[ip]
+            _tags = ', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
+            tags.append(_tags)
+        tags = ', '.join(tags)
+        # tags = ", ".join(tags)+'\n'
+        tag_class_str = " ".join(tag_list_f).lower()
+
+        description = repo_dict["description"] if 'description' in repo_dict else ''
+        ellipsis_str = '<a class="modal-btn"> ... more</a>'
+        short_description = truncate(description, max_descr_len, ellipsis=ellipsis_str)
+
+        if ellipsis_str in short_description:
+            modal_str = f"""
+                    <div class="modal">
+                    <div class="content">
+                    <img src="{thumbnail_url}" class="modal-img" />
+                    <h3 class="display-3">{cookbook_title}</h3>
+                    # {authors_str}
+                    <p class="my-2">{description}</p>
+                    <p class="my-2">{tags}</p>
+                    <p class="mt-3 mb-0"><a href="{cookbook_url}" class="btn btn-outline-primary btn-block">Visit Website</a></p>
+                    </div>
+                    </div>
+                    """
+        else:
+            modal_str = ""
+
+
+        panel = f"""\
+
+
+                .. grid-item::
+                
+                    .. tagged-card:: 
+                        :tags: {tag_class_str}
+                    
+                        .. card:: {cookbook_title}
+                            :link: {cookbook_url}
+                            :img-top: {thumbnail_url}
+                            :img-alt: {thumbnail}
+                            
+                            {tags}
+                            
+
+        """
+        print('panel', panel)
+        panels_chapters.append(panel)
+
+    print('survived?')
+
+    panels_repos = "\n".join(panels_repos)
+    panels_chapters = "\n".join(panels_chapters)
+
+    title=title
     stitle = f"{subtitle}" if subtitle else ""
     stext = subtext if subtext else ""
 
+    modal_html = '<div class="modal-backdrop"></div>'
     panels = f"""
-    
+
 {title}
 =====================
 {stitle}
@@ -283,10 +390,26 @@ def build_from_repos(
 
 {indent(menu_html, '    ')}
 
++++++++++++++++
+PaleoBooks
++++++++++++++++
 
-.. grid:: 2 3 3 4
+.. grid:: 1 2 2 2
 
-{panels_body}
+{panels_repos}
+
++++++++++++++++
+Chapters
++++++++++++++++
+
+.. grid:: 1 2 2 2
+
+{panels_chapters}
+
+
+.. raw:: html
+
+{indent(modal_html, '    ')}
 
 
 """
