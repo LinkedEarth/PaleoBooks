@@ -42,16 +42,16 @@ class TaggedCardDirective(SphinxDirective):
         )
         self.set_source_info(container)
         self.state.nested_parse(self.content, self.content_offset, container)
-        for item in container.children:
-            if not is_component(item, "card"):
-                LOGGER.warning(
-                    "All children of a 'card-carousel' "
-                    f"should be 'card' [{WARNING_TYPE}.card]",
-                    location=item,
-                    type=WARNING_TYPE,
-                    subtype="card",
-                )
-                break
+        # for item in container.children:
+        #     if not is_component(item, "card"):
+        #         LOGGER.warning(
+        #             "All children of a 'card-carousel' "
+        #             f"should be 'card' [{WARNING_TYPE}.card]",
+        #             location=item,
+        #             type=WARNING_TYPE,
+        #             subtype="card",
+        #         )
+        #         break
         return [container]
 
 

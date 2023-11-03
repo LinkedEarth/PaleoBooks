@@ -133,3 +133,132 @@ main.banner-main #project-pythia {
     flex-flow: column;
     margin-right: 10px;
 }
+
+/*label[for="pseudo-btn-info"]{*/
+/*   display: inline-block;*/
+/*  padding: 0.35em 0.65em;*/
+/*  font-size: 0.75em;*/
+/*  font-weight: 700;*/
+/*  line-height: 1;*/
+/*  text-align: center;*/
+/*  white-space: nowrap;*/
+/*  vertical-align: baseline;*/
+/*  border-radius: 0.25rem;*/
+/*  color:  #0071bc;*/
+/*}*/
+/*#pseudo-btn-info{*/
+/*    display:none;*/
+/*}*/
+/*input[name="info"]+label {*/
+/*  background: #0071bc;*/
+/*  font-style: italic;*/
+/*  border-radius: 4px; !* to make the button rounded *!*/
+/*  border: 1px solid #D0D0D0; !* give it a bborder of 1px(thin) solid type ( solid | dotted | etc ) and lastly the color #D0D0D0 ( hex code fo the border ). *!*/
+/*}*/
+/*the input button itself*/
+/*https://jsfiddle.net/3nkpmugw/29/*/
+input[name="info"].hidden {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+input[name="info"]+label {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color:  #17a2b8;
+}
+
+input[name="info"]:checked+label {
+  color: #5faebb;
+  font-style: normal;
+}
+
+input[name="primary"]+label {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color:  #0071bc;
+}
+
+input[name="primary"]:checked+label {
+  color: #458cba;
+  font-style: normal;
+}
+
+
+input[name="secondary"]+label {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #e3893e;
+}
+
+input[name="secondary"]:checked+label {
+  color: #d29058;
+  font-style: normal;
+}
+
+input[name="caution"]+label {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #0b674c;
+}
+
+input[name="caution"]:checked+label {
+  color: #428f78;
+  font-style: normal;
+}
+/*!* on hover what will happen *!*/
+/*div.pseudo-btn-info:hover {*/
+/*  background:#0071bc; !* on hovering the backgorund color will change to red *!*/
+/*  color: black;*/
+/*  !*on hovering the text color will change to black*!*/
+/*}*/
+
+/*!*#pseudo-btn-info label {*!*/
+/*!*  float: left;*!*/
+/*!*  width: 4.0em;*!*/
+/*!*}*!*/
+
+/*!*#pseudo-btn-info label span {*!*/
+/*!*  text-align: center;*!*/
+/*!*  padding: 3px 0px;*!*/
+/*!*  display: block;*!*/
+/*!*}*!*/
+
+/*!*#pseudo-btn-info label input {*!*/
+/*!*  position: absolute;*!*/
+/*!*  top: -20px;*!*/
+/*!*}*!*/
+
+/*!* when the button is clicked *!*/
+/*div.pseudo-btn-info input:checked + span {*/
+/*  background-color: #458cba; !* button is clicked it will change the background color to medium dark shade of red or #911 making it look  like its been pressed. *!*/
+/*  color: #fff; !* color changes to white #fff when it is clicked. *!*/
+/*}*/

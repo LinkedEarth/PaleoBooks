@@ -1,0 +1,14 @@
+repo_name,repo_url,host
+citrace_paleobook,https://github.com/LinkedEarth/citrace_paleobook,https://linked.earth
+cesm-lens-aws-cookbook, https://github.com/ProjectPythia/cesm-lens-aws-cookbook, https://projectpythia.org
+cmip6-cookbook, https://github.com/ProjectPythia/cmip6-cookbook, https://projectpythia.org
+HRRR-AWS-cookbook, https://github.com/ProjectPythia/HRRR-AWS-cookbook, https://projectpythia.org
+radar-cookbook, https://github.com/ProjectPythia/radar-cookbook, https://projectpythia.org
+intake-cookbook, https://github.com/ProjectPythia/intake-cookbook, https://projectpythia.org
+landsat-ml-cookbook, https://github.com/ProjectPythia/landsat-ml-cookbook, https://projectpythia.org
+kerchunk-cookbook, https://github.com/ProjectPythia/kerchunk-cookbook, https://projectpythia.org
+xbatcher-ML-1-cookbook, https://github.com/ProjectPythia/xbatcher-ML-1-cookbook, https://projectpythia.org
+dask-cookbook, https://github.com/ProjectPythia/dask-cookbook, https://projectpythia.org
+ERA5_interactive-cookbook, https://github.com/ProjectPythia/ERA5_interactive-cookbook, https://projectpythia.org
+web-map-feature-services-cookbook, https://github.com/ProjectPythia/web-map-feature-services-cookbook, https://projectpythia.org
+gridding-cookbook, https://github.com/ProjectPythia/gridding-cookbook, https://projectpythia.org

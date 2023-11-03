@@ -32,6 +32,25 @@ for (i = 0; i < buttons.length; i++) {
 }
 
 
+function change_button() {
+
+  var affiliationCbs = document.querySelectorAll(".affiliation input[type='button']");
+  var domainsCbs = document.querySelectorAll(".domains input[type='button']");
+  var formatsCbs = document.querySelectorAll(".formats input[type='button']");
+  var packagesCbs = document.querySelectorAll(".packages input[type='button']");
+
+  var filters = {
+    affiliation: getClassOfCheckedCheckboxes(affiliationCbs),
+    domains: getClassOfCheckedCheckboxes(domainsCbs),
+    formats: getClassOfCheckedCheckboxes(formatsCbs),
+    packages: getClassOfCheckedCheckboxes(packagesCbs)
+  };
+
+
+  filterResults(filters);
+}
+
+
 function change() {
 
   var affiliationCbs = document.querySelectorAll(".affiliation input[type='checkbox']");

@@ -2,6 +2,8 @@ import itertools, json, yaml, pathlib, subprocess, requests
 import os
 from textwrap import dedent, indent
 from truncatehtml import truncate
+
+
 # from tagged_card
 
 def _grab_binder_link(repo):
@@ -48,6 +50,19 @@ def _run_cffconvert(command):
         raise RuntimeError(f"cffconvert command failed: {error_message}")
 
 
+def _generate_tag_button(tag, tag_key, tag_type):
+    tag_buttton_html = f"""<div class="{tag_key}"><input class=hidden name="{tag_type}" type="checkbox" value={tag.replace(" ", "-").lower()}><label onclick="change();">{tag}</label></div>"""
+
+# <div id="{tag_key} pseudo-btn">
+# <div id="pseudo-btn-{tag_type}">
+# <label>
+# <input type="checkbox" hidden='' value={tag.replace(" ", "-").lower()} onchange="change();"><span>{tag}</span>
+# </label>
+# </div>
+# </div>
+
+    return tag_buttton_html
+
 def generate_repo_dicts(all_items):
     repo_dicts = []
     chapter_dicts = []
@@ -74,7 +89,7 @@ def generate_repo_dicts(all_items):
 
         except:
             # print('took the except through the title description author split')
-            config = requests.get(config_url+'/_config.yml').content
+            config = requests.get(config_url + '/_config.yml').content
             config_dict = yaml.safe_load(config)
             # with requests.get(config_url+'/_config.yml', 'r').content as file:
             #     config_dict = yaml.safe_load(file)
@@ -84,7 +99,7 @@ def generate_repo_dicts(all_items):
 
         # Get tags and thumbnail for repo
         try:
-            gallery_info_url = config_url#os.getcwd() + '/source/{}'.format(repo)
+            gallery_info_url = config_url  # os.getcwd() + '/source/{}'.format(repo)
             # with open(gallery_info_url+'/meta_data/chapter_meta.yml', 'r') as file:
             #     gallery_info_dict = yaml.safe_load(file)
 
@@ -100,21 +115,30 @@ def generate_repo_dicts(all_items):
                 type_stem = type_tag.lower().replace(' ', '_')
                 for chapter in part['chapters']:
                     file_name = chapter['filename']
-                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter  else ''
-                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail+'.png' if len(chapter_thumbnail) >0 else chapter_thumbnail
+                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
+                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
+                        chapter_thumbnail) > 0 else chapter_thumbnail
                     chapter['type_tag'] = type_tag
                     chapter['tags']['formats'] = ['notebook', type_tag, shortname]
-                    chapter['url'] =f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
-                    chapter['thumbnail_url']=f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
-
+                    chapter['url'] = f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
+                    chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+                    tag_types = ['primary', 'secondary', 'info', 'caution']
+                    tag_keys = ['formats', 'domains', 'packages']
+                    _tag_html = '<div>'
+                    for ip, tag_key in enumerate(tag_keys):
+                        tag_type = tag_types[ip]
+                        _tag_html += ''.join(
+                            [_generate_tag_button(tag, tag_key, tag_type) for tag in chapter['tags'][tag_key]])
+                    _tag_html += '</div>'
                     for tag_cat in chapter['tags'].keys():
                         if tag_cat not in master_tags:
                             master_tags[tag_cat] = []
                         master_tags[tag_cat] += chapter['tags'][tag_cat]
 
                     chapter['tags'] = {
-                                    k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
-                                }
+                        k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
+                    }
+                    chapter['tag_html'] = _tag_html
                     chapters.append(chapter)
 
             # meta_data_dir = '{}'.format(github_url.split('github.com/')[1])#https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
@@ -129,10 +153,9 @@ def generate_repo_dicts(all_items):
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
 
-
-        thumbnail_url =f'{gallery_info_url}/thumbnails/thumbnail.png'
-            # 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
-            #                                                                   thumbnail)
+        thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
+        # 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
+        #                                                                   thumbnail)
 
         for tag_cat in master_tags.keys():
             master_tags[tag_cat] = list(set(master_tags[tag_cat]))
@@ -156,21 +179,16 @@ def generate_repo_dicts(all_items):
         }
 
         repo_dicts.append(repo_dict)
-        chapter_dicts +=chapters
+        chapter_dicts += chapters
 
-    return {'repos':repo_dicts, 'chapters':chapter_dicts}
+    return {'repos': repo_dicts, 'chapters': chapter_dicts}
 
 
 def _generate_sorted_tag_keys(repo_dicts):
     key_set = set(
         itertools.chain(*[repo_dict["tags"].keys() for repo_dict in repo_dicts])
     )
-    # key_set.update(set(
-    #     itertools.chain(*[repo_dict["shortname"] for repo_dict in repo_dicts])
-    # ))
-    # key_set.update(set(
-    #     itertools.chain(*[repo_dict["type"] for repo_dict in repo_dicts])
-    # ))
+
     return sorted(key_set)
 
 
@@ -202,6 +220,7 @@ def _generate_tag_menu(repo_dicts, tag_key):
 <ul class="dropdown-menu" aria-labelledby="{tag_key}Dropdown">{options}</ul>
 </div>\n
 """
+
 
 
 def generate_menu(repo_dicts, submit_btn_txt=None, submit_btn_link=None):
@@ -249,10 +268,21 @@ def build_from_repos(
         tag_dict = repo_dict["tags"]
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        tag_types = ['primary', 'secondary', 'info', 'caution']
+        # tag_types = ['primary', 'secondary', 'info', 'caution']
         tags = []
-        for ip, tag_key in enumerate(tag_dict.keys()):
-            tag_type = tag_types[ip]
+        # _tag_html=''
+        # for ip, tag_key in enumerate(tag_dict.keys()):
+        #     tag_type = tag_types[ip]
+        tag_types = ['primary', 'secondary', 'info', 'caution']
+        tag_keys = ['formats', 'domains', 'packages']
+        for ip, tag_key in enumerate(tag_keys):
+                tag_type = tag_types[ip]
+            # _tag_html += '\n'.join([_generate_tag_button(tag, tag_key, tag_type) for tag in tag_dict[tag_key]])
+            # <button class ="sd-sphinx-override sd-btn sd-text-wrap sd-btn-{tag_type}" type="button" aria-pressed="false", rel = "{tag}", onchange = "change();">
+            # {tag} </button > < input type = "button" rel = "{tag}" onchange = "change();" >
+            # < a class ="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info reference internal" href="#buttons" >
+            # < span class ="std std-ref" > Buttons < /span > < /a >
+
             _tags = ', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
             tags.append(_tags)
         tags = ', '.join(tags)
@@ -284,7 +314,7 @@ def build_from_repos(
         # src = "{thumbnail_url}"
         #
         # class ="gallery-thumbnail" / >
-        panel=f"""\
+        panel = f"""\
 
                 .. grid-item::
                 
@@ -295,7 +325,8 @@ def build_from_repos(
                             :link: {cookbook_url}
                             :img-top: {thumbnail_url}
                             :img-alt: {thumbnail}
-                            
+                               
+                                
                             {tags}
 
             
@@ -327,6 +358,7 @@ def build_from_repos(
         tags = ', '.join(tags)
         # tags = ", ".join(tags)+'\n'
         tag_class_str = " ".join(tag_list_f).lower()
+        tag_html = '\t' * 5 + repo_dict['tag_html']
 
         description = repo_dict["description"] if 'description' in repo_dict else ''
         ellipsis_str = '<a class="modal-btn"> ... more</a>'
@@ -347,8 +379,7 @@ def build_from_repos(
                     """
         else:
             modal_str = ""
-
-
+        print(tag_html)
         panel = f"""\
 
 
@@ -358,12 +389,17 @@ def build_from_repos(
                         :tags: {tag_class_str}
                     
                         .. card:: {cookbook_title}
-                            :link: {cookbook_url}
-                            :img-top: {thumbnail_url}
-                            :img-alt: {thumbnail}
-                            
+
+                            .. image:: {thumbnail_url}
+                                :alt: {thumbnail}
+                                :align: center
+                                :target: {cookbook_url}
+                                
                             {tags}
                             
+                            .. raw:: html
+
+                                {tag_html}   
 
         """
         print('panel', panel)
@@ -374,7 +410,7 @@ def build_from_repos(
     panels_repos = "\n".join(panels_repos)
     panels_chapters = "\n".join(panels_chapters)
 
-    title=title
+    title = title
     stitle = f"{subtitle}" if subtitle else ""
     stext = subtext if subtext else ""
 
