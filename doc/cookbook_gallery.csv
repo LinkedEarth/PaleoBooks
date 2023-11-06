@@ -1,4 +1,5 @@
 repo_name,repo_url,host,user,landingpage
 citrace_paleobook,https://github.com/LinkedEarth/citrace_paleobook,https://linked.earth,LinkedEarth,README
 LMR_CMIP_paleobook,https://github.com/LinkedEarth/LMR_CMIP_paleobook,https://linked.earth,LinkedEarth,README
-DISK-proxyComposite,https://github.com/khider/DISK-proxyComposite/proxycomposite,https://khider.github.io,khider,intro
+DISK-proxyComposite,https://github.com/khider/DISK-proxyComposite/tree/main/proxycomposite,https://khider.github.io,khider,intro
+
