@@ -57,8 +57,13 @@ def generate_repo_dicts(all_items):
         repo = item['repo_name'].strip()  # item.strip()
         landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
+        if 'tree' in github_url:
+            config_url= f"https://raw.githubusercontent.com/{user}/{repo}/"+github_url.split('tree')[1].lstrip('/')
+        elif 'blob' in github_url:
+            config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
+        else:
+            config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
         cookbook_url = f"{host}/{repo}/{landingpage}.html".strip()
-        config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
         # print(item)
         master_tags = {}
         # Get information from _config (title, description, authors)
