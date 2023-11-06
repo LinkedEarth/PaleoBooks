@@ -55,8 +55,9 @@ def generate_repo_dicts(all_items):
         host = item['host'].strip()
         user = item['user'].strip()
         repo = item['repo_name'].strip()  # item.strip()
+        landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
-        cookbook_url = f"{host}/{repo}/README.html".strip()
+        cookbook_url = f"{host}/{repo}/{landingpage}.html".strip()
         config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
         # print(item)
         master_tags = {}
