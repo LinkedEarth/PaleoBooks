@@ -48,11 +48,11 @@ There isn't a required structure for your landing page, but we have found that t
 * Quick Summary (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.
 * **Motivation**: Offer an overview of the motivation behind building the book. This section should briefly touch on the science or technical skills explored in your chapters. It might also include information about any datasets involved or projects your book is associated with.
 * **Author**: Provide information about the primary author or authors of the book.
-* **Contributors**: Check out `contrib.rocks link`_ for an html snippet with avatars for each contributor to your jupyterbook repo.
+* **Contributors**: Check out `contrib.rocks`_ for an html snippet with avatars for each contributor to your jupyterbook repo.
 * **Structure**: Give a quick explanation of the content in each section of the book (more on this below).
 * **References**: Include notes about any publications associated with the book.
 
-.. _contrib.rocks link: https://contrib.rocks/preview?repo=angular%2Fangular-ja
+.. _contrib.rocks: https://contrib.rocks/preview?repo=angular%2Fangular-ja
 
 
 .. _build-your-book:
@@ -60,18 +60,18 @@ There isn't a required structure for your landing page, but we have found that t
 Build your book
 ----------------
 
-There are various ways to go about this. The most straight forward is to follow the `Create your first book tutorial link`_ on the JupyterBook website.
+There are various ways to go about this. The most straight forward is to follow the `Create your first book tutorial`_ on the JupyterBook website.
 
-.. _Create your first book tutorial link: https://jupyterbook.org/en/stable/start/your-first-book.html
+.. _Create your first book tutorial: https://jupyterbook.org/en/stable/start/your-first-book.html
 
 A couple of notes:
 
-* The tutorial project structure is very simple. For an example of a slightly more complex table of contents (`_toc.yml`), `look here link`_.
-* Make sure to modify the `_config.yml`. Here is `an example link`_ to help. In particular, make sure that `path_to_book` points to the directory in your repo where your book lives.
+* The tutorial project structure is very simple. For an example of a slightly more complex table of contents (`_toc.yml`), `look here`_.
+* Make sure to modify the `_config.yml`. Here is `an example`_ to help. In particular, make sure that `path_to_book` points to the directory in your repo where your book lives.
 * Include a copy of your jupyterbook thumbnail in the directory where your book is and call it `logo.png`. This is specified in the `_config.yml` and naming/locating it in a predictable place will save a headache.
 
-.. _an example link: https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml
-.. _look here link: https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml
+.. _an example: https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml
+.. _look here: https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml
 
 
 .. _prepare-for-joining-the-library:
@@ -82,9 +82,9 @@ Prepare for joining the library
 In order for your book to be added to the library, you will need to provide some additional information we will use to populate various fields.
 
 #. In the same directory as the _config.yml file, make a folder called `meta_data` and a folder called `thumbnails`
-#. In `meta_data`, make a file called `chapter_meta.yml` and copy and paste the contents of `the C-iTrace PaleoBook chapter_meta.yml link`_ to use as template. (The formatting of these files cam be particular, so it highly encouraged to start from one that is functional.)
+#. In `meta_data`, make a file called `chapter_meta.yml` and copy and paste the contents of `the C-iTrace PaleoBook chapter_meta.yml`_ to use as template. (The formatting of these files cam be particular, so it highly encouraged to start from one that is functional.)
 
-.. _the C-iTrace PaleoBook chapter_meta.yml link: https://github.com/LinkedEarth/citrace_paleobook/blob/main/meta_data/chapter_meta.yml
+.. _the C-iTrace PaleoBook chapter_meta.yml: https://github.com/LinkedEarth/citrace_paleobook/blob/main/meta_data/chapter_meta.yml
 
 Here is the top segment:
 
@@ -158,9 +158,9 @@ Push these additional contributions to your github repo.
 Submit a library request
 --------------------------
 
-Once you have a fully built and published JupyterBook with extra metadata, `submit a request to be added on github link`_!
+Once you have a fully built and published JupyterBook with extra metadata, `submit a request to be added on github`_!
 
-.. _submit a request to be added on github link: https://github.com/LinkedEarth/PaleoBooks/issues/new?assignees=&labels=gallery+submission&projects=&template=gallery-submission.md&title=
+.. _submit a request to be added on github: https://github.com/LinkedEarth/PaleoBooks/issues/new?assignees=&labels=gallery+submission&projects=&template=gallery-submission.md&title=
 
 #. Name of the repository: *e.g., DISK-proxyComposite*
 #. Repo url: *e.g., https://github.com/khider/DISK-proxyComposite*

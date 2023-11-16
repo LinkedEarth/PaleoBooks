@@ -82,7 +82,7 @@ PaleoBooks
                                 :target: https://linked.earth/citrace_paleobook/README.html
                                 :height: 80
                             
-                            :bdg-primary:`tracers`, :bdg-primary:`machine learning`, :bdg-primary:`oceanography`, :bdg-primary:`coordinate systems`, :bdg-primary:`C14`, :bdg-primary:`Mystery Interval`, :bdg-primary:`eNd`, :bdg-primary:`model output`, :bdg-primary:`clustering`, :bdg-primary:`Deglaciation`, :bdg-primary:`data viz`, :bdg-primary:`Paleoceanography`, :bdg-primary:`watermass geometry`, :bdg-secondary:`xarray`, :bdg-secondary:`seaborn`, :bdg-secondary:`matplotlib`, :bdg-secondary:`pandas`, :bdg-secondary:`scikit-learn`, :bdg-secondary:`cartopy`, :bdg-secondary:`intake`, :bdg-info:`C-iTRACE`, :bdg-info:`Science Bits`, :bdg-info:`Lifehacks`
+                            :bdg-primary:`machine learning`, :bdg-primary:`coordinate systems`, :bdg-primary:`data viz`, :bdg-primary:`watermass geometry`, :bdg-primary:`Deglaciation`, :bdg-primary:`Mystery Interval`, :bdg-primary:`clustering`, :bdg-primary:`tracers`, :bdg-primary:`Paleoceanography`, :bdg-primary:`eNd`, :bdg-primary:`model output`, :bdg-primary:`C14`, :bdg-primary:`oceanography`, :bdg-secondary:`pandas`, :bdg-secondary:`cartopy`, :bdg-secondary:`intake`, :bdg-secondary:`xarray`, :bdg-secondary:`matplotlib`, :bdg-secondary:`scikit-learn`, :bdg-secondary:`seaborn`, :bdg-info:`C-iTRACE`, :bdg-info:`Lifehacks`, :bdg-info:`Science Bits`
 
             
         
@@ -101,7 +101,7 @@ PaleoBooks
                                 :target: https://linked.earth/LMR_CMIP_paleobook/README.html
                                 :height: 80
                             
-                            :bdg-primary:`CMIP6`, :bdg-primary:`coordinate systems`, :bdg-primary:`LMR`, :bdg-primary:`AWS`, :bdg-primary:`Volcanic Input`, :bdg-primary:`Holocene climate`, :bdg-primary:`cloud-ready data`, :bdg-primary:`model output`, :bdg-primary:`data viz`, :bdg-secondary:`pyleoclim`, :bdg-secondary:`xarray`, :bdg-secondary:`matplotlib`, :bdg-secondary:`pandas`, :bdg-secondary:`AWS`, :bdg-secondary:`cartopy`, :bdg-secondary:`intake`, :bdg-secondary:`ipywidgets`, :bdg-info:`LMR-CMIP6`, :bdg-info:`Science Bits`, :bdg-info:`Lifehacks`
+                            :bdg-primary:`LMR`, :bdg-primary:`CMIP6`, :bdg-primary:`coordinate systems`, :bdg-primary:`data viz`, :bdg-primary:`AWS`, :bdg-primary:`Holocene climate`, :bdg-primary:`model output`, :bdg-primary:`cloud-ready data`, :bdg-primary:`Volcanic Input`, :bdg-secondary:`pandas`, :bdg-secondary:`cartopy`, :bdg-secondary:`intake`, :bdg-secondary:`xarray`, :bdg-secondary:`matplotlib`, :bdg-secondary:`ipywidgets`, :bdg-secondary:`pyleoclim`, :bdg-secondary:`AWS`, :bdg-info:`LMR-CMIP6`, :bdg-info:`Lifehacks`, :bdg-info:`Science Bits`
 
             
         
@@ -120,7 +120,7 @@ PaleoBooks
                                 :target: https://khider.github.io/DISK-proxyComposite/intro.html
                                 :height: 80
                             
-                            :bdg-primary:`proxy composite`, :bdg-primary:`temperature`, :bdg-secondary:`pyleoclim`, :bdg-secondary:`numpy`, :bdg-secondary:`seaborn`, :bdg-secondary:`pandas`, :bdg-secondary:`cfr`, :bdg-info:`Science Bits`, :bdg-info:`2k Proxy Composite`
+                            :bdg-primary:`temperature`, :bdg-primary:`proxy composite`, :bdg-secondary:`pandas`, :bdg-secondary:`cfr`, :bdg-secondary:`pyleoclim`, :bdg-secondary:`numpy`, :bdg-secondary:`seaborn`, :bdg-info:`2k Proxy Composite`, :bdg-info:`Science Bits`
 
             
         

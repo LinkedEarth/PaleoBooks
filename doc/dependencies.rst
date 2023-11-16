@@ -4,16 +4,28 @@ Dependencies
 ============
 
 The notebooks gathered here use the standard Python stack, namely
-* [NumPy](https://numpy.org/)
-* [Pandas](https://pandas.pydata.org/)
-* [SciPy](https://scipy.org/)
-* [scikit-learn](https://scikit-learn.org/stable/)
-* [Matplotlib](https://matplotlib.org/)
-* [seaborn](https://seaborn.pydata.org/).
+
+* `NumPy`_
+* `Pandas`_
+* `SciPy`_
+* `scikit-learn`_
+* `Matplotlib`_
+* `seaborn`_
 
 In addition, it leverages packages specific to the geosciences, like
-* [Xarray](https://docs.xarray.dev/en/stable/)
-* [Cartopy](https://scitools.org.uk/cartopy/docs/latest/)
-* [Pyleoclim](https://github.com/LinkedEarth/Pyleoclim_util)
-* [PyLipd](https://pylipd.readthedocs.io/en/latest/)
 
+* `Xarray`_
+* `Cartopy`_
+* `Pyleoclim`_
+* `PyLipd`_
+
+.. _NumPy: https://numpy.org/
+.. _SciPy: https://scipy.org/
+.. _Pandas: https://pandas.pydata.org/
+.. _scikit-learn: https://scikit-learn.org/stable/
+.. _Matplotlib: https://matplotlib.org/
+.. _seaborn: https://seaborn.pydata.org/
+.. _Xarray: https://docs.xarray.dev/en/stable/
+.. _Cartopy: https://scitools.org.uk/cartopy/docs/latest/
+.. _Pyleoclim: https://github.com/LinkedEarth/Pyleoclim_util
+.. _PyLipd: https://pylipd.readthedocs.io/en/latest/
