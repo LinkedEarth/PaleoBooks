@@ -2,7 +2,7 @@
    :maxdepth: 2
 
    index.rst
-   purpose.rst
+   contributor_guide.rst
    dependencies.rst
    credit.rst
 
