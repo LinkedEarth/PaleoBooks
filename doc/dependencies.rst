@@ -3,63 +3,17 @@
 Dependencies
 ============
 
-Required
-:bdg-primary:`verde`, :bdg-primary:`woof`,
-:bdg-primary:`verde`, :bdg-primary:`woof`,
---------
+The notebooks gathered here use the standard Python stack, namely
+* [NumPy](https://numpy.org/)
+* [Pandas](https://pandas.pydata.org/)
+* [SciPy](https://scipy.org/)
+* [scikit-learn](https://scikit-learn.org/stable/)
+* [Matplotlib](https://matplotlib.org/)
+* [seaborn](https://seaborn.pydata.org/).
 
+In addition, it leverages packages specific to the geosciences, like
+* [Xarray](https://docs.xarray.dev/en/stable/)
+* [Cartopy](https://scitools.org.uk/cartopy/docs/latest/)
+* [Pyleoclim](https://github.com/LinkedEarth/Pyleoclim_util)
+* [PyLipd](https://pylipd.readthedocs.io/en/latest/)
 
-
-
-Cards Clickable
-...............
-
-.. grid:: 1 1 2 2
-    :gutter: 1
-
-    .. grid-item::
-
-        .. grid:: 1 1 1 1
-            :gutter: 1
-
-            .. grid-item-card:: Item 1.1
-                :link: https://sphinx-design.readthedocs.io/en/sbt-theme/grids.html
-                :img-top: https://github.com/LinkedEarth/PaleoBooks/blob/main/doc/_static/logo.png?raw=true
-                :img-alt:
-
-                Header
-                ^^^
-                Content
-                +++
-                Footer
-
-            .. grid-item-card:: Item 1.2
-
-                Content
-
-    .. grid-item::
-
-        .. grid:: 1 1 1 1
-            :gutter: 1
-
-            .. grid-item-card:: Item 2.1
-
-                Content
-
-            .. grid-item-card:: Item 2.2
-
-                Content
-
-            .. grid-item-card:: Item 2.3
-
-                Content
-
-- Python
-- Numpy
-- Matplotlib
-
-
-Optional
---------
-
-- Docker
