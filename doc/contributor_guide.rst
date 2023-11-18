@@ -39,6 +39,9 @@ How you organize your book is up to you. We have found Lifehacks and Science Bit
 *Paper*
     Notebooks describing the research behind a published work
 
+.. note::
+    Every notebook must have a level 1 header. If it has more than one, the first one will be taken as the title of the chapter *within your JupyterBook* (you can customize this as far as the library is concerned, but you may find this to be a useful tip as far as your book goes.)
+
 Landing Page:
 *****************
 
@@ -67,12 +70,21 @@ There are various ways to go about this. The most straight forward is to follow 
 A couple of notes:
 
 * The tutorial project structure is very simple. For an example of a slightly more complex table of contents (`_toc.yml`), `look here`_.
-* Make sure to modify the `_config.yml`. Here is `an example`_ to help. In particular, make sure that `path_to_book` points to the directory in your repo where your book lives.
-* Include a copy of your jupyterbook thumbnail in the directory where your book is and call it `logo.png`. This is specified in the `_config.yml` and naming/locating it in a predictable place will save a headache.
+* Make sure to modify the `_config.yml`. Here is `an example`_ to help.
+    - make sure that `path_to_book` points to the directory in your repo where your book lives (in the example, this is *proxycomposite*)
+    - `gh-import` will prompt you for your github username and password, and you will need to follow `these instructions about personal access tokens`_ to get a more secure password (github will not accept standard passwords for this purpose)
+    - if you don't want the books to execute on build, include:
+
+    .. code-block::
+
+        execute:
+            execute_notebooks: 'off'
+
+* Include a copy of your book's thumbnail in the directory where your book is and call it `logo.png`. This is specified in the `_config.yml` and naming/locating it in a predictable place will save a headache.
 
 .. _an example: https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml
 .. _look here: https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml
-
+.. _these instructions about personal access tokens: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic
 
 .. _prepare-for-joining-the-library:
 
@@ -164,6 +176,6 @@ Once you have a fully built and published JupyterBook with extra metadata, `subm
 
 #. Name of the repository: *e.g., DISK-proxyComposite*
 #. Repo url: *e.g., https://github.com/khider/DISK-proxyComposite*
-#. Host for the JupyterBook: *e.g., https://khider.github.io*
+#. Host for the JupyterBook: *e.g., https://khider.github.io NOT https://khider.github.io/DISK-proxyComposite/intro.html*
 #. User: *e.g., khider*
 #. Landing suffix (name of the page you want users to land on): *e.g., intro.html*
