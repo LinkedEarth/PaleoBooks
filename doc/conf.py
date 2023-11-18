@@ -49,7 +49,11 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'restructuredtext',
+    # '.md': 'markdown'
+}
 
 # The master toctree document.
 master_doc = '_toc'
@@ -57,9 +61,9 @@ master_doc = '_toc'
 # external_toc_exclude_missing = False  # optional, default: False
 
 # General information about the project.
-project = 'WordCount'
-copyright = '2018, Harsha'
-author = 'Harsha'
+project = 'PaleoBooks Library'
+copyright = '2023, Linked Earth'
+author = 'Linked Earth'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
