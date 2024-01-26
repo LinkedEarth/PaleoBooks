@@ -143,12 +143,8 @@ def generate_repo_dicts(all_items):
         thumbnail_url = f'{gallery_info_url}/thumbnails/{thumbnail}'
         r = requests.get(thumbnail_url)
         if r.status_code in ['404', 404]:
-        # validation = validators.url(thumbnail_url, public=True)
-        # if validation is False:
-            # thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
-            thumbnail_url = 'https://github.com/LinkedEarth/PaleoBooks/blob/main/doc/_static/logo.png'
-            # 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
-            #                                                                   thumbnail)
+            '/'.join([config_dict['host'], '_static', 'logo.png'])
+        #     thumbnail_url = 'https://github.com/LinkedEarth/PaleoBooks/blob/main/doc/_static/logo.png'
 
         for tag_cat in master_tags.keys():
             master_tags[tag_cat] = list(set(master_tags[tag_cat]))
