@@ -2,7 +2,7 @@ import itertools, json, yaml, pathlib, subprocess, requests
 import os
 from textwrap import dedent, indent
 from truncatehtml import truncate
-import validators
+import requests
 
 
 # from tagged_card
@@ -140,8 +140,10 @@ def generate_repo_dicts(all_items):
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
 
         thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
-        validation = validators.url(thumbnail_url, public=True)
-        if validation is False:
+        r = requests.get(thumbnail_url)
+        if r.status_code in ['404', 404]:
+        # validation = validators.url(thumbnail_url, public=True)
+        # if validation is False:
             # thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
             thumbnail_url = 'https://github.com/LinkedEarth/PaleoBooks/blob/main/doc/_static/logo.png'
             # 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
