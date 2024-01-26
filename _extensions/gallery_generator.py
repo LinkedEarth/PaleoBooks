@@ -143,7 +143,7 @@ def generate_repo_dicts(all_items):
         thumbnail_url = f'{gallery_info_url}/thumbnails/{thumbnail}'
         r = requests.get(thumbnail_url)
         if r.status_code in ['404', 404]:
-            '/'.join([config_dict['host'], '_static', 'logo.png'])
+            '/'.join([host, '_static', 'logo.png'])
         #     thumbnail_url = 'https://github.com/LinkedEarth/PaleoBooks/blob/main/doc/_static/logo.png'
 
         for tag_cat in master_tags.keys():
