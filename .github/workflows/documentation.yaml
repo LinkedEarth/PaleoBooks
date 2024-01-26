@@ -11,7 +11,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install sphinx sphinx-book-theme 
-          pip install sphinx-design PyYaml sphinx-togglebutton sphinx-click
+          pip install sphinx-design PyYaml sphinx-togglebutton sphinx-click validators
       - name: Sphinx build
         run: |
           sphinx-build doc _build
