@@ -24,4 +24,5 @@ dependencies:
       - PyYaml
       - sphinx-togglebutton
       - sphinx-click
+      - validators
 #    - jupyterlab-github==2.0.0

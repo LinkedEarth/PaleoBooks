@@ -2,6 +2,9 @@ import itertools, json, yaml, pathlib, subprocess, requests
 import os
 from textwrap import dedent, indent
 from truncatehtml import truncate
+import validators
+
+
 # from tagged_card
 
 def _grab_binder_link(repo):
@@ -58,7 +61,7 @@ def generate_repo_dicts(all_items):
         landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
         if 'tree' in github_url:
-            config_url= f"https://raw.githubusercontent.com/{user}/{repo}/"+github_url.split('tree')[1].lstrip('/')
+            config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('tree')[1].lstrip('/')
         elif 'blob' in github_url:
             config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
         else:
@@ -80,7 +83,7 @@ def generate_repo_dicts(all_items):
 
         except:
             # print('took the except through the title description author split')
-            config = requests.get(config_url+'/_config.yml').content
+            config = requests.get(config_url + '/_config.yml').content
             config_dict = yaml.safe_load(config)
             # with requests.get(config_url+'/_config.yml', 'r').content as file:
             #     config_dict = yaml.safe_load(file)
@@ -90,7 +93,7 @@ def generate_repo_dicts(all_items):
 
         # Get tags and thumbnail for repo
         try:
-            gallery_info_url = config_url#os.getcwd() + '/source/{}'.format(repo)
+            gallery_info_url = config_url  # os.getcwd() + '/source/{}'.format(repo)
             # with open(gallery_info_url+'/meta_data/chapter_meta.yml', 'r') as file:
             #     gallery_info_dict = yaml.safe_load(file)
 
@@ -106,12 +109,13 @@ def generate_repo_dicts(all_items):
                 type_stem = type_tag.lower().replace(' ', '_')
                 for chapter in part['chapters']:
                     file_name = chapter['filename']
-                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter  else ''
-                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail+'.png' if len(chapter_thumbnail) >0 else chapter_thumbnail
+                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
+                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
+                        chapter_thumbnail) > 0 else chapter_thumbnail
                     chapter['type_tag'] = type_tag
                     chapter['tags']['formats'] = ['notebook', type_tag, shortname]
-                    chapter['url'] =f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
-                    chapter['thumbnail_url']=f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+                    chapter['url'] = f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
+                    chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
 
                     for tag_cat in chapter['tags'].keys():
                         if tag_cat not in master_tags:
@@ -119,8 +123,8 @@ def generate_repo_dicts(all_items):
                         master_tags[tag_cat] += chapter['tags'][tag_cat]
 
                     chapter['tags'] = {
-                                    k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
-                                }
+                        k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
+                    }
                     chapters.append(chapter)
 
             # meta_data_dir = '{}'.format(github_url.split('github.com/')[1])#https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
@@ -135,8 +139,11 @@ def generate_repo_dicts(all_items):
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
 
-
-        thumbnail_url =f'{gallery_info_url}/thumbnails/thumbnail.png'
+        thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
+        validation = validators.url(thumbnail_url, public=True)
+        if validation is False:
+            # thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
+            thumbnail_url = 'https://github.com/LinkedEarth/PaleoBooks/blob/main/doc/_static/logo.png'
             # 'https://raw.githubusercontent.com/{}/main/{}'.format(github_url.split('github.com/')[1],
             #                                                                   thumbnail)
 
@@ -162,9 +169,9 @@ def generate_repo_dicts(all_items):
         }
 
         repo_dicts.append(repo_dict)
-        chapter_dicts +=chapters
+        chapter_dicts += chapters
 
-    return {'repos':repo_dicts, 'chapters':chapter_dicts}
+    return {'repos': repo_dicts, 'chapters': chapter_dicts}
 
 
 def _generate_sorted_tag_keys(repo_dicts):
@@ -290,7 +297,7 @@ def build_from_repos(
         # src = "{thumbnail_url}"
         #
         # class ="gallery-thumbnail" / >
-        panel=f"""\
+        panel = f"""\
 
                 .. grid-item::
                 
@@ -354,7 +361,6 @@ def build_from_repos(
         else:
             modal_str = ""
 
-
         panel = f"""\
 
 
@@ -380,7 +386,7 @@ def build_from_repos(
     panels_repos = "\n".join(panels_repos)
     panels_chapters = "\n".join(panels_chapters)
 
-    title=title
+    title = title
     stitle = f"{subtitle}" if subtitle else ""
     stext = subtext if subtext else ""
 
