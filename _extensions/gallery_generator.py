@@ -102,7 +102,8 @@ def generate_repo_dicts(all_items):
 
             shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
-
+            if '.' not in thumbnail:
+                thumbnail +='.png'
             chapters = []
             for part in gallery_info_dict['parts']:
                 type_tag = part['caption']
@@ -139,7 +140,7 @@ def generate_repo_dicts(all_items):
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
 
-        thumbnail_url = f'{gallery_info_url}/thumbnails/thumbnail.png'
+        thumbnail_url = f'{gallery_info_url}/thumbnails/{thumbnail}'
         r = requests.get(thumbnail_url)
         if r.status_code in ['404', 404]:
         # validation = validators.url(thumbnail_url, public=True)
