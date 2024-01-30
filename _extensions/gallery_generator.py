@@ -107,7 +107,7 @@ def generate_repo_dicts(all_items):
             chapters = []
             for part in gallery_info_dict['parts']:
                 type_tag = part['caption']
-                type_stem = type_tag.lower().replace(' ', '_')
+                type_stem = type_tag.replace(' ', '_')
                 for chapter in part['chapters']:
                     file_name = chapter['filename']
                     chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
@@ -116,6 +116,14 @@ def generate_repo_dicts(all_items):
                     chapter['type_tag'] = type_tag
                     chapter['tags']['formats'] = ['notebook', type_tag, shortname]
                     chapter['url'] = f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
+
+                    r = requests.get(chapter['url'])
+                    if r.status_code in ['404', 404]:
+                        try:
+                            chapter['url'] = f'{host}/{repo}/notebooks/{type_stem.lower()}/{file_name}.html'
+                        except:
+                            chapter['url'] = cookbook_url
+                            
                     chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
 
                     for tag_cat in chapter['tags'].keys():
