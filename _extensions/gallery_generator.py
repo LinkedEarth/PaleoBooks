@@ -117,12 +117,12 @@ def generate_repo_dicts(all_items):
                     chapter['tags']['formats'] = ['notebook', type_tag, shortname]
                     chapter['url'] = f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
 
-                    r = requests.get(chapter['url'])
-                    if r.status_code ==404:
-                        chapter['url'] = f'{host}/{repo}/notebooks/{type_stem.lower()}/{file_name}.html'
-                        r = requests.get(chapter['url'])
-                        if r.status_code ==404:
-                            chapter['url'] = cookbook_url
+                    # r = requests.get(chapter['url'])
+                    # if r.status_code ==404:
+                    #     chapter['url'] = f'{host}/{repo}/notebooks/{type_stem.lower()}/{file_name}.html'
+                    #     r = requests.get(chapter['url'])
+                    # #     if r.status_code ==404:
+                    # #         chapter['url'] = cookbook_url
 
                     chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
 
