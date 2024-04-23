@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+
+<html lang="english" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gallery &#8212; PaleoBook Library</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=02fd98da" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=17d79c28"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="_static/custom.js?v=93736250"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributor Guide" href="contributor_guide.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="_toc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="english"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="_toc.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="PaleoBook Library - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="PaleoBook Library - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributor_guide.html">Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Credit and inspiration</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Gallery</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paleobooks">PaleoBooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapters">Chapters</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <hr class="docutils" />
+<section id="gallery">
+<h1>Gallery<a class="headerlink" href="#gallery" title="Link to this heading">#</a></h1>
+<p>PaleoBooks is a compendium of digital resources to bridge the gap between paleoclimate observations and models, and between past, present and future. The goal is as much to encourage adoption of open-source, free languages like R and Python by the observational paleoscience community as it is to encourage the modeling community to leverage the unique information coming from paleo archives.</p>
+<p>The scholarly objects shown below are of several types:</p>
+<ul class="simple">
+<li><p>Tutorials on how to overcome a particular technical difficulty (“Life Hacks”)</p></li>
+<li><p>Tutorials on how to leverage open-source code to achieve easier, more transparent, or more powerful scientific workflows (“Science Bits”)</p></li>
+<li><p>Examples of novel paleoscience using the Python ecosystem e.g. as turn-key supplementary material from recent publications (“Papers”)</p></li>
+</ul>
+<p>In the following, “PaleoBooks” refers to curated collections of Jupyter Notebooks organized around various themes. “Chapters” refers to the components of these PaleoBooks. A system of tags allows both PaleoBooks and individual chapters to be associated with one another based on individual themes or methodologies, in addition to their host PaleoBook. These tags enable searching along 3 directions:</p>
+<ul class="simple">
+<li><p>“Domains” refers to scientific themes or methodologies</p></li>
+<li><p>“Formats” refers to the type of resource (Life Hacks, Science Bits, or Papers)</p></li>
+<li><p>“Packages” refers to the packages being used in each notebook (e.g. Xarray)</p></li>
+</ul>
+<p>The gallery below is a work in progress, and we encourage you to <a class="reference internal" href="contributor_guide.html#contributor-guide"><span class="std std-ref">contribute</span></a> your own analyses if you think they might bring enlightenment to, and/or ease the life of, fellow scientists.</p>
+<div class="d-sm-flex mt-3 mb-4">
+<div class="d-flex gallery-menu">
+</div>
+<div class="ml-auto d-flex">
+<div><button class="btn btn-link btn-sm mx-1" onclick="clearCbs()">Clear all filters</button></div>
+
+<div class="dropdown">
+<button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle" type="button" id="domainsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Domains</button>
+<ul class="dropdown-menu" aria-labelledby="domainsDropdown"><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=aws onchange="change();">&nbsp;AWS</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=c14 onchange="change();">&nbsp;C14</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=cmip6 onchange="change();">&nbsp;CMIP6</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=deglaciation onchange="change();">&nbsp;Deglaciation</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=holocene-climate onchange="change();">&nbsp;Holocene climate</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=lmr onchange="change();">&nbsp;LMR</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=mystery-interval onchange="change();">&nbsp;Mystery Interval</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=paleoceanography onchange="change();">&nbsp;Paleoceanography</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=volcanic-input onchange="change();">&nbsp;Volcanic Input</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=cloud-ready-data onchange="change();">&nbsp;cloud-ready data</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=clustering onchange="change();">&nbsp;clustering</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=coordinate-systems onchange="change();">&nbsp;coordinate systems</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=data-viz onchange="change();">&nbsp;data viz</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=end onchange="change();">&nbsp;eNd</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=endmember-mixing onchange="change();">&nbsp;endmember mixing</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=machine-learning onchange="change();">&nbsp;machine learning</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=model-output onchange="change();">&nbsp;model output</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=oceanography onchange="change();">&nbsp;oceanography</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=proxy-composite onchange="change();">&nbsp;proxy composite</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=temperature onchange="change();">&nbsp;temperature</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=tracers onchange="change();">&nbsp;tracers</label></li><li><label class="dropdown-item checkbox domains"><input type="checkbox" rel=watermass-geometry onchange="change();">&nbsp;watermass geometry</label></li></ul>
+</div>
+
+
+
+<div class="dropdown">
+<button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle" type="button" id="formatsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Formats</button>
+<ul class="dropdown-menu" aria-labelledby="formatsDropdown"><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=2k-proxy-composite onchange="change();">&nbsp;2k Proxy Composite</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=ancientwmg onchange="change();">&nbsp;AncientWMG</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=c-itrace onchange="change();">&nbsp;C-iTRACE</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=detecting-paleoclimate-transitions-with-lerm onchange="change();">&nbsp;Detecting Paleoclimate Transitions with LERM</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=extras onchange="change();">&nbsp;Extras</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=figures onchange="change();">&nbsp;Figures</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=lmr-cmip6 onchange="change();">&nbsp;LMR-CMIP6</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=lifehacks onchange="change();">&nbsp;Lifehacks</label></li><li><label class="dropdown-item checkbox formats"><input type="checkbox" rel=science-bits onchange="change();">&nbsp;Science Bits</label></li></ul>
+</div>
+
+
+
+<div class="dropdown">
+<button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle" type="button" id="packagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Packages</button>
+<ul class="dropdown-menu" aria-labelledby="packagesDropdown"><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=aws onchange="change();">&nbsp;AWS</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=ammonyte onchange="change();">&nbsp;ammonyte</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=basemap onchange="change();">&nbsp;basemap</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=cartopy onchange="change();">&nbsp;cartopy</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=cfr onchange="change();">&nbsp;cfr</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=intake onchange="change();">&nbsp;intake</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=ipywidgets onchange="change();">&nbsp;ipywidgets</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=matplotlib onchange="change();">&nbsp;matplotlib</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=numpy onchange="change();">&nbsp;numpy</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=pandas onchange="change();">&nbsp;pandas</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=pyleoclim onchange="change();">&nbsp;pyleoclim</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=scikit-learn onchange="change();">&nbsp;scikit-learn</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=scipy onchange="change();">&nbsp;scipy</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=seaborn onchange="change();">&nbsp;seaborn</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=sqlalchemy onchange="change();">&nbsp;sqlalchemy</label></li><li><label class="dropdown-item checkbox packages"><input type="checkbox" rel=xarray onchange="change();">&nbsp;xarray</label></li></ul>
+</div>
+
+
+</div>
+</div>
+<script>$(document).on("click",function(){$(".collapse").collapse("hide");}); </script><section id="paleobooks">
+<h2>PaleoBooks<a class="headerlink" href="#paleobooks" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex c-itrace c14 deglaciation lifehacks mystery-interval paleoceanography science-bits cartopy clustering coordinate-systems data-viz end intake machine-learning matplotlib model-output oceanography pandas scikit-learn seaborn tracers watermass-geometry xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="thumbnail.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/citrace_paleobook/main/thumbnails/thumbnail.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+C-iTrace Paleobook</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">watermass geometry</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">eNd</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">C14</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">clustering</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">oceanography</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">coordinate systems</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">machine learning</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Deglaciation</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Paleoceanography</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">tracers</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Mystery Interval</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">intake</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">scikit-learn</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">seaborn</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">C-iTRACE</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/citrace_paleobook/README.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex aws cmip6 holocene-climate lmr lmr-cmip6 lifehacks science-bits volcanic-input cartopy cloud-ready-data coordinate-systems data-viz intake ipywidgets matplotlib model-output pandas pyleoclim xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="thumbnail.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/LMR_CMIP_paleobook/main/thumbnails/thumbnail.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+LMR-CMIP6 Paleobook</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Holocene climate</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">CMIP6</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">coordinate systems</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">AWS</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">LMR</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Volcanic Input</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">cloud-ready data</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">intake</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ipywidgets</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">AWS</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">LMR-CMIP6</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/LMR_CMIP_paleobook/README.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex k-proxy-composite science-bits cfr numpy pandas proxy-composite pyleoclim seaborn temperature docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="thumbnail.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/khider/DISK-proxyComposite/main/proxycomposite/thumbnails/thumbnail.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Reproducing the Hockey Stick - Proxy composite over the past 2,000 years using the cfr package</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">proxy composite</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">temperature</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">seaborn</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">numpy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cfr</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">2k Proxy Composite</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://khider.github.io/DISK-proxyComposite/intro.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex ancientwmg science-bits basemap clustering endmember-mixing matplotlib pandas scikit-learn scipy sqlalchemy tracers watermass-geometry docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="thumbnail.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/jordanplanders/past_life_wmg/main/ancient_wmgr_book/thumbnails/thumbnail.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Watermass Geometry Proto exercise</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">watermass geometry</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">tracers</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">endmember mixing</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">clustering</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">scikit-learn</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">sqlalchemy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">scipy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">basemap</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">AncientWMG</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://jordanplanders.github.io/past_life_wmg/intro.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm extras figures ammonyte data-viz matplotlib pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="full_workflow.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/full_workflow.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Detecting paleoclimate transitions with Laplacian Eigenmaps of Recurrence Matrices (LERM)</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Extras</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/intro.html"></a></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="chapters">
+<h2>Chapters<a class="headerlink" href="#chapters" title="Link to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex c-itrace lifehacks cartopy data-viz matplotlib notebook oceanography pandas seaborn tracers xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="pyodv_demo.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/citrace_paleobook/main/thumbnails/pyodv_demo.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+pyODV</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">oceanography</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">tracers</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">seaborn</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">C-iTRACE</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/citrace_paleobook/notebooks/Lifehacks/pyODV.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex c-itrace lifehacks cartopy coordinate-systems intake matplotlib model-output notebook oceanography pandas xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="citrace_model_grid.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/citrace_paleobook/main/thumbnails/citrace_model_grid.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+data_on_a_model_grid</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">oceanography</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">coordinate systems</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">intake</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">C-iTRACE</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/citrace_paleobook/notebooks/Lifehacks/working_with_data_on_a_model_grid.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex c-itrace science-bits cartopy end matplotlib model-output notebook pandas xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="section_eNd_uncertaintyrange.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/citrace_paleobook/main/thumbnails/section_eNd_uncertaintyrange.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+model_data_comp</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">eNd</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">C-iTRACE</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/citrace_paleobook/notebooks/Science_Bits/data_scatter_on_pcolor.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex c-itrace science-bits cartopy clustering machine-learning matplotlib notebook scikit-learn watermass-geometry xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="cluster_section.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/citrace_paleobook/main/thumbnails/cluster_section.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+clustering</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">clustering</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">machine learning</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">watermass geometry</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">scikit-learn</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">C-iTRACE</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/citrace_paleobook/notebooks/Science_Bits/clustering.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex c-itrace c14 deglaciation mystery-interval paleoceanography science-bits cartopy matplotlib notebook pandas xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="C14_downcore_modelmarchitto.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/citrace_paleobook/main/thumbnails/C14_downcore_modelmarchitto.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+model_downcore_D14C</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">C14</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Paleoceanography</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Deglaciation</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Mystery Interval</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">C-iTRACE</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/citrace_paleobook/notebooks/Science_Bits/PaMoDaCo_downcore_D14C.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex aws cmip6 lmr-cmip6 lifehacks cloud-ready-data data-viz intake notebook pandas xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="data_from_esm_cloudcat.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/LMR_CMIP_paleobook/main/thumbnails/data_from_esm_cloudcat.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+data_from_esm_cloudcat</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">AWS</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">cloud-ready data</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">CMIP6</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">intake</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">AWS</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">LMR-CMIP6</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/LMR_CMIP_paleobook/notebooks/Lifehacks/data_from_esm_cloudcat.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex cmip6 lmr-cmip6 lifehacks cartopy coordinate-systems matplotlib model-output notebook pandas xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="spatial_snapshots_xarray_bonuses.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/LMR_CMIP_paleobook/main/thumbnails/spatial_snapshots_xarray_bonuses.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+spatial_snapshots</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">CMIP6</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">coordinate systems</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">LMR-CMIP6</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/LMR_CMIP_paleobook/notebooks/Lifehacks/spatial_snapshots_xarray_bonuses.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex lmr-cmip6 lifehacks ipywidgets matplotlib model-output notebook docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="widget_primer.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/LMR_CMIP_paleobook/main/thumbnails/widget_primer.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+widget_primer</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ipywidgets</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Lifehacks</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">LMR-CMIP6</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/LMR_CMIP_paleobook/notebooks/Lifehacks/widget_primer.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex cmip6 lmr lmr-cmip6 science-bits cartopy matplotlib model-output notebook pandas pyleoclim xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="CMIP6_LMR.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/LMR_CMIP_paleobook/main/thumbnails/CMIP6_LMR.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CMIP6_LMR</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">model output</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">LMR</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">CMIP6</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">LMR-CMIP6</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/LMR_CMIP_paleobook/notebooks/Science_Bits/CMIP6_LMR.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex cmip6 holocene-climate lmr lmr-cmip6 science-bits volcanic-input cartopy ipywidgets matplotlib notebook xarray docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="VICS_dashboard.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/LinkedEarth/LMR_CMIP_paleobook/main/thumbnails/VICS_dashboard.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+VICS_dashboard</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Volcanic Input</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">Holocene climate</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">LMR</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">CMIP6</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">xarray</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cartopy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ipywidgets</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">LMR-CMIP6</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://linked.earth/LMR_CMIP_paleobook/notebooks/Science_Bits/VICS_dashboard.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex k-proxy-composite science-bits cfr notebook numpy pandas proxy-composite pyleoclim seaborn temperature docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="thumbnail.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/khider/DISK-proxyComposite/main/proxycomposite/thumbnails/thumbnail.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Hockey Stick</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">proxy composite</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">temperature</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">numpy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">seaborn</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">cfr</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">2k Proxy Composite</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://khider.github.io/DISK-proxyComposite/notebooks/Science_Bits/HockeyStick.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex ancientwmg science-bits basemap endmember-mixing matplotlib notebook pandas scipy sqlalchemy tracers watermass-geometry docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="ttest_flows_thumb.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/jordanplanders/past_life_wmg/main/ancient_wmgr_book/thumbnails/ttest_flows_thumb.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Capstone notebook</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">watermass geometry</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">tracers</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">endmember mixing</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">basemap</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">scipy</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pandas</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">sqlalchemy</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">AncientWMG</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://jordanplanders.github.io/past_life_wmg/notebooks/Science_Bits/jlanders_capstone_fixed.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex ancientwmg science-bits basemap clustering matplotlib notebook scikit-learn watermass-geometry docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="centers_thumb.png" class="sd-card-img-top" src="https://raw.githubusercontent.com/jordanplanders/past_life_wmg/main/ancient_wmgr_book/thumbnails/centers_thumb.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Cluster Centers</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">clustering</span>, <span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">watermass geometry</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">basemap</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">scikit-learn</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Science Bits</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">AncientWMG</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://jordanplanders.github.io/past_life_wmg/notebooks/Science_Bits/clustering_centers_on_raw.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="full_workflow" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/full_workflow.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_1</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_1.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="odp" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/odp.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_2</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_2.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="leloup_paillard_odp_lp" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/leloup_paillard_odp_lp.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_3</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_3.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="sensitivity_1" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/sensitivity_1.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_4</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_4.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="ice_core" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/ice_core.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_5</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_5.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="8k_noise" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/8k_noise.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_6</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_6.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="density" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/density.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_7</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_7.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm figures ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="resolution" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/resolution.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Figure_8</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Figures</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Figures/Figure_8.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm extras ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="full_workflow" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/full_workflow.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Holocene_Ice_Analysis</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Extras</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Extras/Holocene_Ice_Analysis.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm extras ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="full_workflow" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/full_workflow.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Holocene_Ice_Window_Increment</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Extras</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Extras/Holocene_Ice_Window_Increment.html"></a></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<div class="sd-sphinx-override sd-tagged-card sd-card-cols-1 d-flex detecting-paleoclimate-transitions-with-lerm extras ammonyte data-viz matplotlib notebook pyleoclim docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<img alt="full_workflow" class="sd-card-img-top" src="https://raw.githubusercontent.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM/main/thumbnails/full_workflow.png" />
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Holocene_Ice_Window_Size</div>
+<p class="sd-card-text"><span class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary">data viz</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">matplotlib</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">pyleoclim</span>, <span class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary">ammonyte</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">notebook</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Extras</span>, <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">Detecting Paleoclimate Transitions with LERM</span></p>
+</div>
+<a class="sd-stretched-link reference external" href="https://alexkjames.github.io/Detecting_Paleoclimate_Transitions_with_LERM/notebooks/Extras/Holocene_Ice_Window_Size.html"></a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-backdrop"></div></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="_toc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="contributor_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributor Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paleobooks">PaleoBooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapters">Chapters</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Linked Earth
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, Linked Earth.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
