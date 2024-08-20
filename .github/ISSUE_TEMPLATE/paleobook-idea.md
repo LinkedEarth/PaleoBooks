@@ -2,7 +2,7 @@
 name: PaleoBook Idea
 about: Use this template to submit an idea for a PaleoBook
 title: ''
-labels: idea
+labels: ''
 assignees: ''
 
 ---
