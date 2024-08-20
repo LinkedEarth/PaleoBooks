@@ -107,7 +107,7 @@ def generate_repo_dicts(all_items):
             chapters = []
             for part in gallery_info_dict['parts']:
                 type_tag = part['caption']
-                type_stem = type_tag.replace(' ', '_')
+                type_stem = type_tag.replace(' ', '_').lower()
                 for chapter in part['chapters']:
                     file_name = chapter['filename']
                     chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
