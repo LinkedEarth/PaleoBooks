@@ -58,6 +58,7 @@ def generate_repo_dicts(all_items):
         host = item['host'].strip()
         user = item['user'].strip()
         repo = item['repo_name'].strip()  # item.strip()
+        print('repo', repo,'user', user, 'host', host)
         landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
         if 'tree' in github_url:
@@ -67,6 +68,8 @@ def generate_repo_dicts(all_items):
         else:
             config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
         cookbook_url = f"{host}/{repo}/{landingpage}.html".strip()
+        print('config_url', config_url)
+        print('cookbook_url', cookbook_url)
         # print(item)
         master_tags = {}
         # Get information from _config (title, description, authors)
@@ -94,47 +97,76 @@ def generate_repo_dicts(all_items):
         # Get tags and thumbnail for repo
         try:
             gallery_info_url = config_url  # os.getcwd() + '/source/{}'.format(repo)
-            # with open(gallery_info_url+'/meta_data/chapter_meta.yml', 'r') as file:
-            #     gallery_info_dict = yaml.safe_load(file)
 
             gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
+
+            encoding = 'utf-8'
+            check_str = gallery_info.decode(encoding)
+            if '404' in check_str:
+                gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yaml').content
             gallery_info_dict = yaml.safe_load(gallery_info)
+
+            toc_url = gallery_info_url + '/_toc.yml'
+            toc_info = requests.get(toc_url).content
+            toc_info_dict__raw = yaml.safe_load(toc_info)
+
+            if 'parts' not in toc_info_dict__raw.keys():
+                toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': toc_info_dict__raw['chapters']}]
+
+            toc_info_dict = {}
+            for ip, part in enumerate(toc_info_dict__raw['parts']):
+
+                toc_info_dict[part['caption']] = {}
+                for chapter in part['chapters']:
+                    name = chapter['file'].split('/')[-1].split('.')[0]
+                    chapt_tail = chapter['file'].split('.')[0]
+                    toc_info_dict[part['caption']][name] = chapt_tail
 
             shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
             if '.' not in thumbnail:
                 thumbnail +='.png'
+
             chapters = []
-            for part in gallery_info_dict['parts']:
-                type_tag = part['caption']
-                type_stem = type_tag.replace(' ', '_').lower()
-                for chapter in part['chapters']:
-                    file_name = chapter['filename']
-                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
-                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
-                        chapter_thumbnail) > 0 else chapter_thumbnail
-                    chapter['type_tag'] = type_tag
-                    chapter['tags']['formats'] = ['notebook', type_tag, shortname]
-                    chapter['url'] = f'{host}/{repo}/notebooks/{type_stem}/{file_name}.html'
 
-                    # r = requests.get(chapter['url'])
-                    # if r.status_code ==404:
-                    #     chapter['url'] = f'{host}/{repo}/notebooks/{type_stem.lower()}/{file_name}.html'
-                    #     r = requests.get(chapter['url'])
-                    # #     if r.status_code ==404:
-                    # #         chapter['url'] = cookbook_url
+            if 'parts' not in gallery_info_dict.keys():
+                gallery_info_dict['parts']=[{key: gallery_info_dict[key] for key in ['chapters', 'caption'] if key in gallery_info_dict.keys()}]# for 'chapters': toc_info_dict__raw['chapters']}]
 
-                    chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+            if 'parts' in gallery_info_dict.keys():
+                parts = gallery_info_dict['parts']
+                for part in parts:
+                    type_tag = part['caption']
+                    if type_tag in toc_info_dict.keys():
+                        part_d = toc_info_dict[type_tag]
+                    elif len(toc_info_dict.keys())==1:
+                        part_d = toc_info_dict[list(toc_info_dict.keys())[0]]
+                        type_tag = 'Science Workflows'
 
-                    for tag_cat in chapter['tags'].keys():
-                        if tag_cat not in master_tags:
-                            master_tags[tag_cat] = []
-                        master_tags[tag_cat] += chapter['tags'][tag_cat]
+                    for chapter in part['chapters']:
+                        file_name = chapter['filename']
+                        if file_name in part_d.keys():
+                            url_tail = part_d[file_name]
+                        else:
+                            url_tail = file_name
+                        chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
+                        chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
+                            chapter_thumbnail) > 0 else chapter_thumbnail
+                        chapter['type_tag'] = type_tag
+                        chapter['tags']['formats'] = ['notebook', type_tag, shortname]
+                        chapter['url'] = f'{host}/{repo}/{url_tail}'
 
-                    chapter['tags'] = {
-                        k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
-                    }
-                    chapters.append(chapter)
+                        chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+
+                        for tag_cat in chapter['tags'].keys():
+                            if tag_cat not in master_tags:
+                                master_tags[tag_cat] = []
+                            master_tags[tag_cat] += chapter['tags'][tag_cat]
+
+                        chapter['tags'] = {
+                            k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
+                        }
+
+                        chapters.append(chapter)
 
             # meta_data_dir = '{}'.format(github_url.split('github.com/')[1])#https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
             # book_meta_loc = '/'.join([meta_data_dir, 'book_meta.yml'])
@@ -385,7 +417,7 @@ def build_from_repos(
                             
 
         """
-        print('panel', panel)
+        # print('panel', panel)
         panels_chapters.append(panel)
 
     print('survived?')
