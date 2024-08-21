@@ -128,6 +128,7 @@ def generate_repo_dicts(all_items):
                 thumbnail +='.png'
 
             chapters = []
+
             if 'parts' not in gallery_info_dict.keys():
                 gallery_info_dict['parts']=[{key: gallery_info_dict[key] for key in ['chapters', 'caption'] if key in gallery_info_dict.keys()}]# for 'chapters': toc_info_dict__raw['chapters']}]
 
