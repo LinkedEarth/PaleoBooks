@@ -70,7 +70,6 @@ def generate_repo_dicts(all_items):
         cookbook_url = f"{host}/{repo}/{landingpage}.html".strip()
         print('config_url', config_url)
         print('cookbook_url', cookbook_url)
-        # print(item)
         master_tags = {}
         # Get information from _config (title, description, authors)
         try:
