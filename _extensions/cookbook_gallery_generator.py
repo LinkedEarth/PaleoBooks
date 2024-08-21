@@ -13,7 +13,7 @@ def main(app):
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='|')
         print('somethingelse')
         all_items = [row for row in reader]
-        # print(all_items)
+        print(all_items)
 
     repo_dicts = generate_repo_dicts(all_items)
     print('repo_dicts')
