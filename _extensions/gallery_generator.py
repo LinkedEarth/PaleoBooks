@@ -61,15 +61,26 @@ def generate_repo_dicts(all_items):
         print('repo', repo,'user', user, 'host', host)
         landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
-        if 'tree' in github_url:
-            config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('tree')[1].lstrip('/')
-        elif 'blob' in github_url:
-            config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
-        else:
-            config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
-        cookbook_url = f"{host}/{repo}/{landingpage}.html".strip()
-        print('config_url', config_url)
-        print('cookbook_url', cookbook_url)
+
+        config_url = item['config_url'].strip()
+        if len(item['config_url']) > 0:
+            config_url = item['config_url'].replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
+
+        if len(config_url) == 0:
+            if 'tree' in github_url:
+                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('tree')[1].lstrip('/')
+            elif 'blob' in github_url:
+                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
+            else:
+                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
+        #
+            config_url = config_url.rstrip('/') + '/_config.yml'
+        config_loc = config_url.split('_config')[0].rstrip('/')
+
+        cookbook_loc = item['cookbook_loc'].strip().lstrip('/')
+        if len(item['cookbook_loc']) == 0:
+            cookbook_loc = f"{host}/{repo}".strip().lstrip('/')
+        cookbook_url = f"{cookbook_loc}/{landingpage}.html".strip()
         master_tags = {}
         # Get information from _config (title, description, authors)
         try:
@@ -85,17 +96,15 @@ def generate_repo_dicts(all_items):
 
         except:
             # print('took the except through the title description author split')
-            config = requests.get(config_url + '/_config.yml').content
+            config = requests.get(config_url).content
             config_dict = yaml.safe_load(config)
-            # with requests.get(config_url+'/_config.yml', 'r').content as file:
-            #     config_dict = yaml.safe_load(file)
             cookbook_title = config_dict["title"]
             description = config_dict["description"] if 'description' in config_dict else ''
             authors = config_dict["author"] if 'author' in config_dict else ''
 
         # Get tags and thumbnail for repo
         try:
-            gallery_info_url = config_url  # os.getcwd() + '/source/{}'.format(repo)
+            gallery_info_url = config_loc  # os.getcwd() + '/source/{}'.format(repo)
 
             gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
 
@@ -152,7 +161,7 @@ def generate_repo_dicts(all_items):
                             chapter_thumbnail) > 0 else chapter_thumbnail
                         chapter['type_tag'] = type_tag
                         chapter['tags']['formats'] = ['notebook', type_tag, shortname]
-                        chapter['url'] = f'{host}/{repo}/{url_tail}'
+                        chapter['url'] = f'{cookbook_loc}/{url_tail}'
 
                         chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
 
