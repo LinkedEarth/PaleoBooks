@@ -62,7 +62,7 @@ master_doc = '_toc'
 
 # General information about the project.
 project = 'PaleoBooks Library'
-copyright = '2023, Linked Earth'
+copyright = '2024, Linked Earth'
 author = 'Linked Earth'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -100,6 +100,7 @@ todo_include_todos = False
 # a list of builtin themes.
 #
 html_theme = 'sphinx_book_theme'
+
 html_logo = '_static/logo.png'
 html_title = "PaleoBook Library"
 # html_title = ""
@@ -119,6 +120,8 @@ html_theme_options = {
         "path_to_docs": "docs",
         "home_page_in_toc": False,
         "show_navbar_depth": 2,
+        "use_repository_button": True,
+        "repository_url": "https://github.com/LinkedEarth/PaleoBooks"
     # "page_layouts": {
     #     "index": "page-standalone.html",
     # },
