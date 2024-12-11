@@ -83,24 +83,24 @@ def generate_repo_dicts(all_items):
         cookbook_url = f"{cookbook_loc}/{landingpage}.html".strip()
         master_tags = {}
         # Get information from _config (title, description, authors)
-        try:
-            citation_url = f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/CITATION.cff"
-            cffconvert_command = f"cffconvert -f zenodo -u {citation_url}"
-            citation_dict = _run_cffconvert(cffconvert_command)
-
-            cookbook_title = citation_dict["title"]
-            description = citation_dict["description"]
-            creators = citation_dict["creators"]
-            names = [item.get("name") for item in creators]
-            authors = ", ".join(names)
-
-        except:
+        # try:
+        #     citation_url = f"https://raw.githubusercontent.com/ProjectPythia/{repo}/main/CITATION.cff"
+        #     cffconvert_command = f"cffconvert -f zenodo -u {citation_url}"
+        #     citation_dict = _run_cffconvert(cffconvert_command)
+        #
+        #     cookbook_title = citation_dict["title"]
+        #     description = citation_dict["description"]
+        #     creators = citation_dict["creators"]
+        #     names = [item.get("name") for item in creators]
+        #     authors = ", ".join(names)
+        #
+        # except:
             # print('took the except through the title description author split')
-            config = requests.get(config_url).content
-            config_dict = yaml.safe_load(config)
-            cookbook_title = config_dict["title"]
-            description = config_dict["description"] if 'description' in config_dict else ''
-            authors = config_dict["author"] if 'author' in config_dict else ''
+        config = requests.get(config_url).content
+        config_dict = yaml.safe_load(config)
+        cookbook_title = config_dict["title"]
+        description = config_dict["description"] if 'description' in config_dict else ''
+        authors = config_dict["author"] if 'author' in config_dict else ''
 
         # Get tags and thumbnail for repo
         try:
