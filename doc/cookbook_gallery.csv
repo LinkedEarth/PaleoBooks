@@ -1,8 +1,9 @@
-repo_name,repo_url,host,user,landingpage
-citrace_paleobook,https://github.com/LinkedEarth/citrace_paleobook,https://linked.earth,LinkedEarth,README
-LMR_CMIP_paleobook,https://github.com/LinkedEarth/LMR_CMIP_paleobook,https://linked.earth,LinkedEarth,README
-DISK-proxyComposite,https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite,https://khider.github.io,khider,intro
-past_life_wmg,https://github.com/jordanplanders/past_life_wmg/blob/main/ancient_wmgr_book,https://jordanplanders.github.io,jordanplanders,intro
-Detecting_Paleoclimate_Transitions_with_LERM,https://github.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM,https://alexkjames.github.io,alexkjames,intro
-PyleoclimPaper,https://github.com/LinkedEarth/PyleoclimPaper,https://linked.earth,LinkedEarth,README
-dry-tortugas-calibration-fun,https://github.com/khider/dry-tortugas-calibration-fun/blob/main/paleobook,https://khider.github.io,khider,intro
+repo_name,repo_url,host,user,landingpage,landingpage_url,config_url,cookbook_loc
+citrace_paleobook,https://github.com/LinkedEarth/citrace_paleobook,https://linked.earth,LinkedEarth,README,https://linked.earth/citrace_paleobook/README.html,https://github.com/LinkedEarth/citrace_paleobook/blob/main/_config.yml,https://linked.earth/citrace_paleobook
+LMR_CMIP_paleobook,https://github.com/LinkedEarth/LMR_CMIP_paleobook,https://linked.earth,LinkedEarth,README,,https://github.com/LinkedEarth/LMR_CMIP_paleobook/blob/main/_config.yml,
+DISK-proxyComposite,https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite,https://khider.github.io,khider,intro,,,
+past_life_wmg,https://github.com/jordanplanders/past_life_wmg/blob/main/ancient_wmgr_book,https://jordanplanders.github.io,jordanplanders,intro,,,
+Detecting_Paleoclimate_Transitions_with_LERM,https://github.com/alexkjames/Detecting_Paleoclimate_Transitions_with_LERM,https://alexkjames.github.io,alexkjames,intro,,,
+PyleoclimPaper,https://github.com/LinkedEarth/PyleoclimPaper,https://linked.earth,LinkedEarth,README,,,
+dry-tortugas-calibration-fun,https://github.com/khider/dry-tortugas-calibration-fun/blob/main/paleobook,https://khider.github.io,khider,intro,,,
+PaleoPCA,https://github.com/khider/PaleoPCA,https://projectpythia.org/,khider,README,https://projectpythia.org/paleoPCA-cookbook/README.html,https://github.com/khider/paleoPCA/blob/main/_config.yml,https://projectpythia.org/paleoPCA-cookbook
