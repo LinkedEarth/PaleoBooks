@@ -3,6 +3,8 @@ import csv
 import os
 import yaml
 
+# to build locally using the following from the top directory: sphinx-build doc _build/html
+# doc is the location of conf.py, _build/html is where it will be built
 def main(app):
     print(os.getcwd())
     # with open("cookbook_gallery.txt") as fid:
