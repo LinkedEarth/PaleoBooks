@@ -160,6 +160,7 @@ def generate_repo_dicts(all_items):
                         chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
                             chapter_thumbnail) > 0 else chapter_thumbnail
                         chapter['type_tag'] = type_tag
+                        chapter['tags']['book'] = [shortname]
                         chapter['tags']['formats'] = ['notebook', type_tag, shortname]
                         chapter['url'] = f'{cookbook_loc}/{url_tail}'
 
@@ -201,6 +202,7 @@ def generate_repo_dicts(all_items):
             k: v for k, v in master_tags.items() if (v is not None and v[0] is not None)
         }
         repo_tags['formats'].remove('notebook')
+        repo_tags['formats'].remove(shortname)
         # print('repo_tags', repo_tags['formats'].remove('notebook'))
         repo_dict = {
             "repo": repo,
@@ -309,7 +311,13 @@ def build_from_repos(
         tag_dict = repo_dict["tags"]
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        tag_types = ['primary', 'secondary', 'info', 'caution']
+        tag_types = ['primary', 'secondary', 'success']
+
+        tag_type = 'danger'
+        tags_book = [', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict['book']])]
+        tags_book = ', '.join(tags_book).lstrip(',').strip()
+        tag_dict.pop('book')
+
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
             tag_type = tag_types[ip]
@@ -378,7 +386,7 @@ def build_from_repos(
         tag_dict = repo_dict["tags"]
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        tag_types = ['primary', 'secondary', 'info', 'caution']
+        tag_types = ['primary', 'secondary', 'danger', 'success']
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
             tag_type = tag_types[ip]
