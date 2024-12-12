@@ -12,9 +12,7 @@ To make a great contribution you need to:
 #. :ref:`Submit a request to have your book added<submit-a-library-request>`
 
 .. note::
-    Consider sections 1 and 2 as a style guide. In order to be added to the library, you must have:
-    #. a fully published and hosted book and
-    #. metadata that follows the structure described in section 3!
+    Consider sections 1 and 2 (:ref:`write-your-book` and :ref:`build-your-book`) and as a style guide. In order to be added to the library, you must have a fully published, hosted book that includes a landing page file (markdown or similar) AND metadata that follows the structure described in section 3 (:ref:`Prepare your book to be added to the library<prepare-for-joining-the-library>`)!
 
 .. _write-your-book:
 
@@ -28,19 +26,19 @@ Content:
 
 Structure your content into one or more sections, each addressing specific themes or topics.
 Each section contains one or more notebooks (chapters) that delve into the details of the respective theme.
-How you organize your book is up to you. We have found Lifehacks and Science Bits to be useful sections, as our chapters have generally fallen under one of those two categories, but that is not the only way, and the best way is whatever way is most intuitive given your content.
+How you organize your book is up to you. We have found Lifehacks and Science Bits to be useful themes, as many of our chapters have fallen under one of those two categories, but that is by no means the only way. For example, the sections of a publication might be another sensible approach.
 
 *Lifehacks*
-    Careful breakdowns of technically tricky, unintuitive or cumbersome tasks, e.g., data visualization tips or explanations about how to interact with a data product
+    Careful breakdowns of technically tricky, unintuitive or cumbersome tasks, e.g., data visualization tips or explanations about how to interact with a data product.
 
 *Science Bits*
-    Step by step discussion of analysis or exploratory workflow, for example
+    Step by step discussion of analysis or exploratory workflow. These notebooks should focus more on scientific insights derived from analyses than on technical implementation.
 
 *Paper*
-    Notebooks describing the research behind a published work
+    Notebooks describing the research behind a published work. These might be organized by the sections of the publication, or by the included figures.
 
 .. note::
-    Every notebook must have a level 1 header. If it has more than one, the first one will be taken as the title of the chapter *within your JupyterBook* (you can customize this as far as the library is concerned, but you may find this to be a useful tip as far as your book goes.)
+    Every notebook must have a level 1 header (one #). This header will be used in your JupyterBook table of contents. If your book has multiple level 1 headers, the first one will be used in your JupyterBook table of contents. You will have the opportunity to assign different names for the purpose of the gallery.
 
 Landing Page:
 *****************
@@ -80,7 +78,7 @@ A couple of notes:
         execute:
             execute_notebooks: 'off'
 
-* Include a copy of your book's thumbnail in the directory where your book is and call it `logo.png`. This is specified in the `_config.yml` and naming/locating it in a predictable place will save a headache.
+* Include a copy of your book's thumbnail in the same directory as the `_config.yml` file and call it `logo.png`. This is specified in the `_config.yml` and naming/locating it in a predictable place will save a headache.
 
 .. _an example: https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml
 .. _look here: https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml
@@ -133,7 +131,7 @@ This table provides an explanation of each element:
     * - yml excerpt
       - explanation
     * - `shortname`
-      - short word or phrase for your book
+      - this top level short name is a short word or phrase that will be used to tag your book in the gallery. The title that appears on the book card in the gallery will be sourced from the _config.yml file.
     * - `type`
       - if your book is not a PaleoBook, note the collection it belongs to
     * - `thumbnail`
@@ -141,7 +139,7 @@ This table provides an explanation of each element:
     * - parts
       - below this will be the sections your book is organized into
     * - `caption`
-      - the name of the `part` (e.g. Lifehacks)
+      - the name of the `part` (e.g., Lifehacks)
     * - chapters
       - below this will be the notebooks (chapters) included in this section
     * - `shortname`
@@ -156,6 +154,8 @@ This table provides an explanation of each element:
       - below this are tags related to domain knowledge (e.g. isotopes, linear regression)
     * - packages
       - below this are tags for packages leveraged in the chapter (e.g. pyleoclim)
+    * - format
+      - below this are tags for the format of the chapter (e.g. science bit, peer-reviewed, lifehack, figure, etc.)
 
 
 Now onto the next chapter! (The next `shortname` will refer to the next chapter.)
@@ -176,6 +176,9 @@ Once you have a fully built and published JupyterBook with extra metadata, `subm
 
 #. Name of the repository: *e.g., DISK-proxyComposite*
 #. Repo url: *e.g., https://github.com/khider/DISK-proxyComposite*
+#. Branch: *e.g., main*
+#. Url of .config.yml: *e.g., https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml*
 #. Host for the JupyterBook: *e.g., https://khider.github.io NOT https://khider.github.io/DISK-proxyComposite/intro.html*
 #. User: *e.g., khider*
 #. Landing suffix (name of the page you want users to land on): *e.g., intro.html*
+#. Landing page url: *e.g., https://khider.github.io/DISK-proxyComposite/intro.html*
