@@ -45,11 +45,11 @@ Landing Page:
 
 There isn't a required structure for your landing page, but we have found that the following elements are appropriate (bolded items are common section titles):
 
-* Title: Clearly state the title of your Jupyter book.
-* Quick Summary (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.
+* **Title**: Clearly state the title of your Jupyter book.
+* **Quick Summary** (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.
 * **Motivation**: Offer an overview of the motivation behind building the book. This section should briefly touch on the science or technical skills explored in your chapters. It might also include information about any datasets involved or projects your book is associated with.
 * **Author**: Provide information about the primary author or authors of the book.
-* **Contributors**: Check out `contrib.rocks`_ for an html snippet with avatars for each contributor to your jupyterbook repo.
+* **Contributors**: Check out `contrib.rocks`_ for an html snippet with avatars for each contributor to your JupyterBook repo.
 * **Structure**: Give a quick explanation of the content in each section of the book (more on this below).
 * **References**: Include notes about any publications associated with the book.
 
