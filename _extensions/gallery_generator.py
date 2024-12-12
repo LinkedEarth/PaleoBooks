@@ -61,7 +61,9 @@ def generate_repo_dicts(all_items):
         print('repo', repo,'user', user, 'host', host)
         landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
-
+        branch = item['branch'].strip()
+        if len(item['branch']) == 0:
+            branch = 'main'
         config_url = item['config_url'].strip()
         if len(item['config_url']) > 0:
             config_url = item['config_url'].replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
@@ -72,7 +74,7 @@ def generate_repo_dicts(all_items):
             elif 'blob' in github_url:
                 config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
             else:
-                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/main"
+                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}"
         #
             config_url = config_url.rstrip('/') + '/_config.yml'
         config_loc = config_url.split('_config')[0].rstrip('/')
@@ -81,6 +83,7 @@ def generate_repo_dicts(all_items):
         if len(item['cookbook_loc']) == 0:
             cookbook_loc = f"{host}/{repo}".strip().lstrip('/')
         cookbook_url = f"{cookbook_loc}/{landingpage}.html".strip()
+        print('cookbook_loc', cookbook_loc, cookbook_url)
         master_tags = {}
         # Get information from _config (title, description, authors)
         # try:
@@ -98,6 +101,7 @@ def generate_repo_dicts(all_items):
             # print('took the except through the title description author split')
         config = requests.get(config_url).content
         config_dict = yaml.safe_load(config)
+        # print('config_dict', config_dict)
         cookbook_title = config_dict["title"]
         description = config_dict["description"] if 'description' in config_dict else ''
         authors = config_dict["author"] if 'author' in config_dict else ''
@@ -105,14 +109,23 @@ def generate_repo_dicts(all_items):
         # Get tags and thumbnail for repo
         try:
             gallery_info_url = config_loc  # os.getcwd() + '/source/{}'.format(repo)
+            gallery_info_raw = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
 
-            gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
+            try:
+                encoding = 'utf-8'
+                gallery_info = gallery_info_raw.decode(encoding, errors='replace')
+            except:
+                encoding = 'latin-1'
+                gallery_info = gallery_info_raw.decode(encoding, errors='replace')
 
-            encoding = 'utf-8'
-            check_str = gallery_info.decode(encoding)
-            if '404' in check_str:
+            if '404' in gallery_info:
                 gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yaml').content
-            gallery_info_dict = yaml.safe_load(gallery_info)
+                gallery_info_dict = yaml.safe_load(gallery_info)
+            else:
+                try:
+                    gallery_info_dict = yaml.safe_load(gallery_info)
+                except yaml.YAMLError as exc:
+                    print("Error parsing YAML:", exc)
 
             toc_url = gallery_info_url + '/_toc.yml'
             toc_info = requests.get(toc_url).content
@@ -136,7 +149,6 @@ def generate_repo_dicts(all_items):
                 thumbnail +='.png'
 
             chapters = []
-
             if 'parts' not in gallery_info_dict.keys():
                 gallery_info_dict['parts']=[{key: gallery_info_dict[key] for key in ['chapters', 'caption'] if key in gallery_info_dict.keys()}]# for 'chapters': toc_info_dict__raw['chapters']}]
 
