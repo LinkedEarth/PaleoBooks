@@ -161,7 +161,7 @@ def generate_repo_dicts(all_items):
                             chapter_thumbnail) > 0 else chapter_thumbnail
                         chapter['type_tag'] = type_tag
                         chapter['tags']['book'] = [shortname]
-                        chapter['tags']['formats'] = ['notebook', type_tag, shortname]
+                        chapter['tags']['formats'] = ['notebook', type_tag]
                         chapter['url'] = f'{cookbook_loc}/{url_tail}'
 
                         chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
@@ -202,7 +202,6 @@ def generate_repo_dicts(all_items):
             k: v for k, v in master_tags.items() if (v is not None and v[0] is not None)
         }
         repo_tags['formats'].remove('notebook')
-        repo_tags['formats'].remove(shortname)
         # print('repo_tags', repo_tags['formats'].remove('notebook'))
         repo_dict = {
             "repo": repo,
@@ -321,7 +320,7 @@ def build_from_repos(
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
             tag_type = tag_types[ip]
-            _tags = ', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
+            _tags = ' '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
             tags.append(_tags)
         tags = ', '.join(tags)
         # tags = ", ".join(tags)+'\n'
@@ -359,7 +358,7 @@ def build_from_repos(
                     .. tagged-card:: 
                         :tags: {tag_class_str}
                     
-                        .. card:: {cookbook_title}
+                        .. card:: {cookbook_title} {tags_book}
                             :link: {cookbook_url}
                             :img-top: {thumbnail_url}
                             :img-alt: {thumbnail}
@@ -386,11 +385,18 @@ def build_from_repos(
         tag_dict = repo_dict["tags"]
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        tag_types = ['primary', 'secondary', 'danger', 'success']
+
+        tag_type = 'danger'
+        tags_book = [', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict['book']])]
+        tags_book = ', '.join(tags_book).lstrip(',').strip()
+        tag_dict.pop('book')
+
+        tag_types = ['primary', 'secondary', 'success']
         tags = []
+        tag_dict['formats'].remove('notebook')
         for ip, tag_key in enumerate(tag_dict.keys()):
             tag_type = tag_types[ip]
-            _tags = ', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
+            _tags = ' '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
             tags.append(_tags)
         tags = ', '.join(tags)
         # tags = ", ".join(tags)+'\n'
@@ -428,6 +434,8 @@ def build_from_repos(
                             :link: {cookbook_url}
                             :img-top: {thumbnail_url}
                             :img-alt: {thumbnail}
+                            
+                            {tags_book}
                             
                             {tags}
                             
