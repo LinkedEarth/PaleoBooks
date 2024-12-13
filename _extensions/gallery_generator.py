@@ -30,6 +30,22 @@ def _grab_binder_link(repo):
 #     <a class="reference external" href="https://zenodo.org/badge/latestdoi/{github_id}"><img alt="DOI" src="https://zenodo.org/badge/{github_id}.svg" /></a>
 #     """
 
+def extract_files(data, result=None):
+    if result is None:
+        result = {}
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if key == "file":
+                # Extract the file name after the last '/'
+                file_name = value.split('/')[-1]
+                result[file_name] = value
+            else:
+                extract_files(value, result)
+    elif isinstance(data, list):
+        for item in data:
+            extract_files(item, result)
+    return result
+
 
 def _grab_github_id(repo):
     github_api_url = f"https://api.github.com/repos/ProjectPythia/{repo}"
@@ -135,59 +151,80 @@ def generate_repo_dicts(all_items):
                 toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': toc_info_dict__raw['chapters']}]
 
             toc_info_dict = {}
-            for ip, part in enumerate(toc_info_dict__raw['parts']):
+            for ip, content_type_category in enumerate(toc_info_dict__raw['parts']):
 
-                toc_info_dict[part['caption']] = {}
-                for chapter in part['chapters']:
+                toc_info_dict[content_type_category['caption']] = {}
+                for chapter in content_type_category['chapters']:
                     name = chapter['file'].split('/')[-1].split('.')[0]
                     chapt_tail = chapter['file'].split('.')[0]
-                    toc_info_dict[part['caption']][name] = chapt_tail
+                    toc_info_dict[content_type_category['caption']][name] = chapt_tail
 
             shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
             if '.' not in thumbnail:
                 thumbnail +='.png'
 
+            file_d = extract_files(toc_info_dict, result=None)
+
             chapters = []
-            if 'parts' not in gallery_info_dict.keys():
-                gallery_info_dict['parts']=[{key: gallery_info_dict[key] for key in ['chapters', 'caption'] if key in gallery_info_dict.keys()}]# for 'chapters': toc_info_dict__raw['chapters']}]
-
             if 'parts' in gallery_info_dict.keys():
-                parts = gallery_info_dict['parts']
-                for part in parts:
-                    type_tag = part['caption']
-                    if type_tag in toc_info_dict.keys():
-                        part_d = toc_info_dict[type_tag]
-                    elif len(toc_info_dict.keys())==1:
-                        part_d = toc_info_dict[list(toc_info_dict.keys())[0]]
-                        type_tag = 'Science Workflows'
+                content_type_label = 'parts'
+            elif 'content_type' in gallery_info_dict.keys():
+                content_type_label = 'content_type'
+            else:
+                content_type_label = 'content_type'
+                gallery_info_dict[content_type_label] = [{key: gallery_info_dict[key] for key in ['chapters', 'caption'] if key in gallery_info_dict.keys()}]
 
-                    for chapter in part['chapters']:
-                        file_name = chapter['filename']
-                        if file_name in part_d.keys():
-                            url_tail = part_d[file_name]
-                        else:
-                            url_tail = file_name
-                        chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
-                        chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
-                            chapter_thumbnail) > 0 else chapter_thumbnail
-                        chapter['type_tag'] = type_tag
-                        chapter['tags']['book'] = [shortname]
-                        chapter['tags']['formats'] = ['notebook', type_tag]
-                        chapter['url'] = f'{cookbook_loc}/{url_tail}'
+            # if 'parts' not in gallery_info_dict.keys():
+            #     gallery_info_dict['parts']=[{key: gallery_info_dict[key] for key in ['chapters', 'caption'] if key in gallery_info_dict.keys()}]# for 'chapters': toc_info_dict__raw['chapters']}]
 
-                        chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+            # if 'parts' in gallery_info_dict.keys():
+            #     content_type_label = 'parts'
+            # elif 'content_type' in gallery_info_dict.keys():
+            #     content_type_label = 'content_type'
 
-                        for tag_cat in chapter['tags'].keys():
-                            if tag_cat not in master_tags:
-                                master_tags[tag_cat] = []
-                            master_tags[tag_cat] += chapter['tags'][tag_cat]
+            content_types = gallery_info_dict[content_type_label]
+            for content_type_category in content_types:
+                content_type_tag = None
+                if 'caption' in content_type_category.keys():
+                    content_type_tag = content_type_category['caption']
 
-                        chapter['tags'] = {
-                            k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
-                        }
+                # if content_type_tag in toc_info_dict.keys():
+                #     part_d = toc_info_dict[content_type_tag]
+                # elif len(toc_info_dict.keys())==1:
+                #     part_d = toc_info_dict[list(toc_info_dict.keys())[0]]
+                #     content_type_tag = 'Science Workflows'
 
-                        chapters.append(chapter)
+                for chapter in content_type_category['chapters']:
+                    file_name = chapter['filename']
+                    if file_name in file_d.keys():
+                        url_tail = file_d[file_name]#part_d[file_name]
+                    else:
+                        url_tail = file_name
+                    chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
+                    chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
+                        chapter_thumbnail) > 0 else chapter_thumbnail
+                    chapter['tags']['formats'] = ['notebook']
+                    if content_type_tag is not None:
+                        chapter['content_type_tag'] = content_type_tag
+                        chapter['tags']['formats'] += [content_type_tag]
+                    chapter['tags']['book'] = [shortname]
+                    # chapter['tags']['formats'] = ['notebook', content_type_tag]
+                    # chapter['url'] = f'{cookbook_loc}/{url_tail}'
+                    chapter['url'] = f'{cookbook_loc}/{url_tail}'# if file_name in file_d.keys() else f'{cookbook_loc}/{url_tail}'
+
+                    chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
+
+                    for tag_cat in chapter['tags'].keys():
+                        if tag_cat not in master_tags:
+                            master_tags[tag_cat] = []
+                        master_tags[tag_cat] += chapter['tags'][tag_cat]
+
+                    chapter['tags'] = {
+                        k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
+                    }
+
+                    chapters.append(chapter)
 
             # meta_data_dir = '{}'.format(github_url.split('github.com/')[1])#https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
             # book_meta_loc = '/'.join([meta_data_dir, 'book_meta.yml'])
