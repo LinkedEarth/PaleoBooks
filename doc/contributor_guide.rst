@@ -26,7 +26,7 @@ Content:
 
 Structure your content into one or more sections, each addressing specific themes or topics.
 Each section contains one or more notebooks (chapters) that delve into the details of the respective theme.
-How you organize your book is up to you. We have found Lifehacks and Science Bits to be useful themes, as many of our chapters have fallen under one of those two categories, but that is by no means the only way. For example, the sections of a publication might be another sensible approach.
+How you organize your book is up to you. We have found Lifehacks and Science Bits to be useful themes, as many of our chapters have fallen under one of those two categories, but that is by no means the only way. For example, the sections of a publication might be another sensible approach. This organizational structure will not be visible in the gallery unless you specify it in the `chapter_meta.yml` file (see below for more details).
 
 *Lifehacks*
     Careful breakdowns of technically tricky, unintuitive or cumbersome tasks, e.g., data visualization tips or explanations about how to interact with a data product.
@@ -34,7 +34,7 @@ How you organize your book is up to you. We have found Lifehacks and Science Bit
 *Science Bits*
     Step by step discussion of analysis or exploratory workflow. These notebooks should focus more on scientific insights derived from analyses than on technical implementation.
 
-*Paper*
+*Paper Sections*
     Notebooks describing the research behind a published work. These might be organized by the sections of the publication, or by the included figures.
 
 .. note::
@@ -96,6 +96,31 @@ In order for your book to be added to the library, you will need to provide some
 
 .. _the C-iTrace PaleoBook chapter_meta.yml: https://github.com/LinkedEarth/citrace_paleobook/blob/main/meta_data/chapter_meta.yml
 
+.. note::
+    YAML files are very sensitive to indentation, so be careful when copying and pasting.
+
+In the gallery, the content of your book will appear in two ways: as a single card for the whole book, and as individual cards for each chapter. Each card contains a title, a thumbnail image and a selection of tags. In addition, each card is clickable and will take a reader to the relevant page. The information for these cards is drawn from the YAML files.
+
+Book cards will contain the following information:
+    -  **book title**: specified in `_config.yml`
+    -  **book url**: specified in information provided in the gallery submission form
+    -  **book thumbnail**: specified in the `thumbnails` folder
+    -  **book tags**: specified in `chapter_meta.yml`, encompassing all tags assigned to constituent chapters
+    -  **book shortname tag**: specified in `chapter_meta.yml` as top level `shortname` and is used to associate the book with its chapters cards
+
+Chapter cards will contain the following information:
+    - **chapter title**: specified in `chapter_meta.yml` as `shortname`
+    - **chapter url**: constructed from the book url and pointers associating `filename` specified in `chapter_meta.yml` to the relevant filename in the `_toc.yml`
+    - **chapter thumbnail**: specified in the `thumbnails` folder
+    - **chapter tags**: specified in `chapter_meta.yml`
+    - **book shortname tag**: as mentioned above, this is used to associate the chapter with the book
+
+Because chapter urls are constructed using information from the `_toc.yml`, it is important that the `filename` in `chapter_meta.yml` matches the filename associated with each `file` in the `_toc.yml`, and that the filename is unique within your book. For example, you may note have notebooks/lifehacks/mynotebook and notebooks/science_bits/mynotebook.
+
+Additionally, a book is not required to have multiple `parts` in the `chapter_meta.yml` file. A "part" should be thought of as a content type (e.g. science bit, figure, method overview, tutorial). If your book is a single part, you can simply follow the top level book information (`shortname`, `type`, `thumbnail`) with `chapters:` and list the chapters as shown below. However, if the `chapter_meta.yml` includes parts, the part `caption` will be assigned to its chapters as a `format` tag. (Note: you may also specify format tags directly.)
+
+**Reminder**: YAML files are very sensitive to indentation, so be careful when copying and pasting.
+
 Here is the top segment:
 
 .. code-block::
@@ -137,7 +162,7 @@ This table provides an explanation of each element:
     * - `thumbnail`
       - the name of the thumbnail image for *the whole book* (assumed to be .png, if not indicated)
     * - parts
-      - below this will be the sections your book is organized into
+      - below this will be the content types your book is organized by (e.g., Lifehacks, Science Bits)
     * - `caption`
       - the name of the `part` (e.g., Lifehacks)
     * - chapters
