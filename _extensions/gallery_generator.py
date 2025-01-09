@@ -496,7 +496,7 @@ def build_from_repos(
         # print('panel', panel)
         panels_chapters.append(panel)
 
-    print('survived?')
+    # print('survived?')
 
     panels_repos = "\n".join(panels_repos)
     panels_chapters = "\n".join(panels_chapters)
