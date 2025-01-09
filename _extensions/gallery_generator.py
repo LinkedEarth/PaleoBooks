@@ -160,14 +160,14 @@ def generate_repo_dicts(all_items):
                     name = chapter['file'].split('/')[-1].split('.')[0]
                     chapt_tail = chapter['file'].split('.')[0]
                     toc_info_dict[content_type_category['caption']][name] = chapt_tail
-            print('toc_info_dict', toc_info_dict)
+            # print('toc_info_dict', toc_info_dict)
             shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
             if '.' not in thumbnail:
                 thumbnail +='.png'
 
             file_d = extract_files(toc_info_dict, result=None)
-            print(file_d)
+            # print(file_d)
 
             chapters = []
             if 'parts' in gallery_info_dict.keys():
