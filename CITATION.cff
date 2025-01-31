@@ -1,0 +1,20 @@
+cff-version: 2.0.0.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Landers"
+    given-names: "Jordan"
+    orcid: "https://orcid.org/0000-0001-9772-7617"
+  - family-names: "Khider"
+    given-names: "Deborah"
+    orcid: "https://orcid.org/0000-0001-7501-8430"
+  - family-names: "Emile-Geay"
+    given-names: "Julien"
+    orcid: "https://orcid.org/0000-0001-5920-4751"
+  - family-names: "James"
+    given-names: "Alexander"
+    orcid: "https://orcid.org/0000-0001-8561-3188"
+title: "PaleoBooks: Doing Science with Pyleoclim"
+version: v2.0.0
+doi: 10.5281/zenodo.4556213
+date-released: 2025-01-31
+url: "https://github.com/LinkedEarth/PaleoBooks"
