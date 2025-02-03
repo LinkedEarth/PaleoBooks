@@ -160,7 +160,7 @@ This table provides an explanation of each element:
     * - `type`
       - if your book is not a PaleoBook, note the collection it belongs to
     * - `thumbnail`
-      - the name of the thumbnail image for *the whole book* (assumed to be .png, if not indicated)
+      - the name of the thumbnail image for *the whole book* (can be .png or .jpg, assumed to be .png if not indicated)
     * - parts
       - below this will be the content types your book is organized by (e.g., Lifehacks, Science Bits)
     * - `caption`
@@ -172,7 +172,7 @@ This table provides an explanation of each element:
     * - `filename`
       - the name of the notebook (without `.ipynb`)
     * - `thumbnail`
-      - the name of the thumbnail image for *this specific chapter* (assumed to be .png, if not indicated)
+      - the name of the thumbnail image for *this specific chapter* (can be .png or .jpg, assumed to be .png if not indicated)
     * - tags
       - below this are the tags (among three categories: domains, packages, format) assigned to the chapter card in the library (note: tags should be short but may include spaces)
     * - domains
@@ -186,7 +186,7 @@ This table provides an explanation of each element:
 Now onto the next chapter! (The next `shortname` will refer to the next chapter.)
 
 
-3. In the `thumbnails` folder, add one thumbnail for the book, and one thumbnail for each chapter (labeled according to the name indicated in `chapter_meta.yml`)
+3. In the `thumbnails` folder, add one thumbnail for the book, and one thumbnail for each chapter (labeled according to the name indicated in `chapter_meta.yml`). All thumbnails should be of type .png or .jpg
 
 Push these additional contributions to your github repo.
 
