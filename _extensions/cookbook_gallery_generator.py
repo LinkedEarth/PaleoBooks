@@ -11,14 +11,14 @@ def main(app):
     #     all_items = fid.readlines()
 
     with open('doc/cookbook_gallery.csv', newline='') as csvfile:
-        print('something')
+        # print('something')
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='|')
-        print('somethingelse')
+        # print('somethingelse')
         all_items = [row for row in reader]
-        print(all_items)
+        # print(all_items)
 
     repo_dicts = generate_repo_dicts(all_items)
-    print('repo_dicts')
+    # print('repo_dicts')
     title = ""
 
     subtext = ""
@@ -26,13 +26,15 @@ def main(app):
         for line in fid:
             subtext = subtext + line
 
+    # print('subtext')
+
     submit_btn_link =None# "https://github.com/ProjectPythia/cookbook-gallery/issues/new?assignees=ProjectPythia%2Feducation&labels=content%2Ccookbook-gallery-submission&template=update-cookbook-gallery.yaml&title=Update+Gallery+with+new+Cookbook"
     submit_btn_txt = None#"Submit a new Cookbook"
 
     menu_html = generate_menu(
         repo_dicts['repos'], submit_btn_txt=submit_btn_txt, submit_btn_link=submit_btn_link
     )
-    print('build menu')
+    # print('build menu')
     build_from_repos(
         repo_dicts, "doc/index", title=title, subtext=subtext, menu_html=menu_html
     )

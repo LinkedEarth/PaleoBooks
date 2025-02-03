@@ -160,7 +160,7 @@ def generate_repo_dicts(all_items):
                     name = chapter['file'].split('/')[-1].split('.')[0]
                     chapt_tail = chapter['file'].split('.')[0]
                     toc_info_dict[content_type_category['caption']][name] = chapt_tail
-            # print('toc_info_dict', toc_info_dict)
+            # print('toc_info_dict')
             shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
             if '.' not in thumbnail:
@@ -197,7 +197,7 @@ def generate_repo_dicts(all_items):
                 # elif len(toc_info_dict.keys())==1:
                 #     part_d = toc_info_dict[list(toc_info_dict.keys())[0]]
                 #     content_type_tag = 'Science Workflows'
-
+                # print(content_type_category)
                 for chapter in content_type_category['chapters']:
                     file_name = chapter['filename']
                     if file_name in file_d.keys():
@@ -205,6 +205,7 @@ def generate_repo_dicts(all_items):
                     else:
                         url_tail = file_name
                     chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
+                    # print('chapter_thumbnail', chapter_thumbnail)
                     chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
                         chapter_thumbnail) > 0 else chapter_thumbnail
                     chapter['tags']['formats'] = ['notebook']
@@ -226,6 +227,7 @@ def generate_repo_dicts(all_items):
                     chapter['tags'] = {
                         k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
                     }
+                    # print(chapter)
 
                     chapters.append(chapter)
 
@@ -346,11 +348,13 @@ def build_from_repos(
 ):
     # Build the gallery file
     panels_repos = []
+    # print('repo_dicts', len(repo_dicts))
     for repo_dict in repo_dicts['repos']:
         repo = repo_dict["repo"]
         github_url = repo_dict["github_url"]
         cookbook_url = repo_dict["cookbook_url"]
         cookbook_title = repo_dict["cookbook_title"]
+        # print('cookbook_title', cookbook_title)
 
         authors = repo_dict["authors"]
         authors_str = f"<strong>Author:</strong> {authors}"
