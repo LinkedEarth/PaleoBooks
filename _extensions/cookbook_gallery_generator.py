@@ -2,7 +2,7 @@ from gallery_generator import build_from_repos, generate_menu, generate_repo_dic
 import csv
 import os
 import yaml
-
+#
 # to build locally using the following from the top directory: sphinx-build doc _build/html
 # doc is the location of conf.py, _build/html is where it will be built
 def main(app):
