@@ -76,7 +76,7 @@ def generate_repo_dicts(all_items):
         host = item['host'].strip()
         user = item['user'].strip()
         repo = item['repo_name'].strip()  # item.strip()
-        print('repo', repo,'user', user, 'host', host)
+        print('repo: ', repo,'user', user, 'host', host)
         landingpage = item['landingpage'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
         branch = item['branch'].strip()
