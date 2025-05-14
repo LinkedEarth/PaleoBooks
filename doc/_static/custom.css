@@ -1,3 +1,149 @@
+/* Make “success” badges emerald (both filled & outline) */
+/*.sd-badge-success,*/
+/*.sd-badge-success-line {*/
+/*  color: #4fc5c5 !important;*/
+/*  border-color: #4ac4c4 !important;*/
+/*}*/
+/*:root {*/
+/*  !* your custom “packages” (for example) *!*/
+/*  --pst-color-packages: #85cde3;*/
+/*  --pst-color-packages-highlight: #46a3c4;*/
+/*  --pst-color-packages-text:      #ffffff;*/
+/*}*/
+
+/*!* Light theme: *!*/
+/*html[data-theme="light"] {*/
+/*  --pst-color-packages:           #85cde3;*/
+/*  --pst-color-packages-highlight: #46a3c4;*/
+/*  --pst-color-success-text:      #ffffff;*/
+/*}*/
+
+/*!* Dark theme: *!*/
+/*html[data-theme="dark"] {*/
+/*  --pst-color-packages:           #85cde3;*/
+/*  --pst-color-packages-highlight: #46a3c4;*/
+/*  --pst-color-success-text:      #ffffff;*/
+/*}*/
+
+/* 1) Define colour variables */
+:root {
+  --pst-color-emerald: #e0498d;
+  --pst-color-emerald-highlight: #bb5683;
+  --pst-color-emerald-text:      #ffffff;
+
+  --pst-color-teal:              #20b2aa;
+  --pst-color-teal-highlight:    #1e9b93;
+  --pst-color-teal-text:         #ffffff;
+
+  --pst-color-mauve:             #ae79d6;
+  --pst-color-mauve-highlight:   #9a63c1;
+  --pst-color-mauve-text:        #ffffff;
+
+  --pst-color-success:           #8fbc8f;
+  --pst-color-success-highlight: #7aa17a;
+  --pst-color-success-text:      #ffffff;
+  /* …etc… */
+}
+
+.sd-bg-emerald { background-color: var(--pst-color-emerald) !important; color: var(--pst-color-emerald-text) !important; }
+button.sd-bg-emerald:hover, a.sd-bg-emerald:hover { background-color: var(--pst-color-emerald-highlight) !important; }
+
+.sd-bg-mauve{ background-color: var(--pst-color-mauve) !important; color: var(--pst-color-mauve-text) !important; }
+button.sd-bg-mauve:hover, a.sd-bg-mauve:hover { background-color: var(--pst-color-mauve-highlight) !important; }
+
+.sd-bg-teal{ background-color: var(--pst-color-teal) !important; color: var(--pst-color-teal-text) !important; }
+button.sd-bg-teal:hover, a.sd-bg-teal:hover { background-color: var(--pst-color-teal-highlight) !important; }
+
+/*:root {*/
+/*  --pst-color-emerald:           #85cde3;*/
+/*  --pst-color-emerald-highlight: #46a3c4;*/
+/*  --pst-color-emerald-text:      #ffffff;*/
+/*}*/
+
+/*!* utility class for filled badges *!*/
+/*.sd-bg-emerald {*/
+/*  background-color: var(--pst-color-emerald) !important;*/
+/*  color:            var(--pst-color-emerald-text) !important;*/
+/*}*/
+/*button.sd-bg-emerald:focus,*/
+/*button.sd-bg-emerald:hover,*/
+/*a.sd-bg-emerald:focus,*/
+/*a.sd-bg-emerald:hover {*/
+/*  background-color: var(--pst-color-emerald-highlight) !important;*/
+/*}*/
+
+/* shrink all badges */
+.sd-badge {
+  font-size: 0.75rem !important;
+  padding:   0.15em 0.4em !important;
+}
+
+
+html[data-theme="light"] {
+  --pst-color-success:           #8fbc8f;
+  --pst-color-success-highlight: #7aa17a;
+  --pst-color-success-text:      #ffffff;
+
+  --pst-color-emerald: #e0498d;
+  --pst-color-emerald-highlight: #bb5683;
+  --pst-color-emerald-text:      #ffffff;
+
+  --pst-color-teal:              #20b2aa;
+  --pst-color-teal-highlight:    #1e9b93;
+  --pst-color-teal-text:         #ffffff;
+
+  --pst-color-mauve:             #ae79d6;
+  --pst-color-mauve-highlight:   #9a63c1;
+  --pst-color-mauve-text:        #ffffff;
+}
+
+/* Dark theme: */
+html[data-theme="dark"] {
+  --pst-color-success:           #8fbc8f;
+  --pst-color-success-highlight: #7aa17a;
+  --pst-color-success-text:      #ffffff;
+
+  --pst-color-emerald: #e0498d;
+  --pst-color-emerald-highlight: #bb5683;
+  --pst-color-emerald-text:      #ffffff;
+
+  --pst-color-teal:              #20b2aa;
+  --pst-color-teal-highlight:    #1e9b93;
+  --pst-color-teal-text:         #ffffff;
+
+  --pst-color-mauve:             #ae79d6;
+  --pst-color-mauve-highlight:   #9a63c1;
+  --pst-color-mauve-text:        #ffffff;
+}
+
+/*!* 2) Utility classes for filled badges *!*/
+/*.sd-bg-emerald {*/
+/*  background-color: var(--pst-color-emerald) !important;*/
+/*  color:            var(--pst-color-emerald-text) !important;*/
+/*}*/
+/*button.sd-bg-emerald:hover,*/
+/*a.sd-bg-emerald:hover {*/
+/*  background-color: var(--pst-color-emerald-highlight) !important;*/
+/*}*/
+
+/*.sd-bg-teal {*/
+/*  background-color: var(--pst-color-teal) !important;*/
+/*  color:            var(--pst-color-teal-text) !important;*/
+/*}*/
+/*button.sd-bg-teal:hover,*/
+/*a.sd-bg-teal:hover {*/
+/*  background-color: var(--pst-color-teal-highlight) !important;*/
+/*}*/
+
+/*.sd-bg-mauve {*/
+/*  background-color: var(--pst-color-mauve) !important;*/
+/*  color:            var(--pst-color-mauve-text) !important;*/
+/*}*/
+/*button.sd-bg-mauve:hover,*/
+/*a.sd-bg-mauve:hover {*/
+/*  background-color: var(--pst-color-mauve-highlight) !important;*/
+/*}*/
+
 main.banner-main #project-pythia {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -132,4 +278,29 @@ main.banner-main #project-pythia {
     display: flex;
     flex-flow: column;
     margin-right: 10px;
+}
+
+/* Shrink *all* badges (filled and outline) */
+.sd-badge,
+.sd-badge-line {
+  font-size: 0.75rem !important;
+  padding:   0.15em 0.4em !important;
+}
+
+.sd-tagged-card.outline-red .sd-card {
+  border: 2px solid red !important;
+  border-radius: 0.5rem; /* optional */
+}
+
+.sd-tagged-card.outline-emerald .sd-card {
+  border: 2px solid var(--pst-color-emerald) !important;
+}
+
+.sd-tagged-card.outline-mauve .sd-card {
+  border: 2px solid var(--pst-color-mauve) !important;
+}
+
+
+.sd-tagged-card.outline-teal .sd-card {
+  border: 2px solid var(--pst-color-teal) !important;
 }
