@@ -24,6 +24,7 @@ class TaggedCardDirective(SphinxDirective):
     optional_arguments = 1
     option_spec = {
         "tags": directives.class_option,
+        "outline": directives.class_option,
     }
 
     def run(self) -> List[nodes.Node]:
@@ -35,11 +36,20 @@ class TaggedCardDirective(SphinxDirective):
             # )
         except ValueError as exc:
             raise self.error(f"Invalid directive argument: {exc}")
+
+        classes = ["sd-sphinx-override", "sd-tagged-card", f"sd-card-cols-{cols}", 'd-flex']
+        classes += self.options.get("tags", [])
+        for color in self.options.get("outline", []):
+            classes.append(f"outline-{color}")
+
         container = create_component(
             "tagged-card",
-            ["sd-sphinx-override", "sd-tagged-card", f"sd-card-cols-{cols}", 'd-flex']
-            + self.options.get("tags", []),
+            classes
+            # ["sd-sphinx-override", "sd-tagged-card", f"sd-card-cols-{cols}", 'd-flex']
+            # + self.options.get("tags", [])
+            # + self.options.get("classes", []),
         )
+        # print(self.options.get("tags", []))
         self.set_source_info(container)
         self.state.nested_parse(self.content, self.content_offset, container)
         for item in container.children:
