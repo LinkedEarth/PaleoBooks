@@ -106,7 +106,7 @@ def generate_repo_dicts(all_items):
         if len(item['cookbook_loc']) == 0:
             cookbook_loc = f"{host}/{repo}".strip().lstrip('/')
         cookbook_url = landingpage_url if len(landingpage_url)>0 else  f"{cookbook_loc}/{landingpage}.html".strip()
-        # print('cookbook_loc', cookbook_loc, cookbook_url)
+        print('cookbook_loc', cookbook_loc, cookbook_url)
         master_tags = {}
         # Get information from _config (title, description, authors)
         # try:
