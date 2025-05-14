@@ -54,23 +54,6 @@ button.sd-bg-mauve:hover, a.sd-bg-mauve:hover { background-color: var(--pst-colo
 .sd-bg-teal{ background-color: var(--pst-color-teal) !important; color: var(--pst-color-teal-text) !important; }
 button.sd-bg-teal:hover, a.sd-bg-teal:hover { background-color: var(--pst-color-teal-highlight) !important; }
 
-/*:root {*/
-/*  --pst-color-emerald:           #85cde3;*/
-/*  --pst-color-emerald-highlight: #46a3c4;*/
-/*  --pst-color-emerald-text:      #ffffff;*/
-/*}*/
-
-/*!* utility class for filled badges *!*/
-/*.sd-bg-emerald {*/
-/*  background-color: var(--pst-color-emerald) !important;*/
-/*  color:            var(--pst-color-emerald-text) !important;*/
-/*}*/
-/*button.sd-bg-emerald:focus,*/
-/*button.sd-bg-emerald:hover,*/
-/*a.sd-bg-emerald:focus,*/
-/*a.sd-bg-emerald:hover {*/
-/*  background-color: var(--pst-color-emerald-highlight) !important;*/
-/*}*/
 
 /* shrink all badges */
 .sd-badge {
@@ -116,33 +99,6 @@ html[data-theme="dark"] {
   --pst-color-mauve-text:        #ffffff;
 }
 
-/*!* 2) Utility classes for filled badges *!*/
-/*.sd-bg-emerald {*/
-/*  background-color: var(--pst-color-emerald) !important;*/
-/*  color:            var(--pst-color-emerald-text) !important;*/
-/*}*/
-/*button.sd-bg-emerald:hover,*/
-/*a.sd-bg-emerald:hover {*/
-/*  background-color: var(--pst-color-emerald-highlight) !important;*/
-/*}*/
-
-/*.sd-bg-teal {*/
-/*  background-color: var(--pst-color-teal) !important;*/
-/*  color:            var(--pst-color-teal-text) !important;*/
-/*}*/
-/*button.sd-bg-teal:hover,*/
-/*a.sd-bg-teal:hover {*/
-/*  background-color: var(--pst-color-teal-highlight) !important;*/
-/*}*/
-
-/*.sd-bg-mauve {*/
-/*  background-color: var(--pst-color-mauve) !important;*/
-/*  color:            var(--pst-color-mauve-text) !important;*/
-/*}*/
-/*button.sd-bg-mauve:hover,*/
-/*a.sd-bg-mauve:hover {*/
-/*  background-color: var(--pst-color-mauve-highlight) !important;*/
-/*}*/
 
 main.banner-main #project-pythia {
     padding-top: 1rem;
