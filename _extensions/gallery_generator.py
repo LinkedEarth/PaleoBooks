@@ -82,9 +82,13 @@ def generate_repo_dicts(all_items):
         branch = item['branch'].strip()
         if len(item['branch']) == 0:
             branch = 'main'
+        # if len(item['config_url']) == 0:
+        #     config_url = '/'.join([item['repo_url'].strip(), branch])
+        # else:
         config_url = item['config_url'].strip()
-        if len(item['config_url']) > 0:
-            config_url = item['config_url'].replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
+
+        if len(config_url) > 0:
+            config_url = config_url.replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
 
         if len(config_url) == 0:
             if 'tree' in github_url:
@@ -117,18 +121,20 @@ def generate_repo_dicts(all_items):
         #
         # except:
             # print('took the except through the title description author split')
-        config = requests.get(config_url).content
-        config_dict = yaml.safe_load(config)
+        try:
+            config = requests.get(config_url).content
+            config_dict = yaml.safe_load(config)
+        except:
+            config_dict = {}
         # print('config_dict', config_dict)
-        cookbook_title = config_dict["title"]
-        description = config_dict["description"] if 'description' in config_dict else ''
-        authors = config_dict["author"] if 'author' in config_dict else ''
+        # cookbook_title = config_dict["title"]
+        # description = config_dict["description"] if 'description' in config_dict else ''
+        # authors = config_dict["author"] if 'author' in config_dict else ''
 
         # Get tags and thumbnail for repo
         try:
             gallery_info_url = config_loc  # os.getcwd() + '/source/{}'.format(repo)
             gallery_info_raw = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
-
             try:
                 encoding = 'utf-8'
                 gallery_info = gallery_info_raw.decode(encoding, errors='replace')
@@ -137,20 +143,61 @@ def generate_repo_dicts(all_items):
                 gallery_info = gallery_info_raw.decode(encoding, errors='replace')
 
             if '404' in gallery_info:
-                gallery_info = requests.get(gallery_info_url + '/meta_data/chapter_meta.yaml').content
-                gallery_info_dict = yaml.safe_load(gallery_info)
-            else:
+                gallery_info_raw = requests.get(gallery_info_url + '/meta_data/chapter_meta.yaml').content
+                try:
+                    encoding = 'utf-8'
+                    gallery_info = gallery_info_raw.decode(encoding, errors='replace')
+                except:
+                    encoding = 'latin-1'
+                    gallery_info = gallery_info_raw.decode(encoding, errors='replace')
+
+            if '404' in gallery_info:
+                gallery_info_raw = requests.get(gallery_info_url + '/chapter_meta.yml').content
+                try:
+                    encoding = 'utf-8'
+                    gallery_info = gallery_info_raw.decode(encoding, errors='replace')
+                except:
+                    encoding = 'latin-1'
+                    gallery_info = gallery_info_raw.decode(encoding, errors='replace')
+
+            if '404' not in gallery_info:
                 try:
                     gallery_info_dict = yaml.safe_load(gallery_info)
                 except yaml.YAMLError as exc:
                     print("Error parsing YAML:", exc)
 
+            # gallery_info_dict = yaml.safe_load(gallery_info)
+
             toc_url = gallery_info_url + '/_toc.yml'
             toc_info = requests.get(toc_url).content
             toc_info_dict__raw = yaml.safe_load(toc_info)
 
+            if 'title' in gallery_info_dict.keys():
+                cookbook_title = gallery_info_dict['title']
+            else:
+                cookbook_title = config_dict["title"]  if 'title' in config_dict.keys() else gallery_info_dict['shortname']
+
+            if 'author' in gallery_info_dict.keys():
+                authors = gallery_info_dict['author']
+            else:
+                authors = config_dict["author"] if 'author' in config_dict else ''
+
+            if 'description' in gallery_info_dict.keys():
+                description = gallery_info_dict['description']
+            else:
+                description = config_dict["description"] if 'description' in config_dict else ''
+
+            content_type = 'PaleoBook'
+            if 'type' in gallery_info_dict.keys():
+                content_type = gallery_info_dict['type']
+                if 'standalone' in content_type:
+                    content_type = 'standalone'
+
             if 'parts' not in toc_info_dict__raw.keys():
-                toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': toc_info_dict__raw['chapters']}]
+                if 'chapters' in toc_info_dict__raw.keys():
+                    toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': toc_info_dict__raw['chapters']}]
+                else:
+                    toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': [{'file': toc_info_dict__raw['root']}]}]
 
             toc_info_dict = {}
             for ip, content_type_category in enumerate(toc_info_dict__raw['parts']):
@@ -165,6 +212,7 @@ def generate_repo_dicts(all_items):
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
             if '.' not in thumbnail:
                 thumbnail +='.png'
+            # print('gallery_info_dict', gallery_info_dict)
 
             file_d = extract_files(toc_info_dict, result=None)
             # print(file_d)
@@ -213,6 +261,15 @@ def generate_repo_dicts(all_items):
                         chapter['content_type_tag'] = content_type_tag
                         chapter['tags']['formats'] += [content_type_tag]
                     chapter['tags']['book'] = [shortname]
+
+                    if 'language' in chapter.keys():
+                        language = chapter['language']
+                    else:
+                        language = 'python'
+                    if isinstance(language, str) == True:
+                        language = [language]
+                    chapter['tags']['language'] = language
+
                     # chapter['tags']['formats'] = ['notebook', content_type_tag]
                     # chapter['url'] = f'{cookbook_loc}/{url_tail}'
                     chapter['url'] = f'{cookbook_loc}/{url_tail}'# if file_name in file_d.keys() else f'{cookbook_loc}/{url_tail}'
@@ -246,7 +303,10 @@ def generate_repo_dicts(all_items):
         thumbnail_url = f'{gallery_info_url}/thumbnails/{thumbnail}'
         r = requests.get(thumbnail_url)
         if r.status_code in ['404', 404]:
-            '/'.join([host, '_static', 'logo.png'])
+            thumbnail_url = f'{gallery_info_url}/{thumbnail}'
+            r = requests.get(thumbnail_url)
+            if r.status_code in ['404', 404]:
+                thumbnail_url = '/'.join([host, '_static', 'logo.png'])
 
         for tag_cat in master_tags.keys():
             master_tags[tag_cat] = list(set(master_tags[tag_cat]))
@@ -269,7 +329,9 @@ def generate_repo_dicts(all_items):
             'shortname': shortname
         }
 
-        repo_dicts.append(repo_dict)
+        if content_type != 'standalone':
+            repo_dicts.append(repo_dict)
+        # repo_dicts.append(repo_dict)
         chapter_dicts += chapters
 
     return {'repos': repo_dicts, 'chapters': chapter_dicts}
@@ -303,6 +365,7 @@ def _generate_tag_set(repo_dicts, tag_key=None):
 def _generate_tag_menu(repo_dicts, tag_key):
     tag_set = _generate_tag_set(repo_dicts, tag_key)
     tag_list = sorted(tag_set)
+    # print(tag_list)
 
     options = "".join(
         f'<li><label class="dropdown-item checkbox {tag_key}"><input type="checkbox" rel={tag.replace(" ", "-").lower()} onchange="change();">&nbsp;{tag}</label></li>'
@@ -320,6 +383,7 @@ def _generate_tag_menu(repo_dicts, tag_key):
 
 def generate_menu(repo_dicts, submit_btn_txt=None, submit_btn_link=None):
     key_list = _generate_sorted_tag_keys(repo_dicts)
+    # print('key_list', key_list)
 
     menu_html = '<div class="d-sm-flex mt-3 mb-4">\n'
     menu_html += '<div class="d-flex gallery-menu">\n'
@@ -362,24 +426,56 @@ def build_from_repos(
         thumbnail_url = (repo_dict["thumbnail_url"]
         )
 
+        # if 'language' in repo_dict.keys():
+        #     language = repo_dict['language']
+        # else:
+        #     language = 'python'
+        #
+        # if isinstance(language, str) == True:
+        #     language = [language]
+
         tag_dict = repo_dict["tags"]
+
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        tag_types = ['primary', 'secondary', 'success']
+        tag_types = ['emerald', 'success', 'primary', 'info', 'teal', 'warning', 'danger']
 
+        hold_outs = []
         tag_type = 'danger'
         tags_book = [', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict['book']])]
         tags_book = ', '.join(tags_book).lstrip(',').strip()
+        # hold_outs.append(tags_book)
+        hold_outs +=[f":`{_language}`" for _language in tag_dict['book']]  #[tag_dict['book']]
         tag_dict.pop('book')
+
+        tag_language_dict = {'R':'mauve', 'python':'teal', 'missing':'gray'}
+        if len(tag_dict['language']) == 1:
+            language_color = tag_language_dict[tag_dict['language'][0]] if tag_dict['language'][0] in tag_language_dict.keys() else 'warning'
+        else:
+            language_color = 'light'
+
+        # tag_type = tag_language_dict[language] if language in tag_language_dict.keys() else 'warning'
+        tags_language = [', '.join([f':bdg-{language_color}:`{_language}`' for _language in tag_dict['language']])]
+        tags_language = ', '.join(tags_language).lstrip(',').strip()
+        # hold_outs.append(tags_language)
+        hold_outs +=[f":`{_language}`" for _language in tag_dict['language']] #tag_dict['language'] +
+
+        # print('tags_language', tags_language)
+        # print('tags_book', tags_book)
+        tag_dict.pop('language')
 
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
+            # print('tag_key', tag_key)
             tag_type = tag_types[ip]
-            _tags = ' '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
+            _tags = ' '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key] if f':`{tag}`' not in hold_outs])
+            # print(tag_key, tag_dict[tag_key], _tags)
+
             tags.append(_tags)
         tags = ', '.join(tags)
         # tags = ", ".join(tags)+'\n'
         tag_class_str = " ".join(tag_list_f).lower()
+        # print('tag_class_str', tag_class_str)
 
         description = repo_dict["description"]
         ellipsis_str = '<a class="modal-btn"> ... more</a>'
@@ -412,8 +508,9 @@ def build_from_repos(
                 
                     .. tagged-card:: 
                         :tags: {tag_class_str}
+                        :outline: {language_color}
                     
-                        .. card:: {cookbook_title} {tags_book}
+                        .. card:: {cookbook_title} {tags_book} {tags_language}
                             :link: {cookbook_url}
                             :img-top: {thumbnail_url}
                             :img-alt: {thumbnail}
@@ -434,19 +531,30 @@ def build_from_repos(
         # authors_str = f"<strong>Author:</strong> {authors}"
 
         thumbnail = repo_dict["thumbnail"]
-        thumbnail_url = (repo_dict["thumbnail_url"]
-        )
+        thumbnail_url = (repo_dict["thumbnail_url"])
 
         tag_dict = repo_dict["tags"]
+
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
+
+        tag_language_dict = {'R':'mauve', 'python':'teal', 'missing':'gray'}
+        if len(tag_dict['language']) == 1:
+            language_color = tag_language_dict[tag_dict['language'][0]] if tag_dict['language'][0] in tag_language_dict.keys() else 'warning'
+        else:
+            language_color = 'light'
+
+        # tag_type = tag_language_dict[language] if language in tag_language_dict.keys() else 'warning'
+        tags_language = [', '.join([f':bdg-{tag_language_dict[_language] if _language in tag_language_dict.keys() else "warning"}:`{_language}`' for _language in tag_dict['language']])]
+        tags_language = ', '.join(tags_language).lstrip(',').strip()
+        tag_dict.pop('language')
 
         tag_type = 'danger'
         tags_book = [', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict['book']])]
         tags_book = ', '.join(tags_book).lstrip(',').strip()
         tag_dict.pop('book')
 
-        tag_types = ['primary', 'secondary', 'success']
+        # tag_types = ['primary', 'secondary', 'success']
         tags = []
         tag_dict['formats'].remove('notebook')
         for ip, tag_key in enumerate(tag_dict.keys()):
@@ -454,7 +562,6 @@ def build_from_repos(
             _tags = ' '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict[tag_key]])
             tags.append(_tags)
         tags = ', '.join(tags)
-        # tags = ", ".join(tags)+'\n'
         tag_class_str = " ".join(tag_list_f).lower()
 
         description = repo_dict["description"] if 'description' in repo_dict else ''
@@ -484,13 +591,14 @@ def build_from_repos(
                 
                     .. tagged-card:: 
                         :tags: {tag_class_str}
-                    
-                        .. card:: {cookbook_title}
+                        :outline: {language_color}
+                        
+                        .. card:: {cookbook_title} {tags_book} {tags_language}
                             :link: {cookbook_url}
                             :img-top: {thumbnail_url}
                             :img-alt: {thumbnail}
                             
-                            {tags_book}
+                            
                             
                             {tags}
                             
