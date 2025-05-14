@@ -40,7 +40,6 @@ extensions = ['sphinx.ext.autodoc',
               "sphinx_togglebutton",
               'sphinx_click',
               'tagged_card',
-              'sphinx_named_colors',
               'custom_colors'
                 # "sphinx_design_elements"
               # 'sphinx_external_toc'
