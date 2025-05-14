@@ -35,6 +35,8 @@ for (i = 0; i < buttons.length; i++) {
 function change() {
 
   var affiliationCbs = document.querySelectorAll(".affiliation input[type='checkbox']");
+  var bookCbs = document.querySelectorAll(".book input[type='checkbox']");
+  var langCbs = document.querySelectorAll(".language input[type='checkbox']");
   var domainsCbs = document.querySelectorAll(".domains input[type='checkbox']");
   var formatsCbs = document.querySelectorAll(".formats input[type='checkbox']");
   var packagesCbs = document.querySelectorAll(".packages input[type='checkbox']");
@@ -43,7 +45,10 @@ function change() {
     affiliation: getClassOfCheckedCheckboxes(affiliationCbs),
     domains: getClassOfCheckedCheckboxes(domainsCbs),
     formats: getClassOfCheckedCheckboxes(formatsCbs),
-    packages: getClassOfCheckedCheckboxes(packagesCbs)
+    packages: getClassOfCheckedCheckboxes(packagesCbs),
+    book: getClassOfCheckedCheckboxes(bookCbs),
+    language: getClassOfCheckedCheckboxes(langCbs)
+
   };
 
 
@@ -82,6 +87,40 @@ function filterResults(filters) {
 
       for (var j = 0; j < filters.affiliation.length; j++) {
         var filter = filters.affiliation[j];
+
+        if (el.classList.contains(filter)) {
+          isHidden = false;
+          break;
+        }
+      }
+
+      if (isHidden) {
+        hiddenElems.push(el);
+      }
+    }
+
+    if (filters.book.length > 0) {
+      var isHidden = true;
+
+      for (var j = 0; j < filters.book.length; j++) {
+        var filter = filters.book[j];
+
+        if (el.classList.contains(filter)) {
+          isHidden = false;
+          break;
+        }
+      }
+
+      if (isHidden) {
+        hiddenElems.push(el);
+      }
+    }
+
+    if (filters.language.length > 0) {
+      var isHidden = true;
+
+      for (var j = 0; j < filters.language.length; j++) {
+        var filter = filters.language[j];
 
         if (el.classList.contains(filter)) {
           isHidden = false;
@@ -146,6 +185,8 @@ function filterResults(filters) {
     }
   }
 
+
+
   for (var i = 0; i < rElems.length; i++) {
     rElems[i].classList.replace("d-none", "d-flex");
   }
@@ -161,10 +202,12 @@ function filterResults(filters) {
 
 
 function clearCbs() {
+  var bookCbs = document.querySelectorAll(".book input[type='checkbox']");
   var affiliationCbs = document.querySelectorAll(".affiliation input[type='checkbox']");
   var domainsCbs = document.querySelectorAll(".domains input[type='checkbox']");
   var formatsCbs = document.querySelectorAll(".formats input[type='checkbox']");
   var packagesCbs = document.querySelectorAll(".packages input[type='checkbox']");
+  var langCbs = document.querySelectorAll(".language input[type='checkbox']");
 
   for (var i = 0; i < affiliationCbs.length; i++) {
     affiliationCbs[i].checked=false;
@@ -180,6 +223,14 @@ function clearCbs() {
 
   for (var i = 0; i < packagesCbs.length; i++) {
     packagesCbs[i].checked=false;
+  }
+
+  for (var i = 0; i < bookCbs.length; i++) {
+    bookCbs[i].checked=false;
+  }
+
+  for (var i = 0; i < langCbs.length; i++) {
+    langCbs[i].checked=false;
   }
 
   change();
