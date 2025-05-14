@@ -40,6 +40,7 @@ function change() {
   var domainsCbs = document.querySelectorAll(".domains input[type='checkbox']");
   var formatsCbs = document.querySelectorAll(".formats input[type='checkbox']");
   var packagesCbs = document.querySelectorAll(".packages input[type='checkbox']");
+  var publishedCbs = document.querySelectorAll(".published input[type='checkbox']");
 
   var filters = {
     affiliation: getClassOfCheckedCheckboxes(affiliationCbs),
@@ -47,7 +48,8 @@ function change() {
     formats: getClassOfCheckedCheckboxes(formatsCbs),
     packages: getClassOfCheckedCheckboxes(packagesCbs),
     book: getClassOfCheckedCheckboxes(bookCbs),
-    language: getClassOfCheckedCheckboxes(langCbs)
+    language: getClassOfCheckedCheckboxes(langCbs),
+    published: getClassOfCheckedCheckboxes(publishedCbs)
 
   };
 
@@ -104,6 +106,40 @@ function filterResults(filters) {
 
       for (var j = 0; j < filters.book.length; j++) {
         var filter = filters.book[j];
+
+        if (el.classList.contains(filter)) {
+          isHidden = false;
+          break;
+        }
+      }
+
+      if (isHidden) {
+        hiddenElems.push(el);
+      }
+    }
+
+    if (filters.published.length > 0) {
+      var isHidden = true;
+
+      for (var j = 0; j < filters.published.length; j++) {
+        var filter = filters.published[j];
+
+        if (el.classList.contains(filter)) {
+          isHidden = false;
+          break;
+        }
+      }
+
+      if (isHidden) {
+        hiddenElems.push(el);
+      }
+    }
+
+    if (filters.runnable.length > 0) {
+      var isHidden = true;
+
+      for (var j = 0; j < filters.runnable.length; j++) {
+        var filter = filters.runnable[j];
 
         if (el.classList.contains(filter)) {
           isHidden = false;
