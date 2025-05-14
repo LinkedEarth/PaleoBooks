@@ -23,6 +23,8 @@ sys.path.insert(0, os.path.abspath('../source'))
 sys.path.insert(0, os.path.abspath("../_extensions"))
 sys.path.insert(0, os.path.abspath("_static"))
 
+
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -38,6 +40,8 @@ extensions = ['sphinx.ext.autodoc',
               "sphinx_togglebutton",
               'sphinx_click',
               'tagged_card',
+              'sphinx_named_colors',
+              'custom_colors'
                 # "sphinx_design_elements"
               # 'sphinx_external_toc'
               ]
@@ -54,6 +58,15 @@ source_suffix = {
     '.txt': 'restructuredtext',
     # '.md': 'markdown'
 }
+
+#custom colors
+# 2) Declare which extra colours you want:
+custom_badge_colors = [
+    "emerald",
+    "teal",
+    "mauve",
+    # …any names you like
+]
 
 # The master toctree document.
 master_doc = '_toc'
@@ -112,6 +125,7 @@ html_js_files = [
     'https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js',
     'custom.js'
 ]
+# print('html_static_path', os.listdir(html_static_path[0]))
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
