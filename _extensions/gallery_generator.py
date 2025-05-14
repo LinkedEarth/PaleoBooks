@@ -83,9 +83,7 @@ def generate_repo_dicts(all_items):
         branch = item['branch'].strip()
         if len(item['branch']) == 0:
             branch = 'main'
-        # if len(item['config_url']) == 0:
-        #     config_url = '/'.join([item['repo_url'].strip(), branch])
-        # else:
+
         config_url = item['config_url'].strip()
 
         if len(config_url) > 0:
