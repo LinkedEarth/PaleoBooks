@@ -78,6 +78,7 @@ def generate_repo_dicts(all_items):
         repo = item['repo_name'].strip()  # item.strip()
         print('repo: ', repo,'user', user, 'host', host)
         landingpage = item['landingpage'].strip()
+        landingpage_url = item['landingpage_url'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
         branch = item['branch'].strip()
         if len(item['branch']) == 0:
@@ -104,7 +105,7 @@ def generate_repo_dicts(all_items):
         cookbook_loc = item['cookbook_loc'].strip().lstrip('/')
         if len(item['cookbook_loc']) == 0:
             cookbook_loc = f"{host}/{repo}".strip().lstrip('/')
-        cookbook_url = f"{cookbook_loc}/{landingpage}.html".strip()
+        cookbook_url = landingpage_url if len(landingpage_url)>0 else  f"{cookbook_loc}/{landingpage}.html".strip()
         # print('cookbook_loc', cookbook_loc, cookbook_url)
         master_tags = {}
         # Get information from _config (title, description, authors)
@@ -409,6 +410,8 @@ def build_from_repos(
         menu_html="",
         max_descr_len=300,
 ):
+    tag_types = ['emerald', 'success', 'primary', 'info', 'teal', 'warning', 'danger']
+
     # Build the gallery file
     panels_repos = []
     # print('repo_dicts', len(repo_dicts))
@@ -417,7 +420,6 @@ def build_from_repos(
         github_url = repo_dict["github_url"]
         cookbook_url = repo_dict["cookbook_url"]
         cookbook_title = repo_dict["cookbook_title"]
-        # print('cookbook_title', cookbook_title)
 
         authors = repo_dict["authors"]
         authors_str = f"<strong>Author:</strong> {authors}"
@@ -426,25 +428,14 @@ def build_from_repos(
         thumbnail_url = (repo_dict["thumbnail_url"]
         )
 
-        # if 'language' in repo_dict.keys():
-        #     language = repo_dict['language']
-        # else:
-        #     language = 'python'
-        #
-        # if isinstance(language, str) == True:
-        #     language = [language]
-
         tag_dict = repo_dict["tags"]
-
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
-        tag_types = ['emerald', 'success', 'primary', 'info', 'teal', 'warning', 'danger']
 
         hold_outs = []
         tag_type = 'danger'
         tags_book = [', '.join([f':bdg-{tag_type}:`{tag}`' for tag in tag_dict['book']])]
         tags_book = ', '.join(tags_book).lstrip(',').strip()
-        # hold_outs.append(tags_book)
         hold_outs +=[f":`{_language}`" for _language in tag_dict['book']]  #[tag_dict['book']]
         tag_dict.pop('book')
 
@@ -454,14 +445,11 @@ def build_from_repos(
         else:
             language_color = 'light'
 
-        # tag_type = tag_language_dict[language] if language in tag_language_dict.keys() else 'warning'
         tags_language = [', '.join([f':bdg-{language_color}:`{_language}`' for _language in tag_dict['language']])]
         tags_language = ', '.join(tags_language).lstrip(',').strip()
-        # hold_outs.append(tags_language)
         hold_outs +=[f":`{_language}`" for _language in tag_dict['language']] #tag_dict['language'] +
 
-        # print('tags_language', tags_language)
-        # print('tags_book', tags_book)
+
         tag_dict.pop('language')
 
         tags = []
@@ -496,12 +484,7 @@ def build_from_repos(
                     """
         else:
             modal_str = ""
-        # \t\t\t..raw:: html
-        #
-        # \t\t\t\t < img
-        # src = "{thumbnail_url}"
-        #
-        # class ="gallery-thumbnail" / >
+
         panel = f"""\
 
                 .. grid-item::
@@ -534,7 +517,6 @@ def build_from_repos(
         thumbnail_url = (repo_dict["thumbnail_url"])
 
         tag_dict = repo_dict["tags"]
-
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
 
