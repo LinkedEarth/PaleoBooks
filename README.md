@@ -10,13 +10,6 @@ If you have suggestions for more examples, please submit an [issue](https://gith
 
 If you want to give us a shoutout, we're [social](https://twitter.com/Linked_Earth)!
 
-
-## Pyleoclim
-
-[Pyleoclim](https://pyleoclim-util.readthedocs.io/en/master/) is a Python package geared towards timeseries analysis of time-uncertain data.
-
-The package can (but do not necessarily have to) directly work with data in the Linked Paleo Data ([LiPD](https://lipd.net)) format. The advantage of working with that format is that the code contains automated data transformation, making working with paleoclimate data easier and faster.
-
 ## License
 
 All notebooks herein are provided under an [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license.
