@@ -98,7 +98,7 @@ def generate_repo_dicts(all_items):
                 config_url = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}"
         #
             config_url = config_url.rstrip('/') + '/_config.yml'
-        config_loc = config_url.split('_config')[0].rstrip('/')
+        config_loc = config_url.split('_config')[0].rstrip('/') 
 
         cookbook_loc = item['cookbook_loc'].strip().lstrip('/')
         if len(item['cookbook_loc']) == 0:
