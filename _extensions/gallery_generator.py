@@ -72,6 +72,7 @@ def _run_cffconvert(command):
 def generate_repo_dicts(all_items):
     repo_dicts = []
     chapter_dicts = []
+    logging = False
     for item in all_items:
         host = item['host'].strip()
         user = item['user'].strip()
@@ -98,7 +99,7 @@ def generate_repo_dicts(all_items):
                 config_url = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}"
         #
             config_url = config_url.rstrip('/') + '/_config.yml'
-        config_loc = config_url.split('_config')[0].rstrip('/') 
+        config_loc = config_url.split('_config')[0].rstrip('/')
 
         cookbook_loc = item['cookbook_loc'].strip().lstrip('/')
         if len(item['cookbook_loc']) == 0:
@@ -168,9 +169,24 @@ def generate_repo_dicts(all_items):
             # gallery_info_dict = yaml.safe_load(gallery_info)
 
             toc_url = gallery_info_url + '/_toc.yml'
+            if logging is True:
+                print('toc_url', toc_url)
             toc_info = requests.get(toc_url).content
+            if logging is True:
+                print('toc_info', toc_info)
             toc_info_dict__raw = yaml.safe_load(toc_info)
+            tried1=False
+            if 404 in toc_info_dict__raw.keys():
+                toc_url = 'https://raw.githubusercontent.com/croppers/cropper_ecs/refs/heads/main/_toc.yml?token=GHSAT0AAAAAADHBBOPZCYAZKLF3NPP6FPPA2DN5NBA'
+                toc_info = requests.get(toc_url).content
+                print('tried 1')
+                tried1=True
+            toc_info_dict__raw = yaml.safe_load(toc_info)
+            if logging is True:
+                print('toc_info_dict__raw', toc_info_dict__raw)
 
+            if logging is True:
+                print('gallery_info_dict', gallery_info_dict)
             if 'title' in gallery_info_dict.keys():
                 cookbook_title = gallery_info_dict['title']
             else:
@@ -206,7 +222,8 @@ def generate_repo_dicts(all_items):
                     name = chapter['file'].split('/')[-1].split('.')[0]
                     chapt_tail = chapter['file'].split('.')[0]
                     toc_info_dict[content_type_category['caption']][name] = chapt_tail
-            # print('toc_info_dict')
+            if tried1 is True:
+                print('toc_info_dict')
             shortname = gallery_info_dict['shortname']
             thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
             if '.' not in thumbnail:
@@ -214,7 +231,8 @@ def generate_repo_dicts(all_items):
             # print('gallery_info_dict', gallery_info_dict)
 
             file_d = extract_files(toc_info_dict, result=None)
-            # print(file_d)
+            if logging is True:
+                print('file_d', file_d)
 
             chapters = []
             if 'parts' in gallery_info_dict.keys():
@@ -234,6 +252,8 @@ def generate_repo_dicts(all_items):
             #     content_type_label = 'content_type'
 
             content_types = gallery_info_dict[content_type_label]
+            if logging is True:
+                print('content_types', content_types)
             for content_type_category in content_types:
                 content_type_tag = None
                 if 'caption' in content_type_category.keys():
@@ -246,6 +266,8 @@ def generate_repo_dicts(all_items):
                 #     content_type_tag = 'Science Workflows'
                 # print(content_type_category)
                 for chapter in content_type_category['chapters']:
+                    if logging is True:
+                        print('chapter', type(chapter))
                     file_name = chapter['filename']
                     if file_name in file_d.keys():
                         url_tail = file_d[file_name]#part_d[file_name]
@@ -294,6 +316,8 @@ def generate_repo_dicts(all_items):
             # book_meta_dict = yaml.safe_load(book_meta_loc)
             # chapter_meta_dict = yaml.safe_load(chapter_meta_loc)
             # print(gallery_info_dict["tags"])
+            if logging is True:
+                print('reached end of try')
 
         except:
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
@@ -307,12 +331,15 @@ def generate_repo_dicts(all_items):
             if r.status_code in ['404', 404]:
                 thumbnail_url = '/'.join([host, '_static', 'logo.png'])
 
+        if logging is True:
+            print('reached master tags', len(master_tags))
         for tag_cat in master_tags.keys():
             master_tags[tag_cat] = list(set(master_tags[tag_cat]))
 
         repo_tags = {
             k: v for k, v in master_tags.items() if (v is not None and v[0] is not None)
         }
+
         repo_tags['formats'].remove('notebook')
         # print('repo_tags', repo_tags['formats'].remove('notebook'))
         repo_dict = {
@@ -332,7 +359,11 @@ def generate_repo_dicts(all_items):
             repo_dicts.append(repo_dict)
         # repo_dicts.append(repo_dict)
         chapter_dicts += chapters
+        # print('chapter', chapters)
 
+    if logging is True:
+        print('\n\n\n\nchapter dicts', len(chapter_dicts))
+    # print(chapter_dicts.keys())
     return {'repos': repo_dicts, 'chapters': chapter_dicts}
 
 
