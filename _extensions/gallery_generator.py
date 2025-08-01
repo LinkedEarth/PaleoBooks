@@ -73,6 +73,7 @@ def generate_repo_dicts(all_items):
     repo_dicts = []
     chapter_dicts = []
     logging = False
+    
     for item in all_items:
         host = item['host'].strip()
         user = item['user'].strip()
