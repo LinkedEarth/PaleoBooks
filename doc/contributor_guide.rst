@@ -8,6 +8,7 @@ To make a great contribution you need to:
 
 #. :ref:`write-your-book`
 #. :ref:`build-your-book`
+#. :ref:`run-remote` [Optional]
 #. :ref:`Prepare your book to be added to the library<prepare-for-joining-the-library>`
 #. :ref:`Submit a request to have your book added<submit-a-library-request>`
 
@@ -19,10 +20,10 @@ To make a great contribution you need to:
 Write your book
 -----------------
 
-Each library contribution needs well organized content and a landing page (a readme or intro).
+Each library contribution needs well organized content and a landing page (a readme or intro). A template repository is available `here <https://github.com/jordanplanders/paleobook_template>`_.
 
 Content:
-*****************
+*********
 
 Structure your content into one or more sections, each addressing specific themes or topics.
 Each section contains one or more notebooks (chapters) that delve into the details of the respective theme.
@@ -41,7 +42,7 @@ How you organize your book is up to you. We have found Lifehacks and Science Bit
     Every notebook must have a level 1 header (one #). This header will be used in your JupyterBook table of contents. If your book has multiple level 1 headers, the first one will be used in your JupyterBook table of contents. You will have the opportunity to assign different names for the purpose of the gallery.
 
 Landing Page:
-*****************
+**************
 
 There isn't a required structure for your landing page, but we have found that the following elements are appropriate (bolded items are common section titles):
 
@@ -83,6 +84,25 @@ A couple of notes:
 .. _an example: https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml
 .. _look here: https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml
 .. _these instructions about personal access tokens: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic
+
+.. _run-remote:
+
+Running your Notebooks in the cloud [Optional]
+----------------------------------------------
+
+Imagine a world where every time you opened a scientific notebook, it just worked. No dependency conflicts, no version mismatches, no endless troubleshooting. You could explore, run, and reproduce the analysis exactly as the original author intended—whether it was written yesterday or five years ago. That’s the power of containers. They capture the full computational environment—Python version, libraries, even system dependencies—ensuring that your workflow is portable, consistent, and reproducible across time and platforms. By wrapping science in containers, we free ourselves from the "it works on my machine" trap and pave the way for truly sharable, reliable computational research.
+
+Now imagine a plaftfrom that would tkae this container and allow anyone to run it in the cloud. That's the beauty of `MyBinder <https://mybinder.org>`_. They can take a container and render the notebooks into a JupyterLab environment. 
+
+The beauty of it is that it does not require much work on your part.
+
+* **Step 1**: Create a container and put in a container registry such as `DockerHub <https://hub.docker.com>`_ or `quay.io <https://quay.io>`_. We recommend to use quay.io as it offers more free options for open science. You can follow `this tutorial <https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html>`_ on how to create custom images. Note that this step is technically optional as `myBinder` can create containers from the environment or requirements file in your repository directly. Hpwever, as time goes by, this file may become obsolete and not use the correct versions of the packages. 
+* **Step 2**: Create a `binder` folder in your repository and place a DockerFile and `config.json` file to indicate to myBinder where to get the container from. You can find an example of these files in `this repository <https://github.com/khider/coral-visualization>`_.
+* **Step 3**: Link your repository to `myBinder <https://mybinder.org>`_ following the instructions on their website. 
+
+If you need some help with these steps, have a look at the following `webpage <https://linked.earth/LeapFROGS/module6>`_ and `YouTube tutorials <https://www.youtube.com/watch?v=E3VQC6GyKzM>`_.
+
+* **Step 4**: in your `_config.yml` enable the section about interactive computing following `these instructions <https://jupyterbook.org/en/stable/interactive/launchbuttons.html>`_.
 
 .. _prepare-for-joining-the-library:
 
