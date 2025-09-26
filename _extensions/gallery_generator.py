@@ -133,6 +133,7 @@ def generate_repo_dicts(all_items):
         # authors = config_dict["author"] if 'author' in config_dict else ''
 
         # Get tags and thumbnail for repo
+        status = ''
         try:
             gallery_info_url = config_loc  # os.getcwd() + '/source/{}'.format(repo)
             gallery_info_raw = requests.get(gallery_info_url + '/meta_data/chapter_meta.yml').content
@@ -142,7 +143,7 @@ def generate_repo_dicts(all_items):
             except:
                 encoding = 'latin-1'
                 gallery_info = gallery_info_raw.decode(encoding, errors='replace')
-
+            status1 = f'first try {encoding}, length {len(gallery_info)} '
             if '404' in gallery_info:
                 gallery_info_raw = requests.get(gallery_info_url + '/meta_data/chapter_meta.yaml').content
                 try:
@@ -151,7 +152,7 @@ def generate_repo_dicts(all_items):
                 except:
                     encoding = 'latin-1'
                     gallery_info = gallery_info_raw.decode(encoding, errors='replace')
-
+                status1 = f'second try {encoding}, length {len(gallery_info)} '
             if '404' in gallery_info:
                 gallery_info_raw = requests.get(gallery_info_url + '/chapter_meta.yml').content
                 try:
@@ -160,15 +161,24 @@ def generate_repo_dicts(all_items):
                 except:
                     encoding = 'latin-1'
                     gallery_info = gallery_info_raw.decode(encoding, errors='replace')
-
+                status1 = f'third try {encoding}, length {len(gallery_info)} '
             if '404' not in gallery_info:
                 try:
                     gallery_info_dict = yaml.safe_load(gallery_info)
+                    status1 = f'parsed {encoding}, length {len(gallery_info)} '
                 except yaml.YAMLError as exc:
                     print("Error parsing YAML:", exc)
+                    status1 = f'failed parse {encoding}, length {len(gallery_info)} '
 
+
+            status += status1+'; '
+            # try:
+            #     parsed_dict = ast.literal_eval(dict_str)
+
+            # print('gallery_info_url', gallery_info_dict)
             # gallery_info_dict = yaml.safe_load(gallery_info)
 
+            status2 = ''
             toc_url = gallery_info_url + '/_toc.yml'
             if logging is True:
                 print('toc_url', toc_url)
@@ -177,44 +187,66 @@ def generate_repo_dicts(all_items):
                 print('toc_info', toc_info)
             toc_info_dict__raw = yaml.safe_load(toc_info)
             tried1=False
+            status2 = 'toc info dict raw loaded; '
             if 404 in toc_info_dict__raw.keys():
-                toc_url = 'https://raw.githubusercontent.com/croppers/cropper_ecs/refs/heads/main/_toc.yml?token=GHSAT0AAAAAADHBBOPZCYAZKLF3NPP6FPPA2DN5NBA'
-                toc_info = requests.get(toc_url).content
-                print('tried 1')
+                # toc_url = 'https://raw.githubusercontent.com/croppers/cropper_ecs/refs/heads/main/_toc.yml?token=GHSAT0AAAAAADHBBOPZCYAZKLF3NPP6FPPA2DN5NBA'
+                # toc_info = requests.get(toc_url).content
+                print('tried 1', toc_url)
                 tried1=True
-            toc_info_dict__raw = yaml.safe_load(toc_info)
+                status2 = 'toc info dict tried 1; '
+            if len(toc_info_dict__raw.keys())==1 and 404 in toc_info_dict__raw.keys():
+                print('tried 2', toc_url)
+            # toc_info_dict__raw = yaml.safe_load(toc_info)
+            status += status2 +'; '
             if logging is True:
                 print('toc_info_dict__raw', toc_info_dict__raw)
 
             if logging is True:
                 print('gallery_info_dict', gallery_info_dict)
+            status3 = ''
             if 'title' in gallery_info_dict.keys():
                 cookbook_title = gallery_info_dict['title']
+                status3 = 'title from gallery_info_dict; '
             else:
                 cookbook_title = config_dict["title"]  if 'title' in config_dict.keys() else gallery_info_dict['shortname']
+                status3 = 'title from config_dict; '
 
+            status += status3 +'; '
+            status4 = ''
             if 'author' in gallery_info_dict.keys():
                 authors = gallery_info_dict['author']
+                status4 = 'authors from gallery_info_dict; '
             else:
                 authors = config_dict["author"] if 'author' in config_dict else ''
+                status4 = 'authors from config_dict; '
 
             if 'description' in gallery_info_dict.keys():
                 description = gallery_info_dict['description']
             else:
                 description = config_dict["description"] if 'description' in config_dict else ''
+            status += status4 +'; '
 
+            status6 = ''
             content_type = 'PaleoBook'
             if 'type' in gallery_info_dict.keys():
                 content_type = gallery_info_dict['type']
                 if 'standalone' in content_type:
                     content_type = 'standalone'
+            status6 = f'content_type {content_type}; '
+            status += status6 +'; '
 
+            status5 = ''
             if 'parts' not in toc_info_dict__raw.keys():
                 if 'chapters' in toc_info_dict__raw.keys():
                     toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': toc_info_dict__raw['chapters']}]
+                    status5 = 'parts from chapters; '
                 else:
                     toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': [{'file': toc_info_dict__raw['root']}]}]
+                    status5 = 'parts from root; '
+            else:
+                status5 = 'parts exist; '
 
+            status += status5 +'; '
             toc_info_dict = {}
             for ip, content_type_category in enumerate(toc_info_dict__raw['parts']):
 
@@ -225,10 +257,13 @@ def generate_repo_dicts(all_items):
                     toc_info_dict[content_type_category['caption']][name] = chapt_tail
             if tried1 is True:
                 print('toc_info_dict')
+
             shortname = gallery_info_dict['shortname']
-            thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict else 'thumbnail.png'
+
+            thumbnail = gallery_info_dict["thumbnail"] if 'thumbnail' in gallery_info_dict.keys() else 'thumbnail.png'
             if '.' not in thumbnail:
                 thumbnail +='.png'
+            print(shortname, 'thumbnail', thumbnail, 'in', gallery_info_url)
             # print('gallery_info_dict', gallery_info_dict)
 
             file_d = extract_files(toc_info_dict, result=None)
@@ -253,6 +288,7 @@ def generate_repo_dicts(all_items):
             #     content_type_label = 'content_type'
 
             content_types = gallery_info_dict[content_type_label]
+
             if logging is True:
                 print('content_types', content_types)
             for content_type_category in content_types:
@@ -323,6 +359,9 @@ def generate_repo_dicts(all_items):
         except:
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
+
+        if logging is True:
+            print('repo status', status)
 
         thumbnail_url = f'{gallery_info_url}/thumbnails/{thumbnail}'
         r = requests.get(thumbnail_url)
