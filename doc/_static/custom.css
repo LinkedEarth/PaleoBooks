@@ -236,6 +236,16 @@ main.banner-main #project-pythia {
     margin-right: 10px;
 }
 
+/* Make the card grid fill from right to left */
+.paleobooks-card-row {
+  direction: rtl;
+}
+
+/* Keep content inside each column normal left-to-right */
+.paleobooks-card-row > .sd-col {
+  direction: ltr;
+}
+
 /* Shrink *all* badges (filled and outline) */
 .sd-badge,
 .sd-badge-line {
@@ -259,4 +269,15 @@ main.banner-main #project-pythia {
 
 .sd-tagged-card.outline-teal .sd-card {
   border: 2px solid var(--pst-color-teal) !important;
+}
+
+
+.bd-article-container .dropdown-menu {
+  max-height: 16rem;
+  overflow-y: auto !important;
+}
+
+.sd-card .sd-badge {
+  white-space: normal !important;
+  overflow-wrap: anywhere;   /* or: break-word; */
 }
