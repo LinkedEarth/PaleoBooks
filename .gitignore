@@ -7,3 +7,4 @@ results/*.txt
 processed_data/*.dat
 .*.sw?
 html/
+.idea/
