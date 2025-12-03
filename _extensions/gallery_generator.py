@@ -359,7 +359,6 @@ def generate_repo_dicts(all_items):
         except:
             thumbnail = config_dict["thumbnail"] if 'thumbnail' in config_dict else 'thumbnail.png'
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
-
         if logging is True:
             print('repo status', status)
 
@@ -435,20 +434,48 @@ def _generate_tag_set(repo_dicts, tag_key=None):
 def _generate_tag_menu(repo_dicts, tag_key):
     tag_set = _generate_tag_set(repo_dicts, tag_key)
     tag_list = sorted(tag_set)
-    # print(tag_list)
 
     options = "".join(
-        f'<li><label class="dropdown-item checkbox {tag_key}"><input type="checkbox" rel={tag.replace(" ", "-").lower()} onchange="change();">&nbsp;{tag}</label></li>'
+        f'<li><label class="dropdown-item checkbox {tag_key}">'
+        f'<input type="checkbox" rel={tag.replace(" ", "-").lower()} onchange="change();">&nbsp;{tag}'
+        f'</label></li>'
         for tag in tag_list
     )
 
     return f"""
 <div class="dropdown">
-<button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle" type="button" id="{tag_key}Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-{tag_key.title()}</button>
-<ul class="dropdown-menu" aria-labelledby="{tag_key}Dropdown">{options}</ul>
+  <button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle"
+          type="button"
+          id="{tag_key}Dropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+    {tag_key.title()}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-scroll" aria-labelledby="{tag_key}Dropdown">
+    {options}
+  </ul>
 </div>\n
 """
+
+
+# def _generate_tag_menu(repo_dicts, tag_key):
+#     tag_set = _generate_tag_set(repo_dicts, tag_key)
+#     tag_list = sorted(tag_set)
+#     # print(tag_list)
+#
+#     options = "".join(
+#         f'<li><label class="dropdown-item checkbox {tag_key}"><input type="checkbox" rel={tag.replace(" ", "-").lower()} onchange="change();">&nbsp;{tag}</label></li>'
+#         for tag in tag_list
+#     )
+#     # print('\toptions', options)
+#     return f"""
+# <div class="dropdown">
+# <button class="btn btn-sm btn-outline-primary mx-1 dropdown-toggle" type="button" id="{tag_key}Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+# {tag_key.title()}</button>
+# <ul class="dropdown-menu" aria-labelledby="{tag_key}Dropdown">{options}</ul>
+# </div>\n
+# """
 
 
 def generate_menu(repo_dicts, submit_btn_txt=None, submit_btn_link=None):
@@ -467,6 +494,8 @@ def generate_menu(repo_dicts, submit_btn_txt=None, submit_btn_link=None):
     menu_html += "</div>\n"
     menu_html += "</div>\n"
     menu_html += '<script>$(document).on("click",function(){$(".collapse").collapse("hide");}); </script>\n'
+    # print('generated menu html')
+    # print('\t', menu_html)
     return menu_html
 
 
@@ -572,7 +601,7 @@ def build_from_repos(
             
         """
         panels_repos.append(panel)
-
+        # print('panel',panel)
     panels_chapters = []
     for repo_dict in repo_dicts['chapters']:
         repo = repo_dict["filename"]
@@ -683,7 +712,7 @@ def build_from_repos(
 PaleoBooks
 +++++++++++++++
 
-.. grid:: 1 2 2 2
+.. grid:: 1 2 3 3
 
 {panels_repos}
 
@@ -691,7 +720,7 @@ PaleoBooks
 Chapters
 +++++++++++++++
 
-.. grid:: 1 2 2 2
+.. grid:: 1 2 3 3
 
 {panels_chapters}
 
