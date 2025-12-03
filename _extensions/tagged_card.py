@@ -22,6 +22,7 @@ class TaggedCardDirective(SphinxDirective):
     has_content = True
     required_arguments = 0  # columns
     optional_arguments = 1
+    # print('options',  directives.class_option)
     option_spec = {
         "tags": directives.class_option,
         "outline": directives.class_option,
@@ -37,8 +38,9 @@ class TaggedCardDirective(SphinxDirective):
         except ValueError as exc:
             raise self.error(f"Invalid directive argument: {exc}")
 
-        classes = ["sd-sphinx-override", "sd-tagged-card", f"sd-card-cols-{cols}", 'd-flex']
+        classes = ["sd-sphinx-override", "sd-tagged-card",  'd-flex']#f"sd-card-cols-{cols}",
         classes += self.options.get("tags", [])
+        # print('classes', classes)
         for color in self.options.get("outline", []):
             classes.append(f"outline-{color}")
 
