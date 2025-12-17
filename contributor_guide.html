@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+
+
+<html lang="english" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contributor Guide &#8212; PaleoBook Library</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=51c0f5f7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=17d79c28"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contributor_guide';</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="_static/custom.js?v=19ba035d"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dependencies" href="dependencies.html" />
+    <link rel="prev" title="Gallery" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="english"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="_toc.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="PaleoBook Library - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="PaleoBook Library - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Gallery</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Credit and inspiration</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/LinkedEarth/PaleoBooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/contributor_guide.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contributor Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-book">Write your book</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content">Content:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landing-page">Landing Page:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-your-book">Build your book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-your-notebooks-in-the-cloud-optional">Running your Notebooks in the cloud [Optional]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-for-joining-the-library">Prepare for joining the library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-a-library-request">Submit a library request</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="contributor-guide">
+<span id="id1"></span><h1>Contributor Guide<a class="headerlink" href="#contributor-guide" title="Link to this heading">#</a></h1>
+<p>To make a great contribution you need to:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#write-your-book"><span class="std std-ref">Write your book</span></a></p></li>
+<li><p><a class="reference internal" href="#build-your-book"><span class="std std-ref">Build your book</span></a></p></li>
+<li><p><a class="reference internal" href="#run-remote"><span class="std std-ref">Running your Notebooks in the cloud [Optional]</span></a> [Optional]</p></li>
+<li><p><a class="reference internal" href="#prepare-for-joining-the-library"><span class="std std-ref">Prepare your book to be added to the library</span></a></p></li>
+<li><p><a class="reference internal" href="#submit-a-library-request"><span class="std std-ref">Submit a request to have your book added</span></a></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Consider sections 1 and 2 (<a class="reference internal" href="#write-your-book"><span class="std std-ref">Write your book</span></a> and <a class="reference internal" href="#build-your-book"><span class="std std-ref">Build your book</span></a>) and as a style guide. In order to be added to the library, you must have a fully published, hosted book that includes a landing page file (markdown or similar) AND metadata that follows the structure described in section 3 (<a class="reference internal" href="#prepare-for-joining-the-library"><span class="std std-ref">Prepare your book to be added to the library</span></a>)!</p>
+</div>
+<section id="write-your-book">
+<span id="id2"></span><h2>Write your book<a class="headerlink" href="#write-your-book" title="Link to this heading">#</a></h2>
+<p>Each library contribution needs well organized content and a landing page (a readme or intro). A template repository is available <a class="reference external" href="https://github.com/jordanplanders/paleobook_template">here</a>.</p>
+<section id="content">
+<h3>Content:<a class="headerlink" href="#content" title="Link to this heading">#</a></h3>
+<p>Structure your content into one or more sections, each addressing specific themes or topics.
+Each section contains one or more notebooks (chapters) that delve into the details of the respective theme.
+How you organize your book is up to you. We have found Lifehacks and Science Bits to be useful themes, as many of our chapters have fallen under one of those two categories, but that is by no means the only way. For example, the sections of a publication might be another sensible approach. This organizational structure will not be visible in the gallery unless you specify it in the <cite>chapter_meta.yml</cite> file (see below for more details).</p>
+<dl class="simple">
+<dt><em>Lifehacks</em></dt><dd><p>Careful breakdowns of technically tricky, unintuitive or cumbersome tasks, e.g., data visualization tips or explanations about how to interact with a data product.</p>
+</dd>
+<dt><em>Science Bits</em></dt><dd><p>Step by step discussion of analysis or exploratory workflow. These notebooks should focus more on scientific insights derived from analyses than on technical implementation.</p>
+</dd>
+<dt><em>Paper Sections</em></dt><dd><p>Notebooks describing the research behind a published work. These might be organized by the sections of the publication, or by the included figures.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every notebook must have a level 1 header (one #). This header will be used in your JupyterBook table of contents. If your book has multiple level 1 headers, the first one will be used in your JupyterBook table of contents. You will have the opportunity to assign different names for the purpose of the gallery.</p>
+</div>
+</section>
+<section id="landing-page">
+<h3>Landing Page:<a class="headerlink" href="#landing-page" title="Link to this heading">#</a></h3>
+<p>There isn't a required structure for your landing page, but we have found that the following elements are appropriate (bolded items are common section titles):</p>
+<ul class="simple">
+<li><p><strong>Title</strong>: Clearly state the title of your Jupyter book.</p></li>
+<li><p><strong>Quick Summary</strong> (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.</p></li>
+<li><p><strong>Motivation</strong>: Offer an overview of the motivation behind building the book. This section should briefly touch on the science or technical skills explored in your chapters. It might also include information about any datasets involved or projects your book is associated with.</p></li>
+<li><p><strong>Author</strong>: Provide information about the primary author or authors of the book.</p></li>
+<li><p><strong>Contributors</strong>: Check out <a class="reference external" href="https://contrib.rocks/preview?repo=angular%2Fangular-ja">contrib.rocks</a> for an html snippet with avatars for each contributor to your JupyterBook repo.</p></li>
+<li><p><strong>Structure</strong>: Give a quick explanation of the content in each section of the book (more on this below).</p></li>
+<li><p><strong>References</strong>: Include notes about any publications associated with the book.</p></li>
+</ul>
+</section>
+</section>
+<section id="build-your-book">
+<span id="id3"></span><h2>Build your book<a class="headerlink" href="#build-your-book" title="Link to this heading">#</a></h2>
+<p>There are various ways to go about this. The most straight forward is to follow the <a class="reference external" href="https://jupyterbook.org/en/stable/start/your-first-book.html">Create your first book tutorial</a> on the JupyterBook website.</p>
+<p>A couple of notes:</p>
+<ul>
+<li><p>The tutorial project structure is very simple. For an example of a slightly more complex table of contents (<cite>_toc.yml</cite>), <a class="reference external" href="https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml">look here</a>.</p></li>
+<li><dl>
+<dt>Make sure to modify the <cite>_config.yml</cite>. Here is <a class="reference external" href="https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml">an example</a> to help.</dt><dd><ul class="simple">
+<li><p>make sure that <cite>path_to_book</cite> points to the directory in your repo where your book lives (in the example, this is <em>proxycomposite</em>)</p></li>
+<li><p><cite>gh-import</cite> will prompt you for your github username and password, and you will need to follow <a class="reference external" href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic">these instructions about personal access tokens</a> to get a more secure password (github will not accept standard passwords for this purpose)</p></li>
+<li><p>if you don't want the books to execute on build, include:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execute</span><span class="p">:</span>
+    <span class="n">execute_notebooks</span><span class="p">:</span> <span class="s1">&#39;off&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p>Include a copy of your book's thumbnail in the same directory as the <cite>_config.yml</cite> file and call it <cite>logo.png</cite>. This is specified in the <cite>_config.yml</cite> and naming/locating it in a predictable place will save a headache.</p></li>
+</ul>
+</section>
+<section id="running-your-notebooks-in-the-cloud-optional">
+<span id="run-remote"></span><h2>Running your Notebooks in the cloud [Optional]<a class="headerlink" href="#running-your-notebooks-in-the-cloud-optional" title="Link to this heading">#</a></h2>
+<p>Imagine a world where every time you opened a scientific notebook, it just worked. No dependency conflicts, no version mismatches, no endless troubleshooting. You could explore, run, and reproduce the analysis exactly as the original author intended—whether it was written yesterday or five years ago. That’s the power of containers. They capture the full computational environment—Python version, libraries, even system dependencies—ensuring that your workflow is portable, consistent, and reproducible across time and platforms. By wrapping science in containers, we free ourselves from the &quot;it works on my machine&quot; trap and pave the way for truly sharable, reliable computational research.</p>
+<p>Now imagine a plaftfrom that would tkae this container and allow anyone to run it in the cloud. That's the beauty of <a class="reference external" href="https://mybinder.org">MyBinder</a>. They can take a container and render the notebooks into a JupyterLab environment.</p>
+<p>The beauty of it is that it does not require much work on your part.</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Create a container and put in a container registry such as <a class="reference external" href="https://hub.docker.com">DockerHub</a> or <a class="reference external" href="https://quay.io">quay.io</a>. We recommend to use quay.io as it offers more free options for open science. You can follow <a class="reference external" href="https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html">this tutorial</a> on how to create custom images. Note that this step is technically optional as <cite>myBinder</cite> can create containers from the environment or requirements file in your repository directly. Hpwever, as time goes by, this file may become obsolete and not use the correct versions of the packages.</p></li>
+<li><p><strong>Step 2</strong>: Create a <cite>binder</cite> folder in your repository and place a DockerFile and <cite>config.json</cite> file to indicate to myBinder where to get the container from. You can find an example of these files in <a class="reference external" href="https://github.com/khider/coral-visualization">this repository</a>.</p></li>
+<li><p><strong>Step 3</strong>: Link your repository to <a class="reference external" href="https://mybinder.org">myBinder</a> following the instructions on their website.</p></li>
+</ul>
+<p>If you need some help with these steps, have a look at the following <a class="reference external" href="https://linked.earth/LeapFROGS/module6">webpage</a> and <a class="reference external" href="https://www.youtube.com/watch?v=E3VQC6GyKzM">YouTube tutorials</a>.</p>
+<ul class="simple">
+<li><p><strong>Step 4</strong>: in your <cite>_config.yml</cite> enable the section about interactive computing following <a class="reference external" href="https://jupyterbook.org/en/stable/interactive/launchbuttons.html">these instructions</a>.</p></li>
+</ul>
+</section>
+<section id="prepare-for-joining-the-library">
+<span id="id5"></span><h2>Prepare for joining the library<a class="headerlink" href="#prepare-for-joining-the-library" title="Link to this heading">#</a></h2>
+<p>In order for your book to be added to the library, you will need to provide some additional information we will use to populate various fields.</p>
+<ol class="arabic simple">
+<li><p>In the same directory as the _config.yml file, make a folder called <cite>meta_data</cite> and a folder called <cite>thumbnails</cite></p></li>
+<li><p>In <cite>meta_data</cite>, make a file called <cite>chapter_meta.yml</cite> and copy and paste the contents of <a class="reference external" href="https://github.com/LinkedEarth/citrace_paleobook/blob/main/meta_data/chapter_meta.yml">the C-iTrace PaleoBook chapter_meta.yml</a> to use as template. (The formatting of these files cam be particular, so it highly encouraged to start from one that is functional.)</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>YAML files are very sensitive to indentation, so be careful when copying and pasting.</p>
+</div>
+<p>In the gallery, the content of your book will appear in two ways: as a single card for the whole book, and as individual cards for each chapter. Each card contains a title, a thumbnail image and a selection of tags. In addition, each card is clickable and will take a reader to the relevant page. The information for these cards is drawn from the YAML files.</p>
+<dl class="simple">
+<dt>Book cards will contain the following information:</dt><dd><ul class="simple">
+<li><p><strong>book title</strong>: specified in <cite>_config.yml</cite></p></li>
+<li><p><strong>book url</strong>: specified in information provided in the gallery submission form</p></li>
+<li><p><strong>book thumbnail</strong>: specified in the <cite>thumbnails</cite> folder</p></li>
+<li><p><strong>book tags</strong>: specified in <cite>chapter_meta.yml</cite>, encompassing all tags assigned to constituent chapters</p></li>
+<li><p><strong>book shortname tag</strong>: specified in <cite>chapter_meta.yml</cite> as top level <cite>shortname</cite> and is used to associate the book with its chapters cards</p></li>
+</ul>
+</dd>
+<dt>Chapter cards will contain the following information:</dt><dd><ul class="simple">
+<li><p><strong>chapter title</strong>: specified in <cite>chapter_meta.yml</cite> as <cite>shortname</cite></p></li>
+<li><p><strong>chapter url</strong>: constructed from the book url and pointers associating <cite>filename</cite> specified in <cite>chapter_meta.yml</cite> to the relevant filename in the <cite>_toc.yml</cite></p></li>
+<li><p><strong>chapter thumbnail</strong>: specified in the <cite>thumbnails</cite> folder</p></li>
+<li><p><strong>chapter tags</strong>: specified in <cite>chapter_meta.yml</cite></p></li>
+<li><p><strong>book shortname tag</strong>: as mentioned above, this is used to associate the chapter with the book</p></li>
+</ul>
+</dd>
+</dl>
+<p>Because chapter urls are constructed using information from the <cite>_toc.yml</cite>, it is important that the <cite>filename</cite> in <cite>chapter_meta.yml</cite> matches the filename associated with each <cite>file</cite> in the <cite>_toc.yml</cite>, and that the filename is unique within your book. For example, you may note have notebooks/lifehacks/mynotebook and notebooks/science_bits/mynotebook.</p>
+<p>Additionally, a book is not required to have multiple <cite>parts</cite> in the <cite>chapter_meta.yml</cite> file. A &quot;part&quot; should be thought of as a content type (e.g. science bit, figure, method overview, tutorial). If your book is a single part, you can simply follow the top level book information (<cite>shortname</cite>, <cite>type</cite>, <cite>thumbnail</cite>) with <cite>chapters:</cite> and list the chapters as shown below. However, if the <cite>chapter_meta.yml</cite> includes parts, the part <cite>caption</cite> will be assigned to its chapters as a <cite>format</cite> tag. (Note: you may also specify format tags directly.)</p>
+<p><strong>Reminder</strong>: YAML files are very sensitive to indentation, so be careful when copying and pasting.</p>
+<p>Here is the top segment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shortname</span><span class="p">:</span> <span class="n">C</span><span class="o">-</span><span class="n">iTRACE</span>
+<span class="nb">type</span><span class="p">:</span> <span class="n">Paleobook</span>
+<span class="n">thumbnail</span><span class="p">:</span> <span class="n">thumbnail</span><span class="o">.</span><span class="n">png</span>
+<span class="n">parts</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">caption</span><span class="p">:</span> <span class="n">Lifehacks</span>
+    <span class="n">chapters</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">shortname</span><span class="p">:</span> <span class="n">pyODV</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="n">pyODV</span>
+        <span class="n">thumbnail</span><span class="p">:</span> <span class="n">pyodv_demo</span><span class="o">.</span><span class="n">png</span>
+        <span class="n">tags</span><span class="p">:</span>
+          <span class="n">domains</span><span class="p">:</span>
+            <span class="o">-</span> <span class="n">oceanography</span>
+            <span class="o">-</span> <span class="n">tracers</span>
+            <span class="o">-</span> <span class="n">data</span> <span class="n">viz</span>
+          <span class="n">packages</span><span class="p">:</span>
+            <span class="o">-</span> <span class="n">xarray</span>
+            <span class="o">-</span> <span class="n">matplotlib</span>
+            <span class="o">-</span> <span class="n">cartopy</span>
+            <span class="o">-</span> <span class="n">pandas</span>
+            <span class="o">-</span> <span class="n">seaborn</span>
+      <span class="o">-</span> <span class="n">shortname</span><span class="p">:</span> <span class="n">data_on_a_model_grid</span>
+</pre></div>
+</div>
+<p>This table provides an explanation of each element:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>yml excerpt</p></th>
+<th class="head"><p>explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>shortname</cite></p></td>
+<td><p>this top level short name is a short word or phrase that will be used to tag your book in the gallery. The title that appears on the book card in the gallery will be sourced from the _config.yml file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>type</cite></p></td>
+<td><p>if your book is not a PaleoBook, note the collection it belongs to</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>thumbnail</cite></p></td>
+<td><p>the name of the thumbnail image for <em>the whole book</em> (can be .png or .jpg, assumed to be .png if not indicated)</p></td>
+</tr>
+<tr class="row-odd"><td><p>parts</p></td>
+<td><p>below this will be the content types your book is organized by (e.g., Lifehacks, Science Bits)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>caption</cite></p></td>
+<td><p>the name of the <cite>part</cite> (e.g., Lifehacks)</p></td>
+</tr>
+<tr class="row-odd"><td><p>chapters</p></td>
+<td><p>below this will be the notebooks (chapters) included in this section</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>shortname</cite></p></td>
+<td><p>the name of the chapter as you want it to appear on the chapter card</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>filename</cite></p></td>
+<td><p>the name of the notebook (without <cite>.ipynb</cite>)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>thumbnail</cite></p></td>
+<td><p>the name of the thumbnail image for <em>this specific chapter</em> (can be .png or .jpg, assumed to be .png if not indicated)</p></td>
+</tr>
+<tr class="row-odd"><td><p>tags</p></td>
+<td><p>below this are the tags (among three categories: domains, packages, format) assigned to the chapter card in the library (note: tags should be short but may include spaces)</p></td>
+</tr>
+<tr class="row-even"><td><p>domains</p></td>
+<td><p>below this are tags related to domain knowledge (e.g. isotopes, linear regression)</p></td>
+</tr>
+<tr class="row-odd"><td><p>packages</p></td>
+<td><p>below this are tags for packages leveraged in the chapter (e.g. pyleoclim)</p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>below this are tags for the format of the chapter (e.g. science bit, peer-reviewed, lifehack, figure, etc.)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now onto the next chapter! (The next <cite>shortname</cite> will refer to the next chapter.)</p>
+<ol class="arabic simple" start="3">
+<li><p>In the <cite>thumbnails</cite> folder, add one thumbnail for the book, and one thumbnail for each chapter (labeled according to the name indicated in <cite>chapter_meta.yml</cite>). All thumbnails should be of type .png or .jpg</p></li>
+</ol>
+<p>Push these additional contributions to your github repo.</p>
+</section>
+<section id="submit-a-library-request">
+<span id="id6"></span><h2>Submit a library request<a class="headerlink" href="#submit-a-library-request" title="Link to this heading">#</a></h2>
+<p>Once you have a fully built and published JupyterBook with extra metadata, <a class="reference external" href="https://github.com/LinkedEarth/PaleoBooks/issues/new?assignees=&amp;labels=gallery+submission&amp;projects=&amp;template=gallery-submission.md&amp;title=">submit a request to be added on github</a>!</p>
+<ol class="arabic simple">
+<li><p>Name of the repository: <em>e.g., DISK-proxyComposite</em></p></li>
+<li><p>Repo url: <em>e.g., https://github.com/khider/DISK-proxyComposite</em></p></li>
+<li><p>Branch: <em>e.g., main</em></p></li>
+<li><p>Url of .config.yml: <em>e.g., https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml</em></p></li>
+<li><p>Host for the JupyterBook: <em>e.g., https://khider.github.io NOT https://khider.github.io/DISK-proxyComposite/intro.html</em></p></li>
+<li><p>User: <em>e.g., khider</em></p></li>
+<li><p>Landing suffix (name of the page you want users to land on): <em>e.g., intro.html</em></p></li>
+<li><p>Landing page url: <em>e.g., https://khider.github.io/DISK-proxyComposite/intro.html</em></p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gallery</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dependencies.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dependencies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-book">Write your book</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content">Content:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landing-page">Landing Page:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-your-book">Build your book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-your-notebooks-in-the-cloud-optional">Running your Notebooks in the cloud [Optional]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-for-joining-the-library">Prepare for joining the library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-a-library-request">Submit a library request</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Linked Earth
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Linked Earth.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
