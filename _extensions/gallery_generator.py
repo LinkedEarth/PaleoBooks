@@ -1,5 +1,6 @@
 import itertools, json, yaml, pathlib, subprocess, requests
 import os
+from doctest import master
 from textwrap import dedent, indent
 from truncatehtml import truncate
 import requests
@@ -78,7 +79,8 @@ def generate_repo_dicts(all_items):
         host = item['host'].strip()
         user = item['user'].strip()
         repo = item['repo_name'].strip()  # item.strip()
-        print('repo: ', repo,'user', user, 'host', host)
+        published =  item['published'].strip().lower() in ['true', '1', 'yes', 'True']
+        print('repo: ', repo,'user', user, 'host', host, 'published', published)
         landingpage = item['landingpage'].strip()
         landingpage_url = item['landingpage_url'].strip()
         github_url = item['repo_url'].strip()  # f"https://github.com/ProjectPythia/{repo}"
@@ -303,6 +305,7 @@ def generate_repo_dicts(all_items):
                 #     content_type_tag = 'Science Workflows'
                 # print(content_type_category)
                 for chapter in content_type_category['chapters']:
+                    # print(chapter)
                     if logging is True:
                         print('chapter', type(chapter))
                     file_name = chapter['filename']
@@ -311,10 +314,10 @@ def generate_repo_dicts(all_items):
                     else:
                         url_tail = file_name
                     chapter_thumbnail = chapter['thumbnail'] if 'thumbnail' in chapter else ''
-                    # print('chapter_thumbnail', chapter_thumbnail)
                     chapter_thumbnail = chapter_thumbnail if '.' in chapter_thumbnail else chapter_thumbnail + '.png' if len(
                         chapter_thumbnail) > 0 else chapter_thumbnail
                     chapter['tags']['formats'] = ['notebook']
+                    print(chapter)
                     if content_type_tag is not None:
                         chapter['content_type_tag'] = content_type_tag
                         chapter['tags']['formats'] += [content_type_tag]
@@ -327,24 +330,27 @@ def generate_repo_dicts(all_items):
                     if isinstance(language, str) == True:
                         language = [language]
                     chapter['tags']['language'] = language
-
+                    chapter['tags']['published'] = ['published'] if published is True else []
+                    print(chapter)
                     # chapter['tags']['formats'] = ['notebook', content_type_tag]
                     # chapter['url'] = f'{cookbook_loc}/{url_tail}'
                     chapter['url'] = f'{cookbook_loc}/{url_tail}'# if file_name in file_d.keys() else f'{cookbook_loc}/{url_tail}'
 
                     chapter['thumbnail_url'] = f'{gallery_info_url}/thumbnails/{chapter_thumbnail}'
-
+                    print(chapter)
                     for tag_cat in chapter['tags'].keys():
                         if tag_cat not in master_tags:
                             master_tags[tag_cat] = []
                         master_tags[tag_cat] += chapter['tags'][tag_cat]
-
+                    print(master_tags)
                     chapter['tags'] = {
-                        k: v for k, v in chapter["tags"].items() if (v is not None and v[0] is not None)
+                        k: v for k, v in chapter["tags"].items() if (v is not None and len(v)>0 and v[0] is not None)
                     }
-                    # print(chapter)
+
+                    print('tags',chapter['tags'])
 
                     chapters.append(chapter)
+                print(chapters)
 
             # meta_data_dir = '{}'.format(github_url.split('github.com/')[1])#https://raw.githubusercontent.com/{}/main/_gallery_info.yml'.format(github_url.split('github.com/')[1])
             # book_meta_loc = '/'.join([meta_data_dir, 'book_meta.yml'])
@@ -361,7 +367,7 @@ def generate_repo_dicts(all_items):
             master_tags = config_dict["tags"] if 'tags' in config_dict else {}
         if logging is True:
             print('repo status', status)
-
+        print('master tags', master_tags)
         thumbnail_url = f'{gallery_info_url}/thumbnails/{thumbnail}'
         r = requests.get(thumbnail_url)
         if r.status_code in ['404', 404]:
@@ -376,9 +382,9 @@ def generate_repo_dicts(all_items):
             master_tags[tag_cat] = list(set(master_tags[tag_cat]))
 
         repo_tags = {
-            k: v for k, v in master_tags.items() if (v is not None and v[0] is not None)
+            k: v for k, v in master_tags.items() if (v is not None and len(v)>0 and v[0] is not None)
         }
-
+        print('repo_tags', repo_tags)
         repo_tags['formats'].remove('notebook')
         # print('repo_tags', repo_tags['formats'].remove('notebook'))
         repo_dict = {
@@ -391,7 +397,8 @@ def generate_repo_dicts(all_items):
             "thumbnail_url": thumbnail_url,
             "description": description,
             "tags": repo_tags,
-            'shortname': shortname
+            'shortname': shortname,
+            'published': 'published' if published is True else False,
         }
 
         if content_type != 'standalone':
@@ -527,6 +534,7 @@ def build_from_repos(
         )
 
         tag_dict = repo_dict["tags"]
+        tag_dict['published'] = ['published'] if repo_dict['published'] is True else []
         tag_list = sorted((itertools.chain(*tag_dict.values())))
         tag_list_f = [tag.replace(" ", "-") for tag in tag_list]
 
@@ -546,9 +554,14 @@ def build_from_repos(
         tags_language = [', '.join([f':bdg-{language_color}:`{_language}`' for _language in tag_dict['language']])]
         tags_language = ', '.join(tags_language).lstrip(',').strip()
         hold_outs +=[f":`{_language}`" for _language in tag_dict['language']] #tag_dict['language'] +
-
-
         tag_dict.pop('language')
+
+        tag_type = 'warning'
+        tags_published = [', '.join([f':bdg-{tag_type}:`published`' for tag in tag_dict['published']])]
+        tags_published = ', '.join(tags_published).lstrip(',').strip()
+        hold_outs +=[f":`{_language}`" for _language in tag_dict['published']]  #[tag_dict['book']]
+        tag_dict.pop('published')
+
 
         tags = []
         for ip, tag_key in enumerate(tag_dict.keys()):
@@ -591,7 +604,7 @@ def build_from_repos(
                         :tags: {tag_class_str}
                         :outline: {language_color}
                     
-                        .. card:: {cookbook_title} {tags_book} {tags_language}
+                        .. card:: {cookbook_title} {tags_book} {tags_published} {tags_language}
                             :link: {cookbook_url}
                             :img-top: {thumbnail_url}
                             :img-alt: {thumbnail}
