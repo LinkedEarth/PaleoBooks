@@ -3,6 +3,7 @@ name: Submission Issue to CSV
 on:
   issues:
     types: [opened, edited, labeled]
+  workflow_dispatch: { }
 
 permissions:
   contents: write
