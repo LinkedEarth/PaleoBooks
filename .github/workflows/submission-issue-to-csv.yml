@@ -70,5 +70,7 @@ jobs:
             Updates `doc/cookbook_gallery.csv` from submission issue #${{ github.event.issue.number }}.
 
             Source: ${{ github.event.issue.html_url }}
+
+            Note: The automation normalizes `host` from `landingpage_url` and sets `user` to the GitHub repo owner.
           branch: "codex/submission-issue-${{ github.event.issue.number }}"
           delete-branch: true

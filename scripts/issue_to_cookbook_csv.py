@@ -56,8 +56,9 @@ def parse_issue_fields(body: str) -> dict:
     - Gallery submission template labels (human-friendly text)
 
     Human-error corrections applied later in main():
-    - If landingpage_url doesn't contain host, rewrite host to the landing page base.
-    - If user doesn't match the GitHub repo owner from repo_url, overwrite user with repo owner.
+    - Always rewrite host to the landing page base (scheme + domain).
+    - Always rewrite user to the GitHub repo owner from repo_url (when github.com).
+    - If landingpage ends with .html, strip the suffix.
     """
     template_key_map = {
         "name of the repository": "repo_name",
@@ -146,15 +147,17 @@ def main() -> None:
     fields = parse_issue_fields(body)
 
     landingpage_url = fields.get("landingpage_url", "").strip()
-    host = fields.get("host", "").strip()
-    if landingpage_url and host and host not in landingpage_url:
+    if landingpage_url:
         fields["host"] = derive_host_from_landingpage(landingpage_url)
 
     repo_url = fields.get("repo_url", "").strip()
-    user = fields.get("user", "").strip()
     repo_owner = derive_github_owner(repo_url) if repo_url else None
-    if repo_owner and user and user != repo_owner:
+    if repo_owner:
         fields["user"] = repo_owner
+
+    landingpage = fields.get("landingpage", "").strip()
+    if landingpage.endswith(".html"):
+        fields["landingpage"] = landingpage[: -len(".html")]
 
     missing = validate_fields(fields)
     if missing:
