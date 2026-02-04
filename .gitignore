@@ -8,3 +8,5 @@ processed_data/*.dat
 .*.sw?
 html/
 .idea/
+_static/
+.doctrees/
