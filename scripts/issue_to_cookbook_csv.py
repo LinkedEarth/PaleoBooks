@@ -28,7 +28,7 @@ REQUIRED_FIELDS = [
     "config_url",
     "branch",
 ]
-KEY_VALUE_RE = re.compile(r"^(\w+):\s*(.*)$")
+KEY_VALUE_RE = re.compile(r"^\s*(?:\d+\.\s*)?([^:]+):\s*(.*)$")
 TRUE_VALUES = {"true", "yes", "1"}
 FALSE_VALUES = {"false", "no", "0"}
 
@@ -49,15 +49,31 @@ def load_event(path: str) -> dict:
 
 
 def parse_issue_fields(body: str) -> dict:
+    template_key_map = {
+        "name of the repository": "repo_name",
+        "repo url": "repo_url",
+        "branch": "branch",
+        "url of .config.yml": "config_url",
+        "host for the jupyterbook": "host",
+        "user": "user",
+        "landing suffix (name of the page you want users to land on)": "landingpage",
+        "landing page url": "landingpage_url",
+    }
+
     data = {}
     for line in body.splitlines():
         match = KEY_VALUE_RE.match(line)
         if not match:
             continue
         key, value = match.groups()
-        if key not in COLUMNS:
+        normalized_key = key.strip()
+        if normalized_key in COLUMNS:
+            target_key = normalized_key
+        else:
+            target_key = template_key_map.get(normalized_key.lower())
+        if not target_key:
             continue
-        data[key] = value.strip()
+        data[target_key] = value.strip()
 
     if "published" in data:
         raw = data["published"].strip().lower()
