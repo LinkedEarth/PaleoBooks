@@ -26,7 +26,6 @@ REQUIRED_FIELDS = [
     "landingpage",
     "landingpage_url",
     "config_url",
-    "cookbook_loc",
     "branch",
 ]
 KEY_VALUE_RE = re.compile(r"^(\w+):\s*(.*)$")
