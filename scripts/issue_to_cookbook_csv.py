@@ -92,8 +92,8 @@ def main() -> None:
     issue_url = issue.get("html_url") or ""
     labels = [label.get("name") for label in issue.get("labels", []) if label.get("name")]
 
-    if "submission" not in labels:
-        print("Issue does not have 'submission' label. Skipping.")
+    if "gallery submission" not in labels:
+        print("Issue does not have 'gallery submission' label. Skipping.")
         return
 
     body = issue.get("body") or ""
