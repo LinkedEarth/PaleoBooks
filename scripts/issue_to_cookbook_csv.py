@@ -3,6 +3,7 @@ import csv
 import json
 import os
 import re
+from urllib.parse import urlparse
 from pathlib import Path
 
 CSV_PATH = Path("doc/cookbook_gallery.csv")
@@ -49,6 +50,15 @@ def load_event(path: str) -> dict:
 
 
 def parse_issue_fields(body: str) -> dict:
+    """
+    Parse submission issues in two formats:
+    - Exact CSV column keys (repo_name, repo_url, etc.)
+    - Gallery submission template labels (human-friendly text)
+
+    Human-error corrections applied later in main():
+    - If landingpage_url doesn't contain host, rewrite host to the landing page base.
+    - If user doesn't match the GitHub repo owner from repo_url, overwrite user with repo owner.
+    """
     template_key_map = {
         "name of the repository": "repo_name",
         "repo url": "repo_url",
@@ -91,6 +101,27 @@ def parse_issue_fields(body: str) -> dict:
     return data
 
 
+def derive_host_from_landingpage(landingpage_url: str) -> str:
+    """Return scheme+netloc if possible; otherwise the first path segment."""
+    parsed = urlparse(landingpage_url)
+    if parsed.scheme and parsed.netloc:
+        return f"{parsed.scheme}://{parsed.netloc}"
+    return landingpage_url.split("/", 1)[0].strip()
+
+
+def derive_github_owner(repo_url: str) -> str | None:
+    """Extract GitHub owner from repo_url if it points at github.com."""
+    parsed = urlparse(repo_url)
+    netloc = parsed.netloc.lower() if parsed.netloc else ""
+    if netloc and netloc != "github.com":
+        return None
+    path = parsed.path.lstrip("/")
+    if not path:
+        return None
+    owner = path.split("/", 1)[0].strip()
+    return owner or None
+
+
 def validate_fields(data: dict) -> list:
     return [key for key in REQUIRED_FIELDS if not data.get(key, "").strip()]
         
@@ -113,6 +144,17 @@ def main() -> None:
 
     body = issue.get("body") or ""
     fields = parse_issue_fields(body)
+
+    landingpage_url = fields.get("landingpage_url", "").strip()
+    host = fields.get("host", "").strip()
+    if landingpage_url and host and host not in landingpage_url:
+        fields["host"] = derive_host_from_landingpage(landingpage_url)
+
+    repo_url = fields.get("repo_url", "").strip()
+    user = fields.get("user", "").strip()
+    repo_owner = derive_github_owner(repo_url) if repo_url else None
+    if repo_owner and user and user != repo_owner:
+        fields["user"] = repo_owner
 
     missing = validate_fields(fields)
     if missing:
