@@ -4,6 +4,7 @@ from doctest import master
 from textwrap import dedent, indent
 from truncatehtml import truncate
 import requests
+from urllib.parse import urlparse
 
 
 # from tagged_card
@@ -70,6 +71,28 @@ def _run_cffconvert(command):
         raise RuntimeError(f"cffconvert command failed: {error_message}")
 
 
+def _normalize_config_and_loc(config_url, github_url, user, repo, branch):
+    config_url = config_url.strip()
+    if len(config_url) > 0:
+        config_url = config_url.replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
+        parsed = urlparse(config_url)
+        config_path = parsed.path.rstrip('/')
+        has_yaml_file = config_path.endswith('.yml') or config_path.endswith('.yaml')
+        config_loc = config_url.rsplit('/', 1)[0] if has_yaml_file else config_url.rstrip('/')
+        if not has_yaml_file:
+            config_url = config_loc.rstrip('/') + '/_config.yml'
+        return config_url, config_loc.rstrip('/')
+
+    if 'tree' in github_url:
+        base = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('tree')[1].lstrip('/')
+    elif 'blob' in github_url:
+        base = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
+    else:
+        base = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}"
+    base = base.rstrip('/')
+    return base + '/_config.yml', base
+
+
 def generate_repo_dicts(all_items):
     repo_dicts = []
     chapter_dicts = []
@@ -89,20 +112,9 @@ def generate_repo_dicts(all_items):
             branch = 'main'
 
         config_url = item['config_url'].strip()
-
-        if len(config_url) > 0:
-            config_url = config_url.replace('github.com', 'raw.githubusercontent.com').replace('blob/', '')
-
-        if len(config_url) == 0:
-            if 'tree' in github_url:
-                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('tree')[1].lstrip('/')
-            elif 'blob' in github_url:
-                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/" + github_url.split('blob')[1].lstrip('/')
-            else:
-                config_url = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}"
-        #
-            config_url = config_url.rstrip('/') + '/_config.yml'
-        config_loc = config_url.split('_config')[0].rstrip('/')
+        config_url, config_loc = _normalize_config_and_loc(
+            config_url, github_url, user, repo, branch
+        )
 
         cookbook_loc = item['cookbook_loc'].strip().lstrip('/')
         if len(item['cookbook_loc']) == 0:

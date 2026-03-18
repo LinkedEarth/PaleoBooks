@@ -15,5 +15,5 @@ Please note: before filling out this template, make sure that your JupyterBook i
 4. Url of .config.yml (optional): *e.g.,https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml*
 5. Host for the JupyterBook: *e.g., https://khider.github.io*
 6. User: *e.g., khider*
-7. Landing suffix (name of the page you want users to land on): *e.g., intro.html*
+7. Landing suffix (name of the page you want users to land on, optional): *e.g., intro.html*
 8. Landing page url: *e.g., https://khider.github.io/DISK-proxyComposite/intro.html*

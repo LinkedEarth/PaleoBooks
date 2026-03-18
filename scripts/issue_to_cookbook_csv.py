@@ -24,7 +24,6 @@ REQUIRED_FIELDS = [
     "repo_url",
     "host",
     "user",
-    "landingpage",
     "landingpage_url",
     "branch",
 ]
@@ -109,6 +108,18 @@ def derive_host_from_landingpage(landingpage_url: str) -> str:
     return landingpage_url.split("/", 1)[0].strip()
 
 
+def derive_landingpage_from_url(landingpage_url: str) -> str:
+    """Return the URL tail without extension, if present."""
+    parsed = urlparse(landingpage_url)
+    path = (parsed.path or "").rstrip("/")
+    if not path:
+        return ""
+    tail = path.rsplit("/", 1)[-1].strip()
+    if not tail:
+        return ""
+    return os.path.splitext(tail)[0].strip()
+
+
 def derive_github_owner(repo_url: str) -> str | None:
     """Extract GitHub owner from repo_url if it points at github.com."""
     parsed = urlparse(repo_url)
@@ -157,6 +168,8 @@ def main() -> None:
     landingpage = fields.get("landingpage", "").strip()
     if landingpage.endswith(".html"):
         fields["landingpage"] = landingpage[: -len(".html")]
+    elif not landingpage and landingpage_url:
+        fields["landingpage"] = derive_landingpage_from_url(landingpage_url)
 
     missing = validate_fields(fields)
     if missing:
