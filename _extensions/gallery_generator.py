@@ -93,6 +93,108 @@ def _normalize_config_and_loc(config_url, github_url, user, repo, branch):
     return base + '/_config.yml', base
 
 
+def _fetch_yaml(url):
+    try:
+        response = requests.get(url)
+    except Exception:
+        return None
+    if response.status_code != 200:
+        return None
+    try:
+        return yaml.safe_load(response.content)
+    except yaml.YAMLError:
+        return None
+
+
+def _iter_myst_toc_files(toc_items):
+    if not isinstance(toc_items, list):
+        return
+    for item in toc_items:
+        if not isinstance(item, dict):
+            continue
+        file_path = item.get("file")
+        if isinstance(file_path, str) and file_path.strip():
+            yield file_path.strip()
+        children = item.get("children")
+        if isinstance(children, list):
+            yield from _iter_myst_toc_files(children)
+
+
+def _normalize_myst_toc(myst_dict):
+    project = myst_dict.get("project", {}) if isinstance(myst_dict, dict) else {}
+    toc = project.get("toc", []) if isinstance(project, dict) else []
+    parts = []
+    if not isinstance(toc, list):
+        return {"parts": parts}
+
+    for item in toc:
+        if not isinstance(item, dict):
+            continue
+        title = item.get("title", "Missing")
+        files = list(_iter_myst_toc_files([item]))
+        if not files:
+            continue
+        parts.append(
+            {"caption": title, "chapters": [{"file": file_path} for file_path in files]}
+        )
+    return {"parts": parts}
+
+
+def _normalize_legacy_toc(toc_dict):
+    if not isinstance(toc_dict, dict):
+        return {"parts": []}
+    if "parts" in toc_dict and isinstance(toc_dict["parts"], list):
+        return {"parts": toc_dict["parts"]}
+    if "chapters" in toc_dict and isinstance(toc_dict["chapters"], list):
+        return {"parts": [{"caption": "Missing", "chapters": toc_dict["chapters"]}]}
+    if "root" in toc_dict:
+        return {"parts": [{"caption": "Missing", "chapters": [{"file": toc_dict["root"]}]}]}
+    return {"parts": []}
+
+
+def fetch_toc_structure(base_url):
+    myst_data = _fetch_yaml(base_url.rstrip("/") + "/myst.yml")
+    if isinstance(myst_data, dict):
+        myst_toc = _normalize_myst_toc(myst_data)
+        if myst_toc.get("parts"):
+            return myst_toc
+
+    toc_data = _fetch_yaml(base_url.rstrip("/") + "/_toc.yml")
+    if isinstance(toc_data, dict):
+        return _normalize_legacy_toc(toc_data)
+    return {"parts": []}
+
+
+def build_filename_map(toc_structure):
+    file_map = {}
+    parts = toc_structure.get("parts", []) if isinstance(toc_structure, dict) else []
+    for content_type_category in parts:
+        if not isinstance(content_type_category, dict):
+            continue
+        chapters = content_type_category.get("chapters", [])
+        if not isinstance(chapters, list):
+            continue
+        for chapter in chapters:
+            if not isinstance(chapter, dict):
+                continue
+            file_path = chapter.get("file")
+            if not isinstance(file_path, str):
+                continue
+            file_path = file_path.strip()
+            if not file_path:
+                continue
+
+            path_stem = os.path.splitext(file_path)[0]
+            base_name = path_stem.split("/")[-1]
+            base_name_with_ext = file_path.split("/")[-1]
+
+            file_map[file_path] = path_stem
+            file_map[path_stem] = path_stem
+            file_map[base_name] = path_stem
+            file_map[base_name_with_ext] = path_stem
+    return file_map
+
+
 def generate_repo_dicts(all_items):
     repo_dicts = []
     chapter_dicts = []
@@ -192,26 +294,8 @@ def generate_repo_dicts(all_items):
             # print('gallery_info_url', gallery_info_dict)
             # gallery_info_dict = yaml.safe_load(gallery_info)
 
-            status2 = ''
-            toc_url = gallery_info_url + '/_toc.yml'
-            if logging is True:
-                print('toc_url', toc_url)
-            toc_info = requests.get(toc_url).content
-            if logging is True:
-                print('toc_info', toc_info)
-            toc_info_dict__raw = yaml.safe_load(toc_info)
-            tried1=False
-            status2 = 'toc info dict raw loaded; '
-            if 404 in toc_info_dict__raw.keys():
-                # toc_url = 'https://raw.githubusercontent.com/croppers/cropper_ecs/refs/heads/main/_toc.yml?token=GHSAT0AAAAAADHBBOPZCYAZKLF3NPP6FPPA2DN5NBA'
-                # toc_info = requests.get(toc_url).content
-                print('tried 1', toc_url)
-                tried1=True
-                status2 = 'toc info dict tried 1; '
-            if len(toc_info_dict__raw.keys())==1 and 404 in toc_info_dict__raw.keys():
-                print('tried 2', toc_url)
-            # toc_info_dict__raw = yaml.safe_load(toc_info)
-            status += status2 +'; '
+            toc_info_dict__raw = fetch_toc_structure(gallery_info_url)
+            status += 'toc parsed from myst.yml/_toc.yml; '
             if logging is True:
                 print('toc_info_dict__raw', toc_info_dict__raw)
 
@@ -249,28 +333,17 @@ def generate_repo_dicts(all_items):
             status6 = f'content_type {content_type}; '
             status += status6 +'; '
 
-            status5 = ''
-            if 'parts' not in toc_info_dict__raw.keys():
-                if 'chapters' in toc_info_dict__raw.keys():
-                    toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': toc_info_dict__raw['chapters']}]
-                    status5 = 'parts from chapters; '
-                else:
-                    toc_info_dict__raw['parts']=[{'caption':'Missing', 'chapters': [{'file': toc_info_dict__raw['root']}]}]
-                    status5 = 'parts from root; '
-            else:
-                status5 = 'parts exist; '
-
-            status += status5 +'; '
             toc_info_dict = {}
-            for ip, content_type_category in enumerate(toc_info_dict__raw['parts']):
-
-                toc_info_dict[content_type_category['caption']] = {}
-                for chapter in content_type_category['chapters']:
-                    name = chapter['file'].split('/')[-1].split('.')[0]
-                    chapt_tail = chapter['file'].split('.')[0]
-                    toc_info_dict[content_type_category['caption']][name] = chapt_tail
-            if tried1 is True:
-                print('toc_info_dict')
+            for content_type_category in toc_info_dict__raw.get('parts', []):
+                caption = content_type_category.get('caption', 'Missing')
+                toc_info_dict[caption] = {}
+                for chapter in content_type_category.get('chapters', []):
+                    file_path = chapter.get('file', '')
+                    if not isinstance(file_path, str) or len(file_path.strip()) == 0:
+                        continue
+                    name = os.path.splitext(file_path.split('/')[-1])[0]
+                    chapt_tail = os.path.splitext(file_path)[0]
+                    toc_info_dict[caption][name] = chapt_tail
 
             shortname = gallery_info_dict['shortname']
 
@@ -280,7 +353,7 @@ def generate_repo_dicts(all_items):
             print(shortname, 'thumbnail', thumbnail, 'in', gallery_info_url)
             # print('gallery_info_dict', gallery_info_dict)
 
-            file_d = extract_files(toc_info_dict, result=None)
+            file_d = build_filename_map(toc_info_dict__raw)
             if logging is True:
                 print('file_d', file_d)
 
