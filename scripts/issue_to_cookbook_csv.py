@@ -26,7 +26,6 @@ REQUIRED_FIELDS = [
     "user",
     "landingpage",
     "landingpage_url",
-    "config_url",
     "branch",
 ]
 KEY_VALUE_RE = re.compile(r"^\s*(?:\d+\.\s*)?([^:]+):\s*(.*)$")
