@@ -11,3 +11,4 @@ html/
 _static/
 .doctrees/
 /ref/
+.DS_Store
