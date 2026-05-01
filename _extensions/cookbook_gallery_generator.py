@@ -38,6 +38,7 @@ def main(app):
     build_from_repos(
         repo_dicts, "doc/index", title=title, subtext=subtext, menu_html=menu_html
     )
+    print('build gallery')
 
 
 def setup(app):
