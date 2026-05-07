@@ -1,4 +1,4 @@
-from gallery_generator import build_from_repos, generate_menu, generate_repo_dicts
+from gallery_generator_v2 import build_from_repos, generate_menu, generate_repo_dicts
 import csv
 import os
 import yaml
