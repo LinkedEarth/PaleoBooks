@@ -1,4 +1,4 @@
-import itertools, json, yaml, pathlib, subprocess, requests
+import itertools, json, re, yaml, pathlib, subprocess, requests
 import copy
 import os
 from abc import ABC, abstractmethod
@@ -172,17 +172,121 @@ def fetch_thumbnail(_gallery_info_dict, gallery_info_url, fallback='thumbnail.pn
     return thumbnail, thumbnail_url
 
 
+# ── MyST slug computation ───────────────────────────────────────────────────
+# mystmd never serves a page at its source file path. Instead it derives a
+# URL slug purely from the filename (see myst-cli/src/utils/fileInfo.ts
+# createSlug/fileInfo). Reproduced here so gallery links point at the URLs
+# mystmd actually builds, instead of guessing the source path is the URL.
+
+def _myst_remove_leading_enumeration(s):
+    # mystmd keeps year-like prefixes (1988, 2022-02, ...) and 5+ digit runs,
+    # but strips ordering prefixes like "01_", "1-", "0.".
+    if re.match(r'^[12][0-9]{3}[^0-9]?', s):
+        return s
+    if re.match(r'^[0-9]{5}', s):
+        return s
+    removed = re.sub(r'^[0-9_.\-]+', '', s)
+    return removed if removed else s
+
+
+def _myst_title2name(s):
+    s = s.replace('&', '-and-')
+    s = s.lower()
+    s = re.sub(r'[^a-z0-9-]+', '-', s)
+    s = re.sub(r'-+', '-', s).strip('-')
+    return s[:50]
+
+
+def create_myst_slug(name):
+    """Port of mystmd's createSlug() for a filename (no extension, no folder)."""
+    return _myst_title2name(_myst_remove_leading_enumeration(name))
+
+
+def _iter_toc_file_paths(toc_structure):
+    """Yield file paths from a normalized toc structure in the same
+    top-to-bottom order mystmd itself walks project.toc."""
+    parts = toc_structure.get("parts", []) if isinstance(toc_structure, dict) else []
+    for content_type_category in parts:
+        if not isinstance(content_type_category, dict):
+            continue
+        chapters = content_type_category.get("chapters", [])
+        if not isinstance(chapters, list):
+            continue
+        for chapter in chapters:
+            if not isinstance(chapter, dict):
+                continue
+            file_path = chapter.get("file")
+            if isinstance(file_path, str) and file_path.strip():
+                yield file_path.strip()
+
+
+def _myst_slug_for_file(file_path, folders_enabled, page_slugs):
+    stem = os.path.splitext(file_path)[0]
+    segments = stem.split("/")
+    base_slug = create_myst_slug(segments[-1])
+
+    if folders_enabled and len(segments) > 1:
+        folder_slugs = [create_myst_slug(seg) for seg in segments[:-1] if seg]
+        slug_key = ".".join(folder_slugs + [base_slug]) if folder_slugs else base_slug
+    else:
+        slug_key = base_slug
+
+    # mystmd disambiguates repeats of the *same* slug_key by appending -1, -2, ...
+    # in toc-walk order (see fileInfo(): first occurrence stays bare).
+    if page_slugs.get(slug_key):
+        page_slugs[slug_key] += 1
+        slug = f"{slug_key}-{page_slugs[slug_key] - 1}"
+    else:
+        page_slugs[slug_key] = 1
+        slug = slug_key
+
+    # Folder-qualified slugs are dot-joined internally but rendered as nested
+    # URL segments: folder/page.md -> /folder/page/
+    return slug.replace(".", "/")
+
+
+def build_myst_slug_map(toc_structure, folders_enabled, logging=False):
+    """Like build_filename_map, but maps to the real mystmd-computed slug
+    instead of the source file path.
+
+    The first file in project.toc is mystmd's project index page (served at
+    the book's base URL, not a sub-path) and is excluded from ordinary
+    per-file slug assignment. Confirmed against a live build: a built
+    config.json has `projects[0].index == "index"` pointing at that file,
+    and it has no entry of its own in `projects[0].pages[].slug`.
+    """
+    page_slugs = {}
+    file_map = {}
+    for i, file_path in enumerate(_iter_toc_file_paths(toc_structure)):
+        slug = "" if i == 0 else _myst_slug_for_file(file_path, folders_enabled, page_slugs)
+
+        path_stem = os.path.splitext(file_path)[0]
+        base_name = path_stem.split("/")[-1]
+        base_name_with_ext = file_path.split("/")[-1]
+
+        for key in (file_path, path_stem, base_name, base_name_with_ext):
+            file_map[key] = slug
+
+    if logging is True:
+        print('myst_slug_map', file_map)
+
+    return file_map
+
+
 def fetch_toc_structure(base_url):
+    """Returns (toc_structure, is_myst_book, folders_enabled)."""
     myst_data = _fetch_yaml(base_url.rstrip("/") + "/myst.yml")
     if isinstance(myst_data, dict):
         myst_toc = _normalize_myst_toc(myst_data)
         if myst_toc.get("parts"):
-            return myst_toc
+            site_options = myst_data.get("site", {}).get("options", {}) if isinstance(myst_data.get("site"), dict) else {}
+            folders_enabled = bool(isinstance(site_options, dict) and site_options.get("folders"))
+            return myst_toc, True, folders_enabled
 
     toc_data = _fetch_yaml(base_url.rstrip("/") + "/_toc.yml")
     if isinstance(toc_data, dict):
-        return _normalize_legacy_toc(toc_data)
-    return {"parts": []}
+        return _normalize_legacy_toc(toc_data), False, False
+    return {"parts": []}, False, False
 
 
 def build_toc_info_dict(toc_info_dict__raw):
@@ -351,7 +455,7 @@ class BookRepo:
         gallery_info_dict, status1 = pull_gallery_info(self.gallery_info_url)
         status = status1 + '; '
 
-        toc_info_dict__raw = fetch_toc_structure(self.gallery_info_url)
+        toc_info_dict__raw, is_myst_book, folders_enabled = fetch_toc_structure(self.gallery_info_url)
         status += 'toc parsed from myst.yml/_toc.yml; '
 
         if logging:
@@ -372,7 +476,10 @@ class BookRepo:
         )
         print(self.shortname, 'thumbnail', self.thumbnail, 'in', self.gallery_info_url)
 
-        file_d = build_filename_map(toc_info_dict__raw, logging=logging)
+        if is_myst_book:
+            file_d = build_myst_slug_map(toc_info_dict__raw, folders_enabled, logging=logging)
+        else:
+            file_d = build_filename_map(toc_info_dict__raw, logging=logging)
         self._file_map = file_d
 
         # Proxy repo_dict for normalize_chapter_dict (needs 'shortname')
