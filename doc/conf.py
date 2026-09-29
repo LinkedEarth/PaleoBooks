@@ -141,6 +141,7 @@ html_theme_options = {
         "home_page_in_toc": False,
         "show_navbar_depth": 2,
         "use_repository_button": True,
+        "navbar_persistent": [],
         # 'analytics':{
         #                 "google_analytics_id": "G-XXXXXXXXXX",
         #             },
