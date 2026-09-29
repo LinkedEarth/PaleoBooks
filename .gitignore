@@ -12,3 +12,4 @@ html/
 .doctrees/
 /ref/
 .DS_Store
+doc/index.rst
