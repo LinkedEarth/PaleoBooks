@@ -114,7 +114,7 @@ todo_include_todos = False
 #
 html_theme = 'sphinx_book_theme'
 
-html_logo = 'images/Paleobooks_website_logo.pdf'
+html_logo = '_static/Paleobooks_website_logo.pdf'
 html_title = "PaleoBook Library"
 
 # Text displayed below the PaleoBooks logo in the left sidebar.

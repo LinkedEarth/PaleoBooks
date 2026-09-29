@@ -308,8 +308,8 @@ document.addEventListener("DOMContentLoaded", function () {
   attributionItem.innerHTML =
     '<p class="paleobooks-attribution__text"></p>' +
     '<div class="paleobooks-attribution__logos">' +
-      '<img src="images/NSF_Official_logo_Med_Res_600ppi.png" alt="National Science Foundation">' +
-      '<img src="images/earthcube-8016.png" alt="EarthCube">' +
+      '<img src="_static/NSF_Official_logo_Med_Res_600ppi.png" alt="National Science Foundation">' +
+      '<img src="_static/earthcube-8016.png" alt="EarthCube">' +
     '</div>';
   attributionItem.querySelector(".paleobooks-attribution__text").textContent = byline;
 
