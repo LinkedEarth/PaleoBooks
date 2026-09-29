@@ -288,6 +288,34 @@ document.addEventListener("DOMContentLoaded", function () {
   change();
 });
 
+// Add project attribution between the sidebar logo and search control.
+document.addEventListener("DOMContentLoaded", function () {
+  var sidebarLogo = document.querySelector(
+    ".sidebar-primary-items__start .sidebar-primary-item .navbar-brand.logo"
+  );
+
+  if (!sidebarLogo || document.querySelector(".paleobooks-attribution")) return;
+
+  var logoItem = sidebarLogo.closest(".sidebar-primary-item");
+  if (!logoItem) return;
+
+  var attributionItem = document.createElement("div");
+  var byline = window.PALEOBOOKS_SIDEBAR_BYLINE ||
+    "A proud product of PaleoCube, part of the EarthCube program.";
+
+  attributionItem.className = "sidebar-primary-item paleobooks-attribution";
+  attributionItem.setAttribute("aria-label", "PaleoBooks program attribution");
+  attributionItem.innerHTML =
+    '<p class="paleobooks-attribution__text"></p>' +
+    '<div class="paleobooks-attribution__logos">' +
+      '<img src="_static/NSF_Official_logo_Med_Res_600ppi.png" alt="National Science Foundation">' +
+      '<img src="_static/earthcube-8016.png" alt="EarthCube">' +
+    '</div>';
+  attributionItem.querySelector(".paleobooks-attribution__text").textContent = byline;
+
+  logoItem.insertAdjacentElement("afterend", attributionItem);
+});
+
 
 //
 // function change() {
