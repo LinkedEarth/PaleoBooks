@@ -1,5 +1,6 @@
 [![DOI](https://zenodo.org/badge/246457932.svg)](https://zenodo.org/badge/latestdoi/246457932)
 
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/LinkedEarth/PaleoBooks/HEAD)
 
 # PaleoBooks
@@ -9,6 +10,16 @@ This repository serves as a clearing house for examples of paleoscientific work 
 If you have suggestions for more examples, please submit an [issue](https://github.com/LinkedEarth/PaleoBooks/issues). If you want to contribute, please see [these guidelines](https://linked.earth/PaleoBooks/contributor_guide.html). For more technical tutorials on how to use Pyleoclim, see [PyleoTutorials](https://github.com/LinkedEarth/PyleoTutorials). For more general information about Python-based computing in the geosciences, see [Pythia Foundations](https://foundations.projectpythia.org/).
 
 If you want to give us a shoutout, we're [social](https://twitter.com/Linked_Earth)!
+
+## Funding
+
+This effort was funded by the [National Science Foundation](https://www.nsf.gov/) (NSF) under award number [1920860](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1920860) and is a proud product of the EarthCube program. The content of this gallery is based on the work of many contributors who may be funded by other sources; please see the individual notebooks for more information.
+
+<p align="center">
+  <a href="https://www.nsf.gov/"><img src="assets/nsf-logo.png" alt="National Science Foundation" height="72"></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://www.earthcube.org/"><img src="assets/earthcube-logo.png" alt="EarthCube" height="72"></a>
+</p>
 
 ## License
 
