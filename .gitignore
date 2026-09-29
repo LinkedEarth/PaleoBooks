@@ -8,7 +8,7 @@ processed_data/*.dat
 .*.sw?
 html/
 .idea/
-_static/
+/_static/
 .doctrees/
 /ref/
 .DS_Store
