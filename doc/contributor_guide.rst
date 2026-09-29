@@ -1,230 +1,375 @@
-
-.. _contributor-guide:
+.. _contributor-guide-jupyterbook-2:
 
 Contributor Guide
 =================
 
+This is the main contributor guide for books built with Jupyter Book 2. If your
+book still uses Jupyter Book 1, follow the `Jupyter Book 1 contributor guide
+<contributor_guide_jupyterbook1.html>`_ instead.
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   contributor_guide_jupyterbook1
+
 To make a great contribution you need to:
 
-#. :ref:`write-your-book`
-#. :ref:`build-your-book`
-#. :ref:`run-remote` [Optional]
-#. :ref:`Prepare your book to be added to the library<prepare-for-joining-the-library>`
-#. :ref:`Submit a request to have your book added<submit-a-library-request>`
+#. :ref:`write-your-book-jb2`
+#. :ref:`build-your-book-jb2`
+#. :ref:`run-remote-jb2` [Optional]
+#. :ref:`Prepare your book to be added to the library <prepare-for-joining-the-library-jb2>`
+#. :ref:`Submit a request to have your book added <submit-a-library-request-jb2>`
 
 .. note::
-    Consider sections 1 and 2 (:ref:`write-your-book` and :ref:`build-your-book`) and as a style guide. In order to be added to the library, you must have a fully published, hosted book that includes a landing page file (markdown or similar) AND metadata that follows the structure described in section 3 (:ref:`Prepare your book to be added to the library<prepare-for-joining-the-library>`)!
+    Consider sections 1 and 2 as a style guide. To be added to the library,
+    you must have a fully published, hosted book with a landing page and the
+    metadata described in section 4.
 
-.. _write-your-book:
+.. _write-your-book-jb2:
 
 Write your book
------------------
+---------------
 
-Each library contribution needs well organized content and a landing page (a readme or intro). A template repository is available `here <https://github.com/jordanplanders/paleobook_template>`_.
+Each library contribution needs well-organized content and a landing page (a
+README or introduction). A template repository is available `here
+<https://github.com/jordanplanders/paleobook_template>`_.
 
-Content:
-*********
+Content
+*******
 
-Structure your content into one or more sections, each addressing specific themes or topics.
-Each section contains one or more notebooks (chapters) that delve into the details of the respective theme.
-How you organize your book is up to you. We have found Lifehacks and Science Bits to be useful themes, as many of our chapters have fallen under one of those two categories, but that is by no means the only way. For example, the sections of a publication might be another sensible approach. This organizational structure will not be visible in the gallery unless you specify it in the `chapter_meta.yml` file (see below for more details).
+Structure your content into one or more sections, each addressing specific
+themes or topics. Each section contains one or more notebooks or pages
+(chapters) that delve into the details of the respective theme.
+
+How you organize your book is up to you. We have found Lifehacks and Science
+Bits to be useful themes, as many chapters fall under those two categories,
+but that is by no means the only approach. The sections of a publication may
+also provide a sensible structure. This organization will not be visible in
+the gallery unless you specify it in ``chapter_meta.yml`` (see below).
 
 *Lifehacks*
-    Careful breakdowns of technically tricky, unintuitive or cumbersome tasks, e.g., data visualization tips or explanations about how to interact with a data product.
+    Careful breakdowns of technically tricky, unintuitive, or cumbersome tasks,
+    such as data-visualization tips or explanations of how to interact with a
+    data product.
 
 *Science Bits*
-    Step by step discussion of analysis or exploratory workflow. These notebooks should focus more on scientific insights derived from analyses than on technical implementation.
+    Step-by-step discussions of analysis or exploratory workflows. These
+    notebooks should focus more on scientific insights derived from analyses
+    than on technical implementation.
 
 *Paper Sections*
-    Notebooks describing the research behind a published work. These might be organized by the sections of the publication, or by the included figures.
+    Notebooks describing the research behind a published work. These might be
+    organized by the sections of the publication or by the included figures.
 
 .. note::
-    Every notebook must have a level 1 header (one #). This header will be used in your JupyterBook table of contents. If your book has multiple level 1 headers, the first one will be used in your JupyterBook table of contents. You will have the opportunity to assign different names for the purpose of the gallery.
+    Every notebook or Markdown page must have a level-one heading (one ``#``).
+    By default, Jupyter Book uses the page title or first heading in its table
+    of contents. You may override that title in ``myst.yml`` and assign a
+    different short name for the gallery in ``chapter_meta.yml``.
 
-Landing Page:
-**************
+Landing Page
+************
 
-There isn't a required structure for your landing page, but we have found that the following elements are appropriate (bolded items are common section titles):
+There is no required structure for your landing page, but the following
+elements are useful (bold items are common section titles):
 
-* **Title**: Clearly state the title of your Jupyter book.
-* **Author**: Provide information about the primary author or authors of the book.
-* **Contributors**: Check out `contrib.rocks`_ for an html snippet with avatars for each contributor to your JupyterBook repo.
-* **Funding Sources**: Include information about any funding sources that supported the work in your book.
-* **Quick Summary** (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.
-* **Motivation**: Offer an overview of the motivation behind building the book. This section should briefly touch on the science or technical skills explored in your chapters. It might also include information about any datasets involved or projects your book is associated with.
-* **Structure**: Give a quick explanation of the content in each section of the book (more on this below).
-* **References**: Include notes about any publications associated with the book.
+* **Title**: Clearly state the title of your Jupyter Book.
+* **Author**: Provide information about the primary author or authors.
+* **Contributors**: Check out `contrib.rocks`_ for an HTML snippet with avatars
+  for contributors to your repository.
+* **Funding Sources**: Identify funding that supported the work.
+* **Quick Summary** (Byline): Give a concise summary. This is also a good place
+  for a formatted citation if the book has a DOI.
+* **Motivation**: Describe the scientific or technical motivation, relevant
+  datasets, and associated projects.
+* **Structure**: Briefly explain the content in each section.
+* **References**: Note publications associated with the book.
 
 .. _contrib.rocks: https://contrib.rocks/preview?repo=angular%2Fangular-ja
 
+.. _build-your-book-jb2:
 
-.. _build-your-book:
+Build your book with Jupyter Book 2
+-----------------------------------
 
-Build your book
-----------------
+Follow the `Jupyter Book 2 quickstart
+<https://jupyterbook.org/stable/get-started/init/>`_. From the directory that
+will contain the book configuration, initialize a project with:
 
-There are various ways to go about this. The most straight forward is to follow the `Create your first book tutorial`_ on the JupyterBook website.
+.. code-block:: console
 
-.. _Create your first book tutorial: https://jupyterbook.org/en/stable/start/your-first-book.html
+    jupyter book init
 
-A couple of notes:
+Jupyter Book 2 uses one main configuration file, ``myst.yml``. It contains the
+book metadata, site options, and table of contents. The following shortened
+example is adapted from the `Holocene CCM PaleoBook
+<https://github.com/LinkedEarth/hol_temp_tsi_ccm_pb/blob/main/myst.yml>`_:
 
-* The tutorial project structure is very simple. For an example of a slightly more complex table of contents (`_toc.yml`), `look here`_.
-* Make sure to modify the `_config.yml`. Here is `an example`_ to help.
-    - make sure that `path_to_book` points to the directory in your repo where your book lives (in the example, this is *proxycomposite*)
-    - `gh-import` will prompt you for your github username and password, and you will need to follow `these instructions about personal access tokens`_ to get a more secure password (github will not accept standard passwords for this purpose)
-    - if you don't want the books to execute on build, include:
+.. code-block:: yaml
 
-    .. code-block::
+    version: 1
+    project:
+      title: A Causal Examination of the Solar Influence on Holocene Climate
+      description: |
+        Convergent Cross-Mapping analysis testing whether Total Solar Irradiance
+        causally influences Holocene temperature variability.
+      authors:
+        - name: Jordan P. Landers
+        - name: Julien Emile-Geay
+        - name: Alexander K. James
+        - name: Stephan B. Munch
+        - name: Deborah Khider
+        - name: Edouard Bard
+      github: https://github.com/LinkedEarth/hol_temp_tsi_ccm_pb
+      toc:
+        - file: intro.md
+          title: Overview
+        - title: "Part 1: Data Preparation & Exploration"
+          children:
+            - file: notebooks/0_Datasets/_overview.md
+              title: Overview
+            - file: notebooks/0_Datasets/1_setup__standardize_time_axes.ipynb
+              title: Standardize Time Axes
+    site:
+      template: book-theme
+      options:
+        logo: logo.png
+        logo_text: "Holocene Sun-Climate causality with CCM"
+        hide_authors: true
+        folders: true
 
-        execute:
-            execute_notebooks: 'off'
+Important details:
 
-* Include a copy of your book's thumbnail in the same directory as the `_config.yml` file and call it `logo.png`. This is specified in the `_config.yml` and naming/locating it in a predictable place will save a headache.
+* Paths in ``project.toc`` are relative to ``myst.yml`` and include their file
+  extensions.
+* The first file in ``project.toc`` becomes the book's landing page.
+* Use ``children`` for nested pages.
+* ``site.options.folders: true`` preserves source folders in published page
+  URLs. This is recommended when the book contains repeated filenames such as
+  several ``overview.md`` pages.
+* Include the book logo beside ``myst.yml`` (``logo.png`` is the recommended
+  name) and reference it under ``site.options.logo``.
+* Jupyter Book 2 does not execute notebooks during an ordinary build. Pass
+  ``--execute`` only when you intentionally want to rerun them.
 
-.. _an example: https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml
-.. _look here: https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml
-.. _these instructions about personal access tokens: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic
+Preview the book locally with:
 
-.. _run-remote:
+.. code-block:: console
 
-Running your Notebooks in the cloud [Optional]
+    jupyter book start
+
+Build static HTML with:
+
+.. code-block:: console
+
+    jupyter book build --html
+
+For GitHub Pages, ``jupyter book init --gh-pages`` can generate a deployment
+workflow. Other static hosts may publish the resulting ``_build/html``
+directory. When publishing below a URL subdirectory, configure ``BASE_URL`` as
+described in the Jupyter Book publishing documentation.
+
+.. _run-remote-jb2:
+
+Running your notebooks in the cloud [Optional]
 ----------------------------------------------
 
-Imagine a world where every time you opened a scientific notebook, it just worked. No dependency conflicts, no version mismatches, no endless troubleshooting. You could explore, run, and reproduce the analysis exactly as the original author intended—whether it was written yesterday or five years ago. That’s the power of containers. They capture the full computational environment—Python version, libraries, even system dependencies—ensuring that your workflow is portable, consistent, and reproducible across time and platforms. By wrapping science in containers, we free ourselves from the "it works on my machine" trap and pave the way for truly sharable, reliable computational research.
+Imagine a world where every time you opened a scientific notebook, it just
+worked. No dependency conflicts, no version mismatches, no endless
+troubleshooting. You could explore, run, and reproduce the analysis exactly as
+the original author intended--whether it was written yesterday or five years
+ago. That is the power of containers. They capture the full computational
+environment--Python version, libraries, and even system dependencies--ensuring
+that your workflow is portable, consistent, and reproducible across time and
+platforms. By wrapping science in containers, we free ourselves from the "it
+works on my machine" trap and pave the way for truly shareable, reliable
+computational research.
 
-Now imagine a platform that would take this container and allow anyone to run it in the cloud. That's the beauty of `MyBinder <https://mybinder.org>`_. They can take a container and render the notebooks into a JupyterLab environment.
+Now imagine a platform that takes this container and lets anyone run it in the
+cloud. That is the beauty of `MyBinder <https://mybinder.org>`_. It can take a
+container or repository environment and render the notebooks in a JupyterLab
+environment. It does not require much work on your part.
 
-The beauty of it is that it does not require much work on your part.
+* **Step 1**: Describe a reproducible environment in the repository. MyBinder
+  can build from an environment or requirements file. You may instead create a
+  container and publish it to a registry such as `DockerHub
+  <https://hub.docker.com>`_ or `Quay.io <https://quay.io>`_.
+  The `2i2c image tutorial
+  <https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html>`_
+  provides one approach.
+* **Step 2**: If you use a prebuilt container, add the Binder configuration
+  needed to locate it. See the `coral-visualization example
+  <https://github.com/khider/coral-visualization>`_.
+* **Step 3**: Test the repository through `MyBinder
+  <https://mybinder.org>`_. Additional guidance is available from the
+  `LEAPFROGS module <https://linked.earth/LeapFROGS/module6>`_.
+* **Step 4**: Enable the Jupyter Book 2 launch integration in ``myst.yml``.
 
-* **Step 1**: Create a container and put in a container registry such as `DockerHub <https://hub.docker.com>`_ or `quay.io <https://quay.io>`_. We recommend to use quay.io as it offers more free options for open science. You can follow `this tutorial <https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html>`_ on how to create custom images. Note that this step is technically optional as `myBinder` can create containers from the environment or requirements file in your repository directly. However, as time goes by, this file may become obsolete and not use the correct versions of the packages.
-* **Step 2**: Create a `binder` folder in your repository and place a DockerFile and `config.json` file to indicate to myBinder where to get the container from. You can find an example of these files in `this repository <https://github.com/khider/coral-visualization>`_.
-* **Step 3**: Link your repository to `myBinder <https://mybinder.org>`_ following the instructions on their website. 
+For example:
 
-If you need some help with these steps, have a look at the following `webpage <https://linked.earth/LeapFROGS/module6>`_ and `YouTube tutorials <https://www.youtube.com/watch?v=E3VQC6GyKzM>`_.
+.. code-block:: yaml
 
-* **Step 4**: in your `_config.yml` enable the section about interactive computing following `these instructions <https://jupyterbook.org/en/stable/interactive/launchbuttons.html>`_.
+    project:
+      github: https://github.com/owner/repository
+      jupyter:
+        binder:
+          url: https://mybinder.org
+          repo: owner/repository
+          ref: main
 
-.. _prepare-for-joining-the-library:
+Launch-button and in-page execution behavior is still evolving, so consult the
+current `MyST launch documentation
+<https://mystmd.org/guide/website-launch-buttons>`_ when enabling it.
+
+.. _prepare-for-joining-the-library-jb2:
 
 Prepare for joining the library
 -------------------------------
 
-In order for your book to be added to the library, you will need to provide some additional information we will use to populate various fields.
+In order for your book to be added to the library, you need to provide some
+additional information that the gallery uses to populate its fields.
 
-#. In the same directory as the _config.yml file, make a folder called `meta_data` and a folder called `thumbnails`
-#. In `meta_data`, make a file called `chapter_meta.yml` and copy and paste the contents of `the C-iTrace PaleoBook chapter_meta.yml`_ to use as template. (The formatting of these files cam be particular, so it highly encouraged to start from one that is functional.)
+#. In the same directory as ``myst.yml``, create folders named ``meta_data``
+   and ``thumbnails``.
+#. In ``meta_data``, create ``chapter_meta.yml``. Starting from a working
+   example is recommended because YAML indentation is significant.
+#. In ``thumbnails``, add one image for the book and one for each chapter.
+   Images may be PNG or JPEG files.
 
-.. _the C-iTrace PaleoBook chapter_meta.yml: https://github.com/LinkedEarth/citrace_paleobook/blob/main/meta_data/chapter_meta.yml
+In the gallery, the content of your book appears in two ways: as a single card
+for the whole book and as individual cards for each selected chapter. Each card
+contains a title, thumbnail image, and selection of tags. Each card is also
+clickable and takes the reader to the relevant published page.
 
-.. note::
-    YAML files are very sensitive to indentation, so be careful when copying and pasting.
+Book cards use the following information:
 
-In the gallery, the content of your book will appear in two ways: as a single card for the whole book, and as individual cards for each chapter. Each card contains a title, a thumbnail image and a selection of tags. In addition, each card is clickable and will take a reader to the relevant page. The information for these cards is drawn from the YAML files.
+* **book title, author, and description**: specified in ``chapter_meta.yml``
+* **book URL**: specified in the gallery submission
+* **book thumbnail**: named in ``chapter_meta.yml`` and stored in
+  ``thumbnails``
+* **book tags**: combined from the chapter tags
+* **book shortname tag**: the top-level ``shortname`` in
+  ``chapter_meta.yml``
 
-Book cards will contain the following information:
-    -  **book title**: specified in `_config.yml`
-    -  **book url**: specified in information provided in the gallery submission form
-    -  **book thumbnail**: specified in the `thumbnails` folder
-    -  **book tags**: specified in `chapter_meta.yml`, encompassing all tags assigned to constituent chapters
-    -  **book shortname tag**: specified in `chapter_meta.yml` as top level `shortname` and is used to associate the book with its chapters cards
+Chapter cards use:
 
-Chapter cards will contain the following information:
-    - **chapter title**: specified in `chapter_meta.yml` as `shortname`
-    - **chapter url**: constructed from the book url and pointers associating `filename` specified in `chapter_meta.yml` to the relevant filename in the `_toc.yml`
-    - **chapter thumbnail**: specified in the `thumbnails` folder
-    - **chapter tags**: specified in `chapter_meta.yml`
-    - **book shortname tag**: as mentioned above, this is used to associate the chapter with the book
+* **chapter title**: ``shortname`` in ``chapter_meta.yml``
+* **chapter URL**: constructed by matching ``filename`` in
+  ``chapter_meta.yml`` to ``project.toc`` in ``myst.yml``
+* **chapter thumbnail**: named in ``chapter_meta.yml`` and stored in
+  ``thumbnails``
+* **chapter tags**: specified in ``chapter_meta.yml``
+* **book shortname tag**: inherited from the top-level book metadata
 
-Because chapter urls are constructed using information from the `_toc.yml`, it is important that the `filename` in `chapter_meta.yml` matches the filename associated with each `file` in the `_toc.yml`, and that the filename is unique within your book. For example, you may note have notebooks/lifehacks/mynotebook and notebooks/science_bits/mynotebook.
+The safest ``filename`` convention is the complete source path relative to
+``myst.yml``, matching the TOC's ``file`` value but omitting ``.ipynb`` or
+``.md``. The following real pairing comes from the Holocene CCM PaleoBook:
 
-Additionally, a book is not required to have multiple `parts` in the `chapter_meta.yml` file. A "part" should be thought of as a content type (e.g. science bit, figure, method overview, tutorial). If your book is a single part, you can simply follow the top level book information (`shortname`, `type`, `thumbnail`) with `chapters:` and list the chapters as shown below. However, if the `chapter_meta.yml` includes parts, the part `caption` will be assigned to its chapters as a `format` tag. (Note: you may also specify format tags directly.)
+.. code-block:: yaml
 
-**Reminder**: YAML files are very sensitive to indentation, so be careful when copying and pasting.
+    # myst.yml
+    project:
+      toc:
+        - file: intro.md
+        - title: "Part 1: Data Preparation & Exploration"
+          children:
+            - file: notebooks/0_Datasets/1_setup__standardize_time_axes.ipynb
 
-Here is the top segment:
+    # meta_data/chapter_meta.yml
+    filename: notebooks/0_Datasets/1_setup__standardize_time_axes
 
-.. code-block::
+Using complete paths prevents ambiguity when files in different directories
+share the same name. The gallery converts the source path to the URL generated
+by Jupyter Book 2; do not put the published URL slug in ``filename``.
 
-    shortname: C-iTRACE
+Here is the corresponding top segment, adapted from the `Holocene CCM chapter
+metadata
+<https://github.com/LinkedEarth/hol_temp_tsi_ccm_pb/blob/main/meta_data/chapter_meta.yml>`_.
+It includes the recommended gallery ``title`` and ``author`` fields so a pure
+Jupyter Book 2 submission does not depend on a legacy ``_config.yml``:
+
+.. code-block:: yaml
+
+    title: A Causal Examination of the Solar Influence on Holocene Climate
+    author: Jordan P. Landers, Julien Emile-Geay, Alexander K. James, Stephan B. Munch, Deborah Khider, Edouard Bard
+    shortname: "HoloCCM"
     type: Paleobook
-    thumbnail: thumbnail.png
+    description: "Causal analysis of the TSI-temperature relationship over the Holocene using Convergent Cross-Mapping"
+    thumbnail: logo.png
     parts:
-      - caption: Lifehacks
+      - caption: "Data Preparation & Exploration"
         chapters:
-          - shortname: pyODV
-            filename: pyODV
-            thumbnail: pyodv_demo.png
+          - shortname: "Standardize time axes"
+            filename: "notebooks/0_Datasets/1_setup__standardize_time_axes"
+            thumbnail: standardize_ts.png
             tags:
-              domains:
-                - oceanography
-                - tracers
-                - data viz
-              packages:
-                - xarray
-                - matplotlib
-                - cartopy
-                - pandas
-                - seaborn
-          - shortname: data_on_a_model_grid
+              domains: ['common time', 'data-processing']
+              packages: [xarray, pandas]
 
+The fields have the following meanings:
 
-This table provides an explanation of each element:
+``title``
+    The full title displayed on the book card.
+``author``
+    The book author or authors displayed by the gallery.
+``description``
+    A concise description for the book card.
+``shortname``
+    A short word or phrase used to associate the book with its chapter cards.
+``type``
+    The collection type. Use ``Paleobook`` unless another collection applies.
+``thumbnail``
+    The book-level thumbnail filename. If no extension is supplied, PNG is
+    assumed.
+``parts``
+    Groups chapters by content type. A one-part book may instead put
+    ``chapters`` at the top level.
+``caption``
+    The part name. It is also added to its chapters as a format tag.
+``chapters``
+    The list of pages to display as chapter cards.
+``shortname`` (chapter)
+    The chapter name displayed on its card.
+``filename``
+    The complete source path, without ``.ipynb`` or ``.md``.
+``thumbnail`` (chapter)
+    The chapter thumbnail filename.
+``tags``
+    Gallery filters. ``domains`` describe subject matter, ``packages`` name
+    software used, and format tags describe the chapter style.
 
-.. list-table::
-    :header-rows: 1
+The full publication title and authors also belong in ``myst.yml`` as standard
+Jupyter Book metadata. Repeating them in ``chapter_meta.yml`` currently makes
+the gallery ingestion contract explicit and removes any reliance on a legacy
+``_config.yml``. The remaining fields supply the gallery shortname,
+description, thumbnails, chapter selection, and tags.
 
-    * - yml excerpt
-      - explanation
-    * - `shortname`
-      - this top level short name is a short word or phrase that will be used to tag your book in the gallery. The title that appears on the book card in the gallery will be sourced from the _config.yml file.
-    * - `type`
-      - if your book is not a PaleoBook, note the collection it belongs to
-    * - `thumbnail`
-      - the name of the thumbnail image for *the whole book* (can be .png or .jpg, assumed to be .png if not indicated)
-    * - parts
-      - below this will be the content types your book is organized by (e.g., Lifehacks, Science Bits)
-    * - `caption`
-      - the name of the `part` (e.g., Lifehacks)
-    * - chapters
-      - below this will be the notebooks (chapters) included in this section
-    * - `shortname`
-      - the name of the chapter as you want it to appear on the chapter card
-    * - `filename`
-      - the name of the notebook (without `.ipynb`)
-    * - `thumbnail`
-      - the name of the thumbnail image for *this specific chapter* (can be .png or .jpg, assumed to be .png if not indicated)
-    * - tags
-      - below this are the tags (among three categories: domains, packages, format) assigned to the chapter card in the library (note: tags should be short but may include spaces)
-    * - domains
-      - below this are tags related to domain knowledge (e.g. isotopes, linear regression)
-    * - packages
-      - below this are tags for packages leveraged in the chapter (e.g. pyleoclim)
-    * - format
-      - below this are tags for the format of the chapter (e.g. science bit, peer-reviewed, lifehack, figure, etc.)
+Push the published book, ``myst.yml``, ``chapter_meta.yml``, and thumbnails to
+the repository before submitting it.
 
-
-Now onto the next chapter! (The next `shortname` will refer to the next chapter.)
-
-
-3. In the `thumbnails` folder, add one thumbnail for the book, and one thumbnail for each chapter (labeled according to the name indicated in `chapter_meta.yml`). All thumbnails should be of type .png or .jpg
-
-Push these additional contributions to your github repo.
-
-.. _submit-a-library-request:
+.. _submit-a-library-request-jb2:
 
 Submit a library request
---------------------------
+------------------------
 
-Once you have a fully built and published JupyterBook with extra metadata, `submit a request to be added on github`_!
+Once you have a built and published Jupyter Book with gallery metadata,
+`submit a request on GitHub
+<https://github.com/LinkedEarth/PaleoBooks/issues/new?assignees=&labels=gallery+submission&projects=&template=gallery-submission.md&title=>`_.
 
-.. _submit a request to be added on github: https://github.com/LinkedEarth/PaleoBooks/issues/new?assignees=&labels=gallery+submission&projects=&template=gallery-submission.md&title=
+Provide:
 
-#. Name of the repository: *e.g., DISK-proxyComposite*
-#. Repo url: *e.g., https://github.com/khider/DISK-proxyComposite*
-#. Branch: *e.g., main*
-#. Url of .config.yml: *e.g., https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml*
-#. Host for the JupyterBook: *e.g., https://khider.github.io NOT https://khider.github.io/DISK-proxyComposite/intro.html*
-#. User: *e.g., khider*
-#. Landing suffix (name of the page you want users to land on): *e.g., intro.html*
-#. Landing page url: *e.g., https://khider.github.io/DISK-proxyComposite/intro.html*
+#. Repository name (for example, ``hol_temp_tsi_ccm_pb``)
+#. Repository URL (for example,
+   ``https://github.com/LinkedEarth/hol_temp_tsi_ccm_pb``)
+#. Branch (for example, ``main``)
+#. URL of ``myst.yml`` (for example,
+   ``https://github.com/LinkedEarth/hol_temp_tsi_ccm_pb/blob/main/myst.yml``)
+#. Host domain (not a specific page URL)
+#. GitHub user or organization (for example, ``LinkedEarth``)
+#. Landing-page suffix, if applicable
+#. Complete published landing-page URL
+
+The ``myst.yml`` URL tells the gallery where the book root is located. The
+gallery then reads ``meta_data/chapter_meta.yml`` and the inline
+``project.toc`` from that location.
