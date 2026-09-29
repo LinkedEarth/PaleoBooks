@@ -283,8 +283,13 @@ main.banner-main #project-pythia {
 }
 
 /* Program attribution below the PaleoBooks sidebar logo. */
+.sidebar-primary-items__start .paleobooks-logo-item {
+  padding-bottom: 0;
+}
+
 .paleobooks-attribution {
-  margin: 0.25rem 0 0.75rem;
+  margin: 0 0 0.75rem;
+  padding-top: 0.125rem !important;
   text-align: center;
 }
 
@@ -304,8 +309,9 @@ main.banner-main #project-pythia {
 
 .paleobooks-attribution__logos img {
   display: block;
+  flex: 0 0 auto;
   width: auto;
-  max-width: calc(50% - 0.375rem);
+  max-width: none;
   height: 100%;
   object-fit: contain;
 }

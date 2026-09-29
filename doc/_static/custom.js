@@ -298,20 +298,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var logoItem = sidebarLogo.closest(".sidebar-primary-item");
   if (!logoItem) return;
+  logoItem.classList.add("paleobooks-logo-item");
 
   var attributionItem = document.createElement("div");
   var byline = window.PALEOBOOKS_SIDEBAR_BYLINE ||
     "A proud product of PaleoCube, part of the EarthCube program.";
+  var logoPaths = Array.isArray(window.PALEOBOOKS_SIDEBAR_LOGOS)
+    ? window.PALEOBOOKS_SIDEBAR_LOGOS
+    : [];
 
   attributionItem.className = "sidebar-primary-item paleobooks-attribution";
   attributionItem.setAttribute("aria-label", "PaleoBooks program attribution");
   attributionItem.innerHTML =
     '<p class="paleobooks-attribution__text"></p>' +
-    '<div class="paleobooks-attribution__logos">' +
-      '<img src="_static/NSF_Official_logo_Med_Res_600ppi.png" alt="National Science Foundation">' +
-      '<img src="_static/earthcube-8016.png" alt="EarthCube">' +
-    '</div>';
+    '<div class="paleobooks-attribution__logos"></div>';
   attributionItem.querySelector(".paleobooks-attribution__text").textContent = byline;
+
+  var logoLine = attributionItem.querySelector(".paleobooks-attribution__logos");
+  if (logoPaths.length === 0) {
+    logoLine.remove();
+  } else {
+    logoPaths.forEach(function (path) {
+      var filename = path.split("/").pop().replace(/\.[^.]+$/, "");
+      var logo = document.createElement("img");
+      logo.src = path;
+      logo.alt = filename.replace(/[-_]+/g, " ");
+      logoLine.appendChild(logo);
+    });
+  }
 
   logoItem.insertAdjacentElement("afterend", attributionItem);
 });

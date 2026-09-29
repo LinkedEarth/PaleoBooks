@@ -114,13 +114,21 @@ todo_include_todos = False
 #
 html_theme = 'sphinx_book_theme'
 
-html_logo = '_static/Paleobooks_website_logo.pdf'
+html_logo = '_static/logo.png'
 html_title = "PaleoBook Library"
 
 # Text displayed below the PaleoBooks logo in the left sidebar.
 paleobooks_sidebar_byline = (
-    "A proud product of PaleoCube, a part of the EarthCube program from NSF."
+    "A product of PaleoCube, a part of the EarthCube program from NSF."
 )
+
+# Images displayed in a row beneath the sidebar byline. Paths are relative to
+# the generated HTML pages. Set this to an empty list to hide the logo line.
+sidebar_logo_line = [
+    "_static/LinkedEarth_Large.png",
+    "_static/NSF_Official_logo_Med_Res_600ppi.png",
+    "_static/earthcube-8016.png",
+]
 
 # html_title = ""
 html_static_path = ["_static"]
@@ -244,12 +252,14 @@ texinfo_documents = [
 
 
 def setup(app):
-    """Expose sidebar text from this configuration to custom.js."""
+    """Expose sidebar attribution settings to custom.js."""
     app.add_js_file(
         None,
         body=(
             "window.PALEOBOOKS_SIDEBAR_BYLINE = "
-            f"{json.dumps(paleobooks_sidebar_byline)};"
+            f"{json.dumps(paleobooks_sidebar_byline)};\n"
+            "window.PALEOBOOKS_SIDEBAR_LOGOS = "
+            f"{json.dumps(sidebar_logo_line)};"
         ),
         priority=499,
     )
