@@ -19,6 +19,7 @@
 #
 import os
 import sys
+import json
 sys.path.insert(0, os.path.abspath('../source'))
 sys.path.insert(0, os.path.abspath("../_extensions"))
 sys.path.insert(0, os.path.abspath("_static"))
@@ -74,7 +75,7 @@ master_doc = '_toc'
 
 # General information about the project.
 project = 'PaleoBooks Library'
-copyright = '2024, Linked Earth'
+copyright = '2026, Linked Earth'
 author = 'Linked Earth'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -113,8 +114,14 @@ todo_include_todos = False
 #
 html_theme = 'sphinx_book_theme'
 
-html_logo = '_static/logo.png'
+html_logo = 'images/Paleobooks_website_logo.pdf'
 html_title = "PaleoBook Library"
+
+# Text displayed below the PaleoBooks logo in the left sidebar.
+paleobooks_sidebar_byline = (
+    "A proud product of PaleoCube, a part of the EarthCube program from NSF."
+)
+
 # html_title = ""
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
@@ -134,6 +141,9 @@ html_theme_options = {
         "home_page_in_toc": False,
         "show_navbar_depth": 2,
         "use_repository_button": True,
+        # 'analytics':{
+        #                 "google_analytics_id": "G-XXXXXXXXXX",
+        #             },
         "repository_url": "https://github.com/LinkedEarth/PaleoBooks"
     # "page_layouts": {
     #     "index": "page-standalone.html",
@@ -151,7 +161,9 @@ html_theme_options = {
 #         {"name": "Blog", "url": "https://projectpythia.org/blog.html"},
 #     ],
 }
-
+# html_theme_options["analytics"] = {
+#     "google_analytics_id": "G-XXXXXXXXXX",
+# }
 # html_additional_pages = {'index': 'landingpage.html'}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -230,4 +242,13 @@ texinfo_documents = [
 ]
 
 
-
+def setup(app):
+    """Expose sidebar text from this configuration to custom.js."""
+    app.add_js_file(
+        None,
+        body=(
+            "window.PALEOBOOKS_SIDEBAR_BYLINE = "
+            f"{json.dumps(paleobooks_sidebar_byline)};"
+        ),
+        priority=499,
+    )

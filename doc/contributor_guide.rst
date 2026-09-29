@@ -47,10 +47,11 @@ Landing Page:
 There isn't a required structure for your landing page, but we have found that the following elements are appropriate (bolded items are common section titles):
 
 * **Title**: Clearly state the title of your Jupyter book.
-* **Quick Summary** (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.
-* **Motivation**: Offer an overview of the motivation behind building the book. This section should briefly touch on the science or technical skills explored in your chapters. It might also include information about any datasets involved or projects your book is associated with.
 * **Author**: Provide information about the primary author or authors of the book.
 * **Contributors**: Check out `contrib.rocks`_ for an html snippet with avatars for each contributor to your JupyterBook repo.
+* **Funding Sources**: Include information about any funding sources that supported the work in your book.
+* **Quick Summary** (Byline): Provide a concise summary of your book. This also a good place to include a formatted citation for your book if it has a DOI.
+* **Motivation**: Offer an overview of the motivation behind building the book. This section should briefly touch on the science or technical skills explored in your chapters. It might also include information about any datasets involved or projects your book is associated with.
 * **Structure**: Give a quick explanation of the content in each section of the book (more on this below).
 * **References**: Include notes about any publications associated with the book.
 
@@ -92,11 +93,11 @@ Running your Notebooks in the cloud [Optional]
 
 Imagine a world where every time you opened a scientific notebook, it just worked. No dependency conflicts, no version mismatches, no endless troubleshooting. You could explore, run, and reproduce the analysis exactly as the original author intended—whether it was written yesterday or five years ago. That’s the power of containers. They capture the full computational environment—Python version, libraries, even system dependencies—ensuring that your workflow is portable, consistent, and reproducible across time and platforms. By wrapping science in containers, we free ourselves from the "it works on my machine" trap and pave the way for truly sharable, reliable computational research.
 
-Now imagine a plaftfrom that would tkae this container and allow anyone to run it in the cloud. That's the beauty of `MyBinder <https://mybinder.org>`_. They can take a container and render the notebooks into a JupyterLab environment. 
+Now imagine a platform that would take this container and allow anyone to run it in the cloud. That's the beauty of `MyBinder <https://mybinder.org>`_. They can take a container and render the notebooks into a JupyterLab environment.
 
 The beauty of it is that it does not require much work on your part.
 
-* **Step 1**: Create a container and put in a container registry such as `DockerHub <https://hub.docker.com>`_ or `quay.io <https://quay.io>`_. We recommend to use quay.io as it offers more free options for open science. You can follow `this tutorial <https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html>`_ on how to create custom images. Note that this step is technically optional as `myBinder` can create containers from the environment or requirements file in your repository directly. Hpwever, as time goes by, this file may become obsolete and not use the correct versions of the packages. 
+* **Step 1**: Create a container and put in a container registry such as `DockerHub <https://hub.docker.com>`_ or `quay.io <https://quay.io>`_. We recommend to use quay.io as it offers more free options for open science. You can follow `this tutorial <https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html>`_ on how to create custom images. Note that this step is technically optional as `myBinder` can create containers from the environment or requirements file in your repository directly. However, as time goes by, this file may become obsolete and not use the correct versions of the packages.
 * **Step 2**: Create a `binder` folder in your repository and place a DockerFile and `config.json` file to indicate to myBinder where to get the container from. You can find an example of these files in `this repository <https://github.com/khider/coral-visualization>`_.
 * **Step 3**: Link your repository to `myBinder <https://mybinder.org>`_ following the instructions on their website. 
 
