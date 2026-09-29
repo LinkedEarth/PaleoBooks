@@ -114,12 +114,12 @@ todo_include_todos = False
 #
 html_theme = 'sphinx_book_theme'
 
-html_logo = '_static/Paleobooks_website_logo.pdf'
+html_logo = 'images/Paleobooks_website_logo.pdf'
 html_title = "PaleoBook Library"
 
 # Text displayed below the PaleoBooks logo in the left sidebar.
 paleobooks_sidebar_byline = (
-    "A proud product of PaleoCube, funded as a me of the EarthCube program from NSF."
+    "A proud product of PaleoCube, a part of the EarthCube program from NSF."
 )
 
 # html_title = ""
