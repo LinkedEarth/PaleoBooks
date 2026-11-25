@@ -147,7 +147,7 @@ html_js_files = [
 html_theme_options = {
         "path_to_docs": "docs",
         "home_page_in_toc": False,
-        "show_navbar_depth": 2,
+        "show_navbar_depth": 1,
         "use_repository_button": True,
         "navbar_persistent": [],
         # 'analytics':{
