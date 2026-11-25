@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+
+
+<html lang="english" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contributor Guide for Jupyter Book 1 &#8212; PaleoBook Library</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d46916d2" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=17d79c28"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>window.PALEOBOOKS_SIDEBAR_BYLINE = "A product of PaleoCube, a part of the EarthCube program from NSF.";
+window.PALEOBOOKS_SIDEBAR_LOGOS = ["_static/LinkedEarth_Large.png", "_static/NSF_Official_logo_Med_Res_600ppi.png", "_static/earthcube-8016.png"];</script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contributor_guide_jupyterbook1';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="_static/custom.js?v=e9c06d04"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dependencies" href="dependencies.html" />
+    <link rel="prev" title="Contributor Guide" href="contributor_guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="english"/>
+  <meta name="docsearch:version" content="0.1" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="_toc.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="PaleoBook Library - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="PaleoBook Library - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Gallery</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="contributor_guide.html">Contributor Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Contributor Guide for Jupyter Book 1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Credit and inspiration</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/LinkedEarth/PaleoBooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/contributor_guide_jupyterbook1.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contributor Guide for Jupyter Book 1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-book">Write your book</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content">Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landing-page">Landing Page</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-your-book-with-jupyter-book-1">Build your book with Jupyter Book 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-your-notebooks-in-the-cloud-optional">Running your notebooks in the cloud [Optional]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-for-joining-the-library">Prepare for joining the library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-a-library-request">Submit a library request</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="contributor-guide-for-jupyter-book-1">
+<span id="contributor-guide-jupyterbook-1"></span><h1>Contributor Guide for Jupyter Book 1<a class="headerlink" href="#contributor-guide-for-jupyter-book-1" title="Link to this heading">#</a></h1>
+<p>This secondary guide supports existing books built with Jupyter Book 1. New
+books should normally follow the <a class="reference external" href="contributor_guide.html">main Jupyter Book 2 contributor guide</a>.</p>
+<p>To make a great contribution you need to:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#write-your-book-jb1"><span class="std std-ref">Write your book</span></a></p></li>
+<li><p><a class="reference internal" href="#build-your-book-jb1"><span class="std std-ref">Build your book with Jupyter Book 1</span></a></p></li>
+<li><p><a class="reference internal" href="#run-remote-jb1"><span class="std std-ref">Running your notebooks in the cloud [Optional]</span></a> [Optional]</p></li>
+<li><p><a class="reference internal" href="#prepare-for-joining-the-library-jb1"><span class="std std-ref">Prepare your book to be added to the library</span></a></p></li>
+<li><p><a class="reference internal" href="#submit-a-library-request-jb1"><span class="std std-ref">Submit a request to have your book added</span></a></p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Consider sections 1 and 2 as a style guide. To be added to the library,
+you must have a fully published, hosted book with a landing page and the
+metadata described in section 4.</p>
+</div>
+<section id="write-your-book">
+<span id="write-your-book-jb1"></span><h2>Write your book<a class="headerlink" href="#write-your-book" title="Link to this heading">#</a></h2>
+<p>Each library contribution needs well-organized content and a landing page (a
+README or introduction). A template repository is available <a class="reference external" href="https://github.com/jordanplanders/paleobook_template">here</a>.</p>
+<section id="content">
+<h3>Content<a class="headerlink" href="#content" title="Link to this heading">#</a></h3>
+<p>Structure your content into one or more sections, each addressing specific
+themes or topics. Each section contains one or more notebooks (chapters) that
+delve into the details of the respective theme.</p>
+<p>How you organize your book is up to you. We have found Lifehacks and Science
+Bits to be useful themes, as many of our chapters have fallen under those two
+categories, but that is by no means the only way. For example, the sections of
+a publication might be another sensible approach. This organizational
+structure will not be visible in the gallery unless you specify it in
+<code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>.</p>
+<dl class="simple">
+<dt><em>Lifehacks</em></dt><dd><p>Careful breakdowns of technically tricky, unintuitive, or cumbersome tasks,
+such as data-visualization tips or explanations of how to interact with a
+data product.</p>
+</dd>
+<dt><em>Science Bits</em></dt><dd><p>Step-by-step discussions of analysis or exploratory workflows. These
+notebooks should focus more on scientific insights derived from analyses
+than on technical implementation.</p>
+</dd>
+<dt><em>Paper Sections</em></dt><dd><p>Notebooks describing the research behind a published work. These might be
+organized by the sections of the publication or by the included figures.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every notebook must have a level-one heading (one <code class="docutils literal notranslate"><span class="pre">#</span></code>). The first such
+heading is used by default in the Jupyter Book table of contents. You may
+assign a different short name for the gallery in <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>.</p>
+</div>
+</section>
+<section id="landing-page">
+<h3>Landing Page<a class="headerlink" href="#landing-page" title="Link to this heading">#</a></h3>
+<p>There is no required structure for your landing page, but the following
+elements are useful (bold items are common section titles):</p>
+<ul class="simple">
+<li><p><strong>Title</strong>: Clearly state the title of your Jupyter Book.</p></li>
+<li><p><strong>Author</strong>: Provide information about the primary author or authors.</p></li>
+<li><p><strong>Contributors</strong>: Check out <a class="reference external" href="https://contrib.rocks/preview?repo=angular%2Fangular-ja">contrib.rocks</a> for an HTML snippet
+with avatars for each contributor to your repository.</p></li>
+<li><p><strong>Funding Sources</strong>: Include information about funding sources that supported
+the work in your book.</p></li>
+<li><p><strong>Quick Summary</strong> (Byline): Provide a concise summary of your book. This is
+also a good place to include a formatted citation if the book has a DOI.</p></li>
+<li><p><strong>Motivation</strong>: Offer an overview of the motivation behind building the book.
+Briefly introduce the science or technical skills explored in the chapters,
+relevant datasets, and projects with which the book is associated.</p></li>
+<li><p><strong>Structure</strong>: Give a quick explanation of the content in each section.</p></li>
+<li><p><strong>References</strong>: Include notes about publications associated with the book.</p></li>
+</ul>
+</section>
+</section>
+<section id="build-your-book-with-jupyter-book-1">
+<span id="build-your-book-jb1"></span><h2>Build your book with Jupyter Book 1<a class="headerlink" href="#build-your-book-with-jupyter-book-1" title="Link to this heading">#</a></h2>
+<p>Jupyter Book 1 uses two book files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> for book metadata and build settings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> for the table of contents</p></li>
+</ul>
+<p>For working examples, see the C-iTRACE PaleoBook's <a class="reference external" href="https://github.com/LinkedEarth/citrace_paleobook/blob/main/_config.yml">_config.yml</a> and
+<a class="reference external" href="https://github.com/LinkedEarth/citrace_paleobook/blob/main/_toc.yml">_toc.yml</a>.</p>
+<p>Follow the archived <a class="reference external" href="https://jupyterbook.org/v1/intro.html">Jupyter Book 1 documentation</a> rather than the current Jupyter Book
+2 quickstart.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>:</p>
+<ul>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">repository.url</span></code>, <code class="docutils literal notranslate"><span class="pre">repository.branch</span></code>, and, when needed,
+<code class="docutils literal notranslate"><span class="pre">repository.path_to_book</span></code>.</p></li>
+<li><p>Reference the book logo under <code class="docutils literal notranslate"><span class="pre">logo</span></code>. Keeping <code class="docutils literal notranslate"><span class="pre">logo.png</span></code> beside
+<code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> is recommended.</p></li>
+<li><p>To prevent notebooks from executing during the build, include:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">execute</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">execute_notebooks</span><span class="p">:</span><span class="w"> </span><span class="s">'off'</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>In <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, list the landing page as <code class="docutils literal notranslate"><span class="pre">root</span></code> and organize the remaining
+files under <code class="docutils literal notranslate"><span class="pre">chapters</span></code>, <code class="docutils literal notranslate"><span class="pre">parts</span></code>, and <code class="docutils literal notranslate"><span class="pre">sections</span></code>. TOC file values normally
+omit <code class="docutils literal notranslate"><span class="pre">.md</span></code> and <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> extensions. For example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jb-book</span>
+<span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">intro</span>
+<span class="nt">parts</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">caption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Science Bits</span>
+<span class="w">    </span><span class="nt">chapters</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notebooks/example</span>
+</pre></div>
+</div>
+<p>Build the book with the Jupyter Book 1 environment and publish the generated
+HTML using the hosting method appropriate to the project.</p>
+</section>
+<section id="running-your-notebooks-in-the-cloud-optional">
+<span id="run-remote-jb1"></span><h2>Running your notebooks in the cloud [Optional]<a class="headerlink" href="#running-your-notebooks-in-the-cloud-optional" title="Link to this heading">#</a></h2>
+<p>Imagine a world where every time you opened a scientific notebook, it just
+worked. No dependency conflicts, no version mismatches, no endless
+troubleshooting. You could explore, run, and reproduce the analysis exactly as
+the original author intended--whether it was written yesterday or five years
+ago. That is the power of containers. They capture the full computational
+environment--Python version, libraries, and even system dependencies--ensuring
+that your workflow is portable, consistent, and reproducible across time and
+platforms. By wrapping science in containers, we free ourselves from the &quot;it
+works on my machine&quot; trap and pave the way for truly shareable, reliable
+computational research.</p>
+<p>Now imagine a platform that takes this container and lets anyone run it in the
+cloud. That is the beauty of <a class="reference external" href="https://mybinder.org">MyBinder</a>. It can take a
+container or repository environment and render the notebooks in a JupyterLab
+environment. It does not require much work on your part.</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Create a container and put it in a container registry such as
+<a class="reference external" href="https://hub.docker.com">DockerHub</a> or <a class="reference external" href="https://quay.io">Quay.io</a>. We
+recommend Quay.io because it offers more free options for open science. The
+<a class="reference external" href="https://2i2c.org/community-showcase/admin/howto/environment/hub-user-image-template-guide.html">2i2c image tutorial</a>
+explains one way to create custom images. This step is optional because
+MyBinder can create a container directly from an environment or requirements
+file in the repository. A pinned container can nevertheless protect the book
+against dependency changes over time.</p></li>
+<li><p><strong>Step 2</strong>: To use a prebuilt image, create a <code class="docutils literal notranslate"><span class="pre">binder</span></code> folder containing
+the Dockerfile and <code class="docutils literal notranslate"><span class="pre">config.json</span></code> needed to identify the container. See the
+<a class="reference external" href="https://github.com/khider/coral-visualization">coral-visualization example</a>.</p></li>
+<li><p><strong>Step 3</strong>: Link and test the repository through <a class="reference external" href="https://mybinder.org">MyBinder</a>. More help is available from the <a class="reference external" href="https://linked.earth/LeapFROGS/module6">LEAPFROGS module</a>.</p></li>
+<li><p><strong>Step 4</strong>: Configure <code class="docutils literal notranslate"><span class="pre">launch_buttons</span></code> in <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> according to the
+archived <a class="reference external" href="https://jupyterbook.org/v1/interactive/launchbuttons.html">Jupyter Book 1 launch-button documentation</a>.</p></li>
+</ul>
+</section>
+<section id="prepare-for-joining-the-library">
+<span id="prepare-for-joining-the-library-jb1"></span><h2>Prepare for joining the library<a class="headerlink" href="#prepare-for-joining-the-library" title="Link to this heading">#</a></h2>
+<p>In order for your book to be added to the library, you need to provide some
+additional information that the gallery uses to populate its fields.</p>
+<ol class="arabic simple">
+<li><p>In the same directory as <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, create folders
+named <code class="docutils literal notranslate"><span class="pre">meta_data</span></code> and <code class="docutils literal notranslate"><span class="pre">thumbnails</span></code>.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">meta_data</span></code>, create <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">thumbnails</span></code>, add one PNG or JPEG image for the book and one for each
+chapter.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>YAML files are sensitive to indentation. Starting from a working example
+is strongly recommended.</p>
+</div>
+<p>In the gallery, the content of your book appears in two ways: as a single card
+for the whole book and as individual cards for each selected chapter. Each card
+contains a title, thumbnail image, and selection of tags. Each card is also
+clickable and takes the reader to the relevant published page.</p>
+<p>Book cards use:</p>
+<ul class="simple">
+<li><p><strong>book title, author, and description</strong>: specified in <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code></p></li>
+<li><p><strong>book URL</strong>: specified in the gallery submission</p></li>
+<li><p><strong>book thumbnail</strong>: named in <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code> and stored in
+<code class="docutils literal notranslate"><span class="pre">thumbnails</span></code></p></li>
+<li><p><strong>book tags</strong>: combined from the tags assigned to its chapters</p></li>
+<li><p><strong>book shortname tag</strong>: the top-level <code class="docutils literal notranslate"><span class="pre">shortname</span></code> in
+<code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>, used to associate the book with its chapter cards</p></li>
+</ul>
+<p>Chapter cards use:</p>
+<ul class="simple">
+<li><p><strong>chapter title</strong>: <code class="docutils literal notranslate"><span class="pre">shortname</span></code> in <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code></p></li>
+<li><p><strong>chapter URL</strong>: constructed by matching <code class="docutils literal notranslate"><span class="pre">filename</span></code> in
+<code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code> to a <code class="docutils literal notranslate"><span class="pre">file</span></code> entry in <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code></p></li>
+<li><p><strong>chapter thumbnail</strong>: named in <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code> and stored in
+<code class="docutils literal notranslate"><span class="pre">thumbnails</span></code></p></li>
+<li><p><strong>chapter tags</strong>: specified in <code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code></p></li>
+<li><p><strong>book shortname tag</strong>: inherited from the top-level book metadata</p></li>
+</ul>
+<p>Use the complete source path relative to <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, without <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> or
+<code class="docutils literal notranslate"><span class="pre">.md</span></code>. For example, this TOC entry:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notebooks/lifehacks/pyODV</span>
+</pre></div>
+</div>
+<p>matches:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">notebooks/lifehacks/pyODV</span>
+</pre></div>
+</div>
+<p>The following top segment follows the <a class="reference external" href="https://github.com/LinkedEarth/citrace_paleobook/blob/main/meta_data/chapter_meta.yml">C-iTRACE chapter_meta.yml</a>
+Jupyter Book 1 example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">shortname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-iTRACE</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Paleobook</span>
+<span class="nt">thumbnail</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thumbnail.png</span>
+<span class="nt">parts</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">caption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lifehacks</span>
+<span class="w">    </span><span class="nt">chapters</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">shortname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyODV</span>
+<span class="w">        </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyODV</span>
+<span class="w">        </span><span class="nt">thumbnail</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyodv_demo.png</span>
+<span class="w">        </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oceanography</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tracers</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data viz</span>
+<span class="w">          </span><span class="nt">packages</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xarray</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+</pre></div>
+</div>
+<p>The historical C-iTRACE metadata uses the unique basename <code class="docutils literal notranslate"><span class="pre">pyODV</span></code>. The
+gallery accepts that legacy shorthand, but the complete TOC-relative path is
+recommended for new metadata because it remains unambiguous if two directories
+contain notebooks with the same name.</p>
+<p>The fields have the following meanings:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">title</span></code></dt><dd><p>The full title displayed on the book card when supplied in
+<code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">author</span></code></dt><dd><p>The book author or authors displayed by the gallery when supplied in
+<code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">description</span></code></dt><dd><p>A concise description for the book card.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shortname</span></code></dt><dd><p>A short word or phrase used to associate the book with its chapter cards.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>The collection type. Use <code class="docutils literal notranslate"><span class="pre">Paleobook</span></code> unless another collection applies.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">thumbnail</span></code></dt><dd><p>The book-level thumbnail filename. If no extension is supplied, PNG is
+assumed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parts</span></code></dt><dd><p>Groups chapters by content type. A one-part book may instead put
+<code class="docutils literal notranslate"><span class="pre">chapters</span></code> at the top level.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">caption</span></code></dt><dd><p>The part name. It is also added to its chapters as a format tag.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">chapters</span></code></dt><dd><p>The list of notebooks to display as chapter cards.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shortname</span></code> (chapter)</dt><dd><p>The chapter name displayed on its card.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">filename</span></code></dt><dd><p>The notebook path used in <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>, without <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> or <code class="docutils literal notranslate"><span class="pre">.md</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">thumbnail</span></code> (chapter)</dt><dd><p>The chapter thumbnail filename.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tags</span></code></dt><dd><p>Gallery filters. <code class="docutils literal notranslate"><span class="pre">domains</span></code> describe subject matter, <code class="docutils literal notranslate"><span class="pre">packages</span></code> name
+software used, and format tags describe the chapter style.</p>
+</dd>
+</dl>
+<p>Push the published book, <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code>,
+<code class="docutils literal notranslate"><span class="pre">chapter_meta.yml</span></code>, and thumbnails to the repository before submitting it.</p>
+</section>
+<section id="submit-a-library-request">
+<span id="submit-a-library-request-jb1"></span><h2>Submit a library request<a class="headerlink" href="#submit-a-library-request" title="Link to this heading">#</a></h2>
+<p>Once you have a built and published Jupyter Book with gallery metadata,
+<a class="reference external" href="https://github.com/LinkedEarth/PaleoBooks/issues/new?assignees=&amp;labels=gallery+submission&amp;projects=&amp;template=gallery-submission.md&amp;title=">submit a request on GitHub</a>.</p>
+<p>Provide:</p>
+<ol class="arabic simple">
+<li><p>Repository name (for example, <code class="docutils literal notranslate"><span class="pre">DISK-proxyComposite</span></code>)</p></li>
+<li><p>Repository URL (for example,
+<code class="docutils literal notranslate"><span class="pre">https://github.com/khider/DISK-proxyComposite</span></code>)</p></li>
+<li><p>Branch (for example, <code class="docutils literal notranslate"><span class="pre">main</span></code>)</p></li>
+<li><p>URL of <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> (for example,
+<code class="docutils literal notranslate"><span class="pre">https://github.com/khider/DISK-proxyComposite/blob/main/proxycomposite/_config.yml</span></code>)</p></li>
+<li><p>Host domain (for example, <code class="docutils literal notranslate"><span class="pre">https://khider.github.io</span></code>, not a specific page)</p></li>
+<li><p>GitHub user or organization (for example, <code class="docutils literal notranslate"><span class="pre">khider</span></code>)</p></li>
+<li><p>Landing-page suffix (for example, <code class="docutils literal notranslate"><span class="pre">intro.html</span></code>)</p></li>
+<li><p>Complete published landing-page URL (for example,
+<code class="docutils literal notranslate"><span class="pre">https://khider.github.io/DISK-proxyComposite/intro.html</span></code>)</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> URL tells the gallery where the book root is located. The
+gallery then reads <code class="docutils literal notranslate"><span class="pre">meta_data/chapter_meta.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> from that
+location.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="contributor_guide.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Contributor Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dependencies.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dependencies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-book">Write your book</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content">Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landing-page">Landing Page</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-your-book-with-jupyter-book-1">Build your book with Jupyter Book 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-your-notebooks-in-the-cloud-optional">Running your notebooks in the cloud [Optional]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-for-joining-the-library">Prepare for joining the library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-a-library-request">Submit a library request</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Linked Earth
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Linked Earth.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
